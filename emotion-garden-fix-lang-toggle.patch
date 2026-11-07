@@ -1,0 +1,28 @@
+From 37be35cdcaa55b65ee3048bffb26f4123e026dee Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 7 Nov 2026 18:53:31 +0800
+Subject: [PATCH] fix: language toggle dead after successful camera recognition
+ (reset camBusy)
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011xdBXaCdAPzoXqmXMbKJ8S
+---
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/index.html b/index.html
+index 51957d1..5ea4746 100644
+--- a/index.html
++++ b/index.html
+@@ -546,7 +546,7 @@ async function runCamera(){
+     stream.getTracks().forEach(t=>t.stop());
+     if(n<3) throw new Error('NOFACE');
+     for(const k in acc) acc[k]/=n;
+-    const r=aggregate(acc),mm=moodOf(r.emoji); S.emotion=r.emotion; S.confidence=r.confidence; S.guess=S.emoji=mm.e; S.level=mm.level; go(2);
++    const r=aggregate(acc),mm=moodOf(r.emoji); S.emotion=r.emotion; S.confidence=r.confidence; S.guess=S.emoji=mm.e; S.level=mm.level; camBusy=false; go(2);
+   }catch(err){
+     if(stream) stream.getTracks().forEach(t=>t.stop());
+     const m=T({NOCAM:'无法使用摄像头：需要 https 或 localhost 打开，并允许权限。',NOFACE:'没检测到足够的人脸，请正对镜头、光线充足后重试。',LIB:'识别库加载失败（网络？），请确认 vendor/ 文件齐全后重试。',MODEL:'识别模型加载失败（网络？），请确认 vendor/model/ 文件齐全后重试。'}[err.message]||('摄像头/识别出错：'+(err.name||err.message)),{NOCAM:'Camera unavailable: open the page over https or localhost and allow camera permission.',NOFACE:'Not enough of a face was found. Face the camera in good light and retry.',LIB:'Failed to load the recognition library (network?). Check that vendor/ is complete and retry.',MODEL:'Failed to load the recognition model (network?). Check that vendor/model/ is complete and retry.'}[err.message]||('Camera / recognition error: '+(err.name||err.message)));
+-- 
+2.43.0
+

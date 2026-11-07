@@ -1,0 +1,128 @@
+From 3cf1faf620ef0fa9bcf97bfdfdc64d4af002e456 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Sat, 7 Nov 2026 19:24:45 +0800
+Subject: [PATCH] feat: step 1 camera starts automatically; detection window
+ 3.5s -> 6s; retry button only after failure
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_011xdBXaCdAPzoXqmXMbKJ8S
+---
+ README.md  |  2 +-
+ index.html | 28 +++++++++++++++++-----------
+ 2 files changed, 18 insertions(+), 12 deletions(-)
+
+diff --git a/README.md b/README.md
+index c34ce85..aa361e1 100644
+--- a/README.md
++++ b/README.md
+@@ -3,7 +3,7 @@
+ 手机浏览器里完成：面部表情识别（位置自动确定，识别不对可在摄像头页点"调整"用转盘改）→ 在一个圆形"情绪圆圈"（43 个 emoji 排成蜂窝圆盘）里选最贴近的表情（强度由位置决定，同一扇区里越靠外越强；选中的表情会贴在蔬菜上当脸）→ 选特殊状态 → 听声音 → 种进校园地图。
+ 点"确认并保存"后，记录自动发到电脑，追加为 `records.csv`（Excel / WPS 直接打开）。
+ 
+-- 面部识别、声音合成全在**手机本地**运行。摄像头画面只在内存里用 3.5 秒，**不录制、不保存、不上传**，识别完立即关闭摄像头。
++- 面部识别、声音合成全在**手机本地**运行。摄像头画面只在内存里用约 6 秒，**不录制、不保存、不上传**，识别完立即关闭摄像头。
+ - 只有文字记录（地点、情绪、强度、特殊状态、乐器、置信度）会发到电脑。
+ - 全程只需要局域网，**不需要联网、不需要隧道**（下载识别库那一步除外，只做一次）。
+ 
+diff --git a/index.html b/index.html
+index 5ea4746..69cef12 100644
+--- a/index.html
++++ b/index.html
+@@ -488,7 +488,7 @@ async function locate(){
+  * 4. 摄像头 + 表情识别（face-api，浏览器端运行，视频不上传）
+  * ===================================================== */
+ function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=src;s.onload=res;s.onerror=()=>rej(new Error('script '+src));document.head.appendChild(s)})}
+-let faceReady=null,camBusy=false;
++let faceReady=null,camBusy=false,camRun=0;
+ function loadFaceModels(){
+   if(faceReady) return faceReady;
+   faceReady=(async()=>{
+@@ -523,19 +523,22 @@ function aggregate(a){
+ }
+ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+ async function runCamera(){
++  const my=++camRun, gone=()=>my!==camRun;            // 切换语言/换页后，旧的一轮识别自行退出
+   const $=id=>document.getElementById(id), tip=t=>{const e=$('vtip');if(e)e.textContent=t};
+   let stream=null; const lock=b=>{camBusy=b;['b-detect','b-sim','b-manual','b-lang'].forEach(i=>$(i)&&($(i).disabled=b))};
+-  lock(true);
++  lock(true); if($('b-detect'))$('b-detect').style.display='none';
+   try{
+     if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia) throw new Error('NOCAM');
+     tip(T('正在开启摄像头…','Starting the camera…'));
+     stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:'user',width:{ideal:640},height:{ideal:480}},audio:false});
+-    const v=$('cam'); v.srcObject=stream; await v.play(); v.style.display='block'; $('vph').style.display='none'; $('guide').style.display='block';
++    const v=$('cam'); v.srcObject=stream; await v.play(); if(gone()){stream.getTracks().forEach(t=>t.stop());return}
++    v.style.display='block'; $('vph').style.display='none'; $('guide').style.display='block';
+     tip(T('正在加载识别模型（首次需要几 MB，请稍候）…','Loading the recognition model (a few MB the first time)…'));
+-    await loadFaceModels();
+-    const acc={},DUR=3500,t0=performance.now(); let n=0;
++    await loadFaceModels(); if(gone()){stream.getTracks().forEach(t=>t.stop());return}
++    const acc={},DUR=6000,t0=performance.now(); let n=0;
+     const opt=new faceapi.TinyFaceDetectorOptions({inputSize:224,scoreThreshold:.4});
+     while(performance.now()-t0<DUR){
++      if(gone()){stream.getTracks().forEach(t=>t.stop());return}
+       $('bar').style.width=Math.min(100,(performance.now()-t0)/DUR*100)+'%';
+       const r=await faceapi.detectSingleFace(v,opt).withFaceExpressions();
+       if(r){n++;let top='neutral';for(const k in r.expressions){acc[k]=(acc[k]||0)+r.expressions[k];if(r.expressions[k]>r.expressions[top])top=k}
+@@ -543,15 +546,17 @@ async function runCamera(){
+       else tip(T('没有检测到人脸，请正对镜头、光线充足','No face found — face the camera in good light'));
+       await sleep(60);
+     }
++    if(gone()){stream.getTracks().forEach(t=>t.stop());return}
+     stream.getTracks().forEach(t=>t.stop());
+     if(n<3) throw new Error('NOFACE');
+     for(const k in acc) acc[k]/=n;
+     const r=aggregate(acc),mm=moodOf(r.emoji); S.emotion=r.emotion; S.confidence=r.confidence; S.guess=S.emoji=mm.e; S.level=mm.level; camBusy=false; go(2);
+   }catch(err){
+     if(stream) stream.getTracks().forEach(t=>t.stop());
++    if(gone())return;
+     const m=T({NOCAM:'无法使用摄像头：需要 https 或 localhost 打开，并允许权限。',NOFACE:'没检测到足够的人脸，请正对镜头、光线充足后重试。',LIB:'识别库加载失败（网络？），请确认 vendor/ 文件齐全后重试。',MODEL:'识别模型加载失败（网络？），请确认 vendor/model/ 文件齐全后重试。'}[err.message]||('摄像头/识别出错：'+(err.name||err.message)),{NOCAM:'Camera unavailable: open the page over https or localhost and allow camera permission.',NOFACE:'Not enough of a face was found. Face the camera in good light and retry.',LIB:'Failed to load the recognition library (network?). Check that vendor/ is complete and retry.',MODEL:'Failed to load the recognition model (network?). Check that vendor/model/ is complete and retry.'}[err.message]||('Camera / recognition error: '+(err.name||err.message)));
+     const v=$('cam'); if(v){v.style.display='none';$('vph').style.display='flex';$('guide').style.display='none'}
+-    tip(m); lock(false);
++    tip(m); lock(false); if($('b-detect')){$('b-detect').style.display='';$('b-detect').textContent=T('重新识别','Try again')}
+   }
+ }
+ function simulate(){const m=MOODS[Math.floor(Math.random()*MOODS.length)];S.emotion=m.cat;S.guess=S.emoji=m.e;S.level=m.level;S.confidence=+(.5+Math.random()*.4).toFixed(2);go(2)}
+@@ -718,7 +723,7 @@ initZone();
+ const KEY='emotion-garden-v3';
+ const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}};
+ const save=r=>{try{localStorage.setItem(KEY,JSON.stringify(r))}catch(e){}};
+-const go=n=>{Audio_.kill();S.step=n;render()};
++const go=n=>{Audio_.kill();camRun++;camBusy=false;S.step=n;render()};
+ const reset=()=>{Object.assign(S,{step:1,emotion:null,confidence:null,level:1,special:null,emoji:null,guess:null});render()};
+ const instOf=()=>INSTR[(zoneOf(S.zone)||ZONES[1]).inst];
+ function pParams(){
+@@ -749,10 +754,10 @@ const spName=(id,L=LANG)=>{const s=SPECIALS.find(x=>x.id===id);if(!s)return L===
+ function render(){
+   const e=S.emotion&&emoOf(S.emotion),m=S.emoji&&moodOf(S.emoji);let h=topbar();
+   if(S.step===1){
+-    h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情（本机运算，视频不上传）。识别约 3.5 秒。','Step 1 · The camera reads your facial expression (on-device; video is never uploaded). Takes about 3.5 seconds.')}</div>
++    h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情（本机运算，视频不上传）。打开页面会自动开启摄像头，识别约 6 秒。','Step 1 · The camera reads your facial expression (on-device; video is never uploaded). The camera starts automatically and takes about 6 seconds.')}</div>
+     <div class="card"><button class="zpill" id="b-zone" aria-label="${T('调整地点','Change location')}">📍 <span id="zname">${znm(zoneOf(S.zone))}</span> · ${T('调整','Change')}</button>
+-    <div class="vbox"><video id="cam" playsinline muted autoplay></video><div class="vph" id="vph">📷</div><div class="guide" id="guide"></div><div class="bar"><i id="bar"></i></div><div class="vtip" id="vtip">${T('点击下方按钮开始','Tap the button below to start')}</div></div>
+-    <button id="b-detect">${T('开启摄像头并识别','Start camera & detect')}</button>
++    <div class="vbox"><video id="cam" playsinline muted autoplay></video><div class="vph" id="vph">📷</div><div class="guide" id="guide"></div><div class="bar"><i id="bar"></i></div><div class="vtip" id="vtip">${T('正在开启摄像头…','Starting the camera…')}</div></div>
++    <button id="b-detect" style="display:none">${T('重新识别','Try again')}</button>
+     ${DEBUG?`<button class="ghost" id="b-sim">${T('模拟识别（调试）','Simulate (debug)')}</button><button class="ghost" id="b-manual">${T('跳过，直接选表情','Skip, pick an expression')}</button>`:''}</div>`;
+   }
+   if(S.step===2){
+@@ -930,7 +935,7 @@ function refreshInfo(){
+ 
+ function setLang(l){LANG=l;try{localStorage.setItem(LKEY,l)}catch(e){}document.documentElement.lang=l==='en'?'en':'zh';document.title=T('情绪菜园','Emotion Garden')}
+ function toggleLang(){
+-  if(camBusy)return;                                   // 摄像头识别中不切换，免得打断
++  camRun++;camBusy=false;                              // 识别中切换语言：旧一轮退出，重新渲染后自动重开
+   setLang(EN()?'zh':'en');
+   document.querySelectorAll('.sheet-bg').forEach(n=>n.remove());
+   render();
+@@ -945,6 +950,7 @@ function bind(){
+   if(S.step===1){
+     loadFaceModels().catch(()=>{});
+     $('b-detect').onclick=runCamera;$('b-zone').onclick=openZoneWheel;
++    runCamera();                                       // 默认自动开启摄像头并识别
+     $('b-sim')&&($('b-sim').onclick=simulate);
+     $('b-manual')&&($('b-manual').onclick=()=>{S.emotion=null;S.confidence=null;S.emoji=null;S.guess=null;S.level=1;go(2)});
+   }
+-- 
+2.43.0
+

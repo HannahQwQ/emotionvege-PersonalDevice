@@ -16,7 +16,7 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 ROOT = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(ROOT, 'records.csv')
 CERT, KEY, CERT_IPS = (os.path.join(ROOT, n) for n in ('cert.pem', 'key.pem', 'cert_ips.txt'))
-FIELDS = ['id', 'server_time', 'client_time', 'zone', 'emotion', 'level', 'solfege',
+FIELDS = ['id', 'server_time', 'client_time', 'zone', 'emotion', 'emoji', 'word', 'level', 'solfege',
           'stage', 'special', 'instrument', 'confidence', 'device']
 LOCK = threading.Lock()
 
@@ -31,6 +31,28 @@ def seen_ids():
         return set()
 
 
+def migrate_csv():
+    """旧版 records.csv 没有 emoji / word 两列：启动时补齐表头，避免新旧记录错位（旧文件备份为 records.csv.bak）。"""
+    if not os.path.exists(CSV_PATH):
+        return
+    try:
+        with open(CSV_PATH, newline='', encoding='utf-8-sig') as f:
+            rd = csv.DictReader(f)
+            old, rows = rd.fieldnames or [], list(rd)
+        if old == FIELDS:
+            return
+        os.replace(CSV_PATH, CSV_PATH + '.bak')
+        with open(CSV_PATH, 'w', newline='', encoding='utf-8-sig') as f:
+            w = csv.DictWriter(f, FIELDS)
+            w.writeheader()
+            for r in rows:
+                w.writerow({k: r.get(k, '') for k in FIELDS})
+        print('已把旧的 records.csv 升级为新表头（旧文件备份为 records.csv.bak）')
+    except PermissionError:
+        print('!! records.csv 被占用（Excel 开着？），没能升级表头；请关掉后重启服务器')
+
+
+migrate_csv()
 SEEN = seen_ids()
 
 
@@ -125,7 +147,7 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     # 这些文件不对外提供（含你的数据、私钥、源码）。静态网页文件照常提供。
-    BLOCKED = {'records.csv', 'key.pem', 'cert.pem', 'cert_ips.txt', 'server.py', 'download_vendor.py',
+    BLOCKED = {'records.csv', 'records.csv.bak', 'key.pem', 'cert.pem', 'cert_ips.txt', 'server.py', 'download_vendor.py',
                'start.bat', 'start.sh', 'start.command', 'readme.md', '.gitignore'}
 
     def _blocked(self):
@@ -180,7 +202,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {'ok': False, 'error': 'csv locked'})
             if rid:
                 SEEN.add(rid)
-        print(f"[{row['server_time']}] 收到记录：{row['zone']} · {row['emotion']} · {row['level']}级({row['solfege']}) · {row['special'] or '无特殊状态'} · {row['instrument']}")
+        print(f"[{row['server_time']}] 收到记录：{row['zone']} · {row['emotion']} {row['emoji']}{row['word']} · {row['level']}级({row['solfege']}) · {row['special'] or '无特殊状态'} · {row['instrument']}")
         self._json(200, {'ok': True})
 
     def log_message(self, fmt, *args):                  # 静音默认访问日志，只显示"收到记录"

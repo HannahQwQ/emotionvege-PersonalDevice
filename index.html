@@ -97,6 +97,17 @@ svg text{font-size:10px;fill:#7a8aa0}
 .pin{position:absolute;font-size:24px;transition:all 1.2s cubic-bezier(.4,0,.2,1)}
 .mapwrap{position:relative}
 .small{font-size:12px;color:var(--sub);text-align:center;margin-top:6px;line-height:1.5}
+/* 摄像头页：地点小按钮 + 转盘 */
+button.zpill{width:auto;margin:0 0 10px;padding:7px 14px;border-radius:999px;background:#eef1f8;color:var(--ink);font-size:13px;font-weight:600}
+.sheet-bg{position:fixed;inset:0;background:#0006;display:flex;align-items:flex-end;justify-content:center;z-index:50}
+.sheet{width:100%;max-width:430px;background:#fff;border-radius:22px 22px 0 0;padding:18px 16px calc(24px + env(safe-area-inset-bottom));animation:sheetup .25s ease-out}
+@keyframes sheetup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.wheel{position:relative;height:220px;margin:8px 0 4px}
+.wheel-band{position:absolute;left:0;right:0;top:88px;height:44px;border-radius:12px;background:#eef2fb;pointer-events:none}
+.wheel-list{position:relative;height:100%;overflow-y:auto;scroll-snap-type:y mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.wheel-list::-webkit-scrollbar{display:none}
+.wheel-list i{display:block;height:88px}
+.wheel-list .wi{height:44px;line-height:44px;text-align:center;font-size:18px;font-weight:600;scroll-snap-align:center;cursor:pointer}
 </style>
 </head>
 <body>
@@ -322,7 +333,6 @@ async function locate(){
   if(!best) throw new Error('OUT');
   return best;
 }
-const LOCMSG=e=>({NOCFG:'还没有配置校园坐标，请先在下方手动选择位置。',NOGEO:'当前环境无法定位，请在下方手动选择位置。',OUT:'没有识别到已知的校园位置，请在下方手动选择。'}[e.message]||(e.code===1?'定位权限被拒绝，请在下方手动选择位置。':'定位失败，请在下方手动选择位置。'));
 
 /* =====================================================
  * 4. 摄像头 + 表情识别（face-api，浏览器端运行，视频不上传）
@@ -389,7 +399,7 @@ async function runCamera(){
     const r=aggregate(acc); S.emotion=r.emotion; S.confidence=r.confidence; go(2);
   }catch(err){
     if(stream) stream.getTracks().forEach(t=>t.stop());
-    const m={NOCAM:'无法使用摄像头：需要 https 或 localhost 打开，并允许权限。',NOFACE:'没检测到足够的人脸，请重试或直接选色块。',LIB:'识别库加载失败（网络？），可用"模拟识别"或手动选色块。',MODEL:'识别模型加载失败（网络？），可用"模拟识别"或手动选色块。'}[err.message]||('摄像头/识别出错：'+(err.name||err.message));
+    const m={NOCAM:'无法使用摄像头：需要 https 或 localhost 打开，并允许权限。',NOFACE:'没检测到足够的人脸，请正对镜头、光线充足后重试。',LIB:'识别库加载失败（网络？），请确认 vendor/ 文件齐全后重试。',MODEL:'识别模型加载失败（网络？），请确认 vendor/model/ 文件齐全后重试。'}[err.message]||('摄像头/识别出错：'+(err.name||err.message));
     const v=$('cam'); if(v){v.style.display='none';$('vph').style.display='flex';$('guide').style.display='none'}
     tip(m); lock(false);
   }
@@ -526,17 +536,42 @@ document.addEventListener('pointerdown',()=>Audio_.unlock());
 /* =====================================================
  * 6. 状态机 + 存储
  * ===================================================== */
-const S={step:0,zone:null,emotion:null,confidence:null,level:1,special:null,locMsg:''};
+const S={step:1,zone:null,emotion:null,confidence:null,level:1,special:null,zoneManual:false};
 {const z=ZONES.find(z=>z.id===new URLSearchParams(location.search).get('zone'));if(z)S.zone=z.id}
+const DEBUG=new URLSearchParams(location.search).get('debug')==='1';   // ?debug=1 才显示"模拟识别 / 跳过"
+// 位置不再单独占一页：?zone=（二维码）→ GPS（配置了校园坐标时静默尝试）→ 随机一个；摄像头页的"调整"可手动改
+function initZone(){
+  if(S.zone) return;
+  S.zone=ZONES[Math.floor(Math.random()*ZONES.length)].id;
+  if(ZONES.some(z=>z.lat!=null)) locate().then(z=>{
+    if(S.zoneManual) return;
+    S.zone=z.id;const n=document.getElementById('zname');if(n) n.textContent=z.name;
+  }).catch(()=>{});
+}
+// 调整地点：底部转盘（scroll-snap），滑到哪个就选哪个
+function openZoneWheel(){
+  const H=44,n=ZONES.length;let cur=Math.max(0,zoneIdx(S.zone));
+  const bg=document.createElement('div');bg.className='sheet-bg';
+  bg.innerHTML=`<div class="sheet" role="dialog" aria-label="调整地点"><h2 style="font-size:18px;margin:0 0 2px">调整地点</h2><div class="small" style="text-align:left;margin:0">滑动转盘，选你现在所在的位置</div><div class="wheel"><div class="wheel-band"></div><div class="wheel-list" id="wlist"><i></i>${ZONES.map(z=>`<div class="wi">${z.name}</div>`).join('')}<i></i></div></div><button id="b-zok">确定</button></div>`;
+  document.body.appendChild(bg);
+  const list=bg.querySelector('#wlist'),items=[...list.querySelectorAll('.wi')];
+  const paint=()=>{const c=list.scrollTop;cur=Math.max(0,Math.min(n-1,Math.round(c/H)));items.forEach((el,i)=>{const d=Math.abs(i*H-c)/H;el.style.opacity=Math.max(.25,1-d*.4);el.style.transform='scale('+Math.max(.72,1-d*.12)+')'})};
+  let raf=0;list.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(paint)});
+  items.forEach((el,i)=>el.onclick=()=>list.scrollTo({top:i*H,behavior:'smooth'}));
+  list.scrollTop=cur*H;paint();
+  const close=()=>bg.remove();
+  bg.onclick=ev=>{if(ev.target===bg)close()};
+  bg.querySelector('#b-zok').onclick=()=>{S.zone=ZONES[cur].id;S.zoneManual=true;const nm=document.getElementById('zname');if(nm)nm.textContent=ZONES[cur].name;close()};
+}
+initZone();
 const KEY='emotion-garden-v3';
 const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){return []}};
 const save=r=>{try{localStorage.setItem(KEY,JSON.stringify(r))}catch(e){}};
 const go=n=>{Audio_.kill();S.step=n;render()};
-const reset=()=>{Object.assign(S,{step:0,emotion:null,confidence:null,level:1,special:null,locMsg:''});render()};
+const reset=()=>{Object.assign(S,{step:1,emotion:null,confidence:null,level:1,special:null});render()};
 const instOf=()=>INSTR[(zoneOf(S.zone)||ZONES[1]).inst];
 function pParams(){
   const inst=S.zone?zoneOf(S.zone).inst:'piano';
-  if(S.step===0) return{emo:{scale:[0,2,4,7,9,12,14],reg:0,tempo:520,vel:1,rest:0},level:5,special:null,inst};
   const emo=emoOf(S.emotion);
   if(S.step===3) return{emo,level:INIT_LEVEL,special:null,inst};
   if(S.step===4) return{emo,level:S.level,special:null,inst};
@@ -557,27 +592,17 @@ const paramChanged=blip=>{const st=Audio_.state();if(st==='playing')Audio_.start
  * 7. 视图
  * ===================================================== */
 const $app=document.getElementById('app');
-const prog=()=>`<div class="prog">${[0,1,2,3,4,5,6].map(i=>`<i class="${i<=Math.min(S.step,6)?'on':''}"></i>`).join('')}</div>`;
+const prog=()=>`<div class="prog">${[1,2,3,4,5,6].map(i=>`<i class="${i<=Math.min(S.step,6)?'on':''}"></i>`).join('')}</div>`;
 const spName=id=>{const s=SPECIALS.find(x=>x.id===id);return s?s.name+(s.sub?`（${s.sub}）`:''):'无'};
 
 function render(){
   const e=S.emotion&&emoOf(S.emotion);let h=prog();
-  if(S.step===0){
-    const z=S.zone&&zoneOf(S.zone),ins=z&&INSTR[z.inst];
-    h+=`<h1>今天的声音</h1><div class="hint">Step 0 · 识别位置，确定今天陪你的乐器</div>
-    <div class="card"><div class="locrow"><div class="locicon">📍</div><div style="flex:1"><b>${z?'已识别':'尚未识别'}</b><div class="small" style="text-align:left;margin-top:2px" id="locmsg">${S.locMsg||(z?'':'点击按钮获取当前位置')}</div></div></div>
-    <button id="b-loc">${z?'重新识别位置':'识别我的位置'}</button></div>
-    ${z?`<div class="card"><div class="inst"><div class="insticon">${ins.icon}</div><div><div class="small" style="text-align:left;margin:0">今天的乐器</div><h2>${ins.name}</h2></div></div>${playerHTML()}</div>`:''}
-    <div class="card"><div class="small" style="text-align:left;margin:0 0 8px">演示用 · 手动选择位置</div><div class="zchips">${ZONES.map(x=>`<div class="zc ${x.id===S.zone?'sel':''}" data-zone="${x.id}">${x.name}</div>`).join('')}</div></div>
-    <button id="b-next" ${z?'':'disabled'}>下一步：识别情绪</button>`;
-  }
   if(S.step===1){
     h+=`<h1>此刻的你</h1><div class="hint">Step 1 · 摄像头识别面部表情（本机运算，视频不上传）。识别约 3.5 秒。</div>
-    <div class="card"><div class="vbox"><video id="cam" playsinline muted autoplay></video><div class="vph" id="vph">📷</div><div class="guide" id="guide"></div><div class="bar"><i id="bar"></i></div><div class="vtip" id="vtip">点击下方按钮开始</div></div>
+    <div class="card"><button class="zpill" id="b-zone" aria-label="调整地点">📍 <span id="zname">${zoneOf(S.zone).name}</span> · 调整</button>
+    <div class="vbox"><video id="cam" playsinline muted autoplay></video><div class="vph" id="vph">📷</div><div class="guide" id="guide"></div><div class="bar"><i id="bar"></i></div><div class="vtip" id="vtip">点击下方按钮开始</div></div>
     <button id="b-detect">开启摄像头并识别</button>
-    <button class="ghost" id="b-sim">模拟识别（调试/无摄像头）</button>
-    <button class="ghost" id="b-manual">跳过，直接选色块</button></div>
-    <button class="ghost" id="b-back">返回</button>`;
+    ${DEBUG?`<button class="ghost" id="b-sim">模拟识别（调试）</button><button class="ghost" id="b-manual">跳过，直接选色块</button>`:''}</div>`;
   }
   if(S.step===2){
     h+=`<h1>是这种感觉吗？</h1><div class="hint">Step 2 · 凭感觉选一个颜色就好，识别结果已预选</div>
@@ -662,18 +687,11 @@ function bind(){
   $('b-back')&&($('b-back').onclick=()=>go(S.step-1));
   $('b-next')&&($('b-next').onclick=()=>go(S.step+1));
   $('pbtn')&&($('pbtn').onclick=()=>Audio_.toggle(pParams()));
-  if(S.step===0){
-    $('b-loc').onclick=async()=>{
-      $('locmsg').textContent='正在识别位置…';$('b-loc').disabled=true;
-      try{const z=await locate();S.zone=z.id;S.locMsg=''}catch(e){S.locMsg=LOCMSG(e)}
-      render();
-    };
-    document.querySelectorAll('[data-zone]').forEach(el=>el.onclick=()=>{Audio_.kill();S.zone=el.dataset.zone;S.locMsg='';render()});
-  }
   if(S.step===1){
     loadFaceModels().catch(()=>{});
-    $('b-detect').onclick=runCamera;$('b-sim').onclick=simulate;
-    $('b-manual').onclick=()=>{S.emotion=null;S.confidence=null;go(2)};
+    $('b-detect').onclick=runCamera;$('b-zone').onclick=openZoneWheel;
+    $('b-sim')&&($('b-sim').onclick=simulate);
+    $('b-manual')&&($('b-manual').onclick=()=>{S.emotion=null;S.confidence=null;go(2)});
   }
   if(S.step===2) document.querySelectorAll('[data-emo]').forEach(el=>el.onclick=()=>{S.emotion=el.dataset.emo;S.confidence=null;render()});
   if(S.step===4){

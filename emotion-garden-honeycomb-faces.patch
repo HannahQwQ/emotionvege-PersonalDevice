@@ -1,4 +1,4 @@
-From 94290831dc541fd8b1fbbfaa290d16e5ddd10284 Mon Sep 17 00:00:00 2001
+From 94d787d6cbfa28e8738fb9a61dbdc33d54a5fa3c Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Sat, 7 Nov 2026 12:09:51 +0800
 Subject: [PATCH] =?UTF-8?q?emoji=20=E5=9C=86=E5=9C=88=E6=94=B9=E4=B8=BA?=
@@ -19,18 +19,18 @@ Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>
 Claude-Session: https://claude.ai/code/session_011xdBXaCdAPzoXqmXMbKJ8S
 ---
  README.md  |   9 ++++-
- index.html | 106 ++++++++++++++++++++++++++++++-----------------------
- 2 files changed, 69 insertions(+), 46 deletions(-)
+ index.html | 107 +++++++++++++++++++++++++++++++----------------------
+ 2 files changed, 71 insertions(+), 45 deletions(-)
 
 diff --git a/README.md b/README.md
-index 7c2162e..9c9e09b 100644
+index 7c2162e..7e34eb1 100644
 --- a/README.md
 +++ b/README.md
 @@ -1,6 +1,6 @@
  # 情绪菜园
  
 -手机浏览器里完成：面部表情识别（位置自动确定，识别不对可在摄像头页点"调整"用转盘改）→ 在一个圆形"情绪圆圈"里选最贴近的表情（强度由位置决定，越靠外越强）→ 选特殊状态 → 听声音 → 种进校园地图。
-+手机浏览器里完成：面部表情识别（位置自动确定，识别不对可在摄像头页点"调整"用转盘改）→ 在一个圆形"情绪圆圈"（43 个 emoji 排成蜂窝圆盘）里选最贴近的表情（强度由位置决定，越靠外越强；选中的表情会贴在蔬菜上当脸）→ 选特殊状态 → 听声音 → 种进校园地图。
++手机浏览器里完成：面部表情识别（位置自动确定，识别不对可在摄像头页点"调整"用转盘改）→ 在一个圆形"情绪圆圈"（43 个 emoji 排成蜂窝圆盘）里选最贴近的表情（强度由位置决定，同一扇区里越靠外越强；选中的表情会贴在蔬菜上当脸）→ 选特殊状态 → 听声音 → 种进校园地图。
  点"确认并保存"后，记录自动发到电脑，追加为 `records.csv`（Excel / WPS 直接打开）。
  
  - 面部识别、声音合成全在**手机本地**运行。摄像头画面只在内存里用 3.5 秒，**不录制、不保存、不上传**，识别完立即关闭摄像头。
@@ -46,7 +46,7 @@ index 7c2162e..9c9e09b 100644
 +- 挪 emoji 的位置：`MOOD_ROWS`（蜂窝圆盘，一行一行，每行自己居中；43 格）
 +- 蔬菜上脸的位置和大小：`FACE`（蔬菜 × 阶段 → `[x, y, 大小]`，坐标在 200×220 的画布里；没写的阶段不贴脸）
 diff --git a/index.html b/index.html
-index 24c1fc1..423a665 100644
+index 24c1fc1..ffe7e95 100644
 --- a/index.html
 +++ b/index.html
 @@ -112,8 +112,8 @@ button.zpill{width:auto;margin:0 0 10px;padding:7px 14px;border-radius:999px;bac
@@ -60,7 +60,7 @@ index 24c1fc1..423a665 100644
  .einfo{display:flex;gap:14px;align-items:center}
  .etx{flex:1;min-width:0}
  .eword{display:flex;align-items:center;gap:8px;font-size:30px;line-height:1.1}
-@@ -181,41 +181,41 @@ const EXPR_CN  = {happy:'高兴',surprised:'惊讶',angry:'生气',disgusted:'
+@@ -181,41 +181,44 @@ const EXPR_CN  = {happy:'高兴',surprised:'惊讶',angry:'生气',disgusted:'
  const NEUTRAL_DAMP = 0.6;
  
  /* =====================================================
@@ -72,7 +72,7 @@ index 24c1fc1..423a665 100644
 + * 1b. 情绪地图（Mood Meter）：43 个 emoji = 5 类情绪里的细分情绪，排成一个蜂窝圆盘
 + *     左右＝不愉快→愉快，上下＝高能量→低能量；四个扇区各归一类：左上 愤怒(辣椒) / 右上 乐观(玉米) /
 + *     左下 痛苦(茄子) / 右下 放松(卷心菜)；正中心一小簇是平静(蘑菇)。
-+ *     强度＝离中心的距离：越靠外圈越强（1–7 级，对应生长阶段和音阶）。
++ *     强度＝在本扇区里离中心的远近：越靠外越强（1–7 级，每类都覆盖 1–7，对应生长阶段和音阶）。
 + *     想换 emoji、改名字：改 MOOD_INFO；想挪位置：改 MOOD_ROWS。
   * ===================================================== */
  const PLANTNAME = {chili:'辣椒',corn:'玉米',mushroom:'蘑菇',eggplant:'茄子',cabbage:'卷心菜'};
@@ -119,36 +119,38 @@ index 24c1fc1..423a665 100644
 -  if(cat==='calm'){[x,y]=CALM_POS[c]}
 -  else{x=(c-3.5)+Math.sign(c-3.5)*MOOD_GAP.x; y=(r-3.5)*MOOD_GAP.py+Math.sign(r-3.5)*MOOD_GAP.y}
 -  return {cat,e,zh,en,x,y};
--});
--const MOOD_RMAX = Math.max(...MOODS.map(m=>Math.hypot(m.x,m.y)));
--// 强度：离中心越远越强，1–7 级（平静簇只有 1–2 级）
--MOODS.forEach(m=>{m.level=Math.max(1,Math.min(7,1+Math.round(Math.hypot(m.x,m.y)/MOOD_RMAX*6)))});
 +const MOODS = [];
 +MOOD_ROWS.forEach((row,ri)=>row.forEach((e,i)=>{
 +  const [cat,zh,en]=MOOD_INFO[e];
 +  MOODS.push({cat,e,zh,en,x:i-(row.length-1)/2,y:(ri-(MOOD_ROWS.length-1)/2)*Math.sqrt(3)/2});   // 单位＝一格
 +}));
-+// 强度：离圆心越远越强。蜂窝里离中心的距离正好有 7 档，档位＝级别（1 级=正中心，7 级=最外圈）
-+const _ds=[...new Set(MOODS.map(m=>Math.round(Math.hypot(m.x,m.y)*100)))].sort((a,b)=>a-b);
-+MOODS.forEach(m=>{m.level=Math.min(7,_ds.indexOf(Math.round(Math.hypot(m.x,m.y)*100))+1)});
++// 强度：每一类（扇区）里，离圆心越远越强，按远近排队后均匀分到 1–7 级。
++// 这样每类的 7 个生长阶段都能选到（平静 7 个 emoji 正好一个一级；其它类 9 个 emoji，有的相邻两个同级）
++['angry','optimistic','miserable','relaxed','calm'].forEach(cat=>{
++  const g=MOODS.filter(m=>m.cat===cat).sort((p,q)=>Math.hypot(p.x,p.y)-Math.hypot(q.x,q.y));
++  g.forEach((m,i)=>{m.level=1+Math.round(i*6/(g.length-1))});
+ });
+-const MOOD_RMAX = Math.max(...MOODS.map(m=>Math.hypot(m.x,m.y)));
+-// 强度：离中心越远越强，1–7 级（平静簇只有 1–2 级）
+-MOODS.forEach(m=>{m.level=Math.max(1,Math.min(7,1+Math.round(Math.hypot(m.x,m.y)/MOOD_RMAX*6)))});
  const moodOf = e => MOODS.find(m=>m.e===e);
  // 摄像头给出 5 类之后，再按原始表情的强弱，在这一类里猜一个最贴近的 emoji
  function guessEmoji(cat,a){
-@@ -382,12 +382,28 @@ const PLANTS = {
+@@ -382,12 +385,28 @@ const PLANTS = {
      return bleaf(-92,60,36,'#5e9a35','#3f7a26')+bleaf(92,60,36,'#5e9a35','#3f7a26')+bleaf(-66,84,40,'#5e9a35','#3f7a26')+bleaf(66,84,40,'#5e9a35','#3f7a26')+head(112,58,60)+headVeins(112,60)+bleaf(-50,78,30,...L)+bleaf(50,78,30,...L);
    },
  };
 -const drawPlant=(emoId,s)=>{DEFS='';const b=PLANTS[emoOf(emoId).plant](s);return `<defs>${DEFS}</defs>${b}`};
 -const plantSVG=(emoId,s)=>`<svg viewBox="0 0 200 220">${drawPlant(emoId,s)}</svg>`;
 +/* ---- 脸：把 emoji 贴到蔬菜上当表情 ----
-+ * FACE[蔬菜][阶段] = [x, y, 大小]，坐标在 viewBox 200×220 里。没写的阶段（种子、幼苗、孢子等）不贴脸。
++ * FACE[蔬菜][阶段] = [x, y, 大小]，坐标在 viewBox 200×220 里。没写的阶段不贴脸。
 + * 以后改了蔬菜的形状，只需要回来改这张表。 */
 +const FACE = {
-+  chili:   {4:[98,96,16],5:[97,88,22],6:[96,82,27],7:[96,78,31]},
-+  corn:    {4:[100,135,32],5:[100,125,44],6:[100,104,36],7:[100,106,38]},
-+  mushroom:{4:[100,122,20],5:[100,126,26],6:[100,128,30],7:[100,132,34]},
-+  eggplant:{4:[100,112,24],5:[100,120,22],6:[100,129,32],7:[100,136,42]},
-+  cabbage: {3:[100,150,22],4:[100,148,26],5:[100,114,40],6:[100,112,46],7:[100,106,54]},
++  chili:   {1:[100,136,20],2:[100,148,18],3:[100,104,28],4:[98,96,16],5:[97,88,22],6:[96,82,27],7:[96,78,31]},
++  corn:    {1:[100,138,24],2:[100,146,18],3:[100,150,24],4:[100,135,32],5:[100,125,44],6:[100,104,36],7:[100,106,38]},
++  mushroom:{1:[100,118,30],2:[100,125,30],3:[100,128,14],4:[100,122,20],5:[100,126,26],6:[100,128,30],7:[100,132,34]},
++  eggplant:{1:[100,136,20],2:[100,148,22],3:[100,104,28],4:[100,112,24],5:[100,120,22],6:[100,129,32],7:[100,136,42]},
++  cabbage: {1:[100,136,18],2:[100,154,18],3:[100,150,22],4:[100,148,26],5:[100,114,40],6:[100,112,46],7:[100,106,54]},
 +};
 +const faceSVG=(plant,s,e)=>{
 +  const f=e&&FACE[plant]&&FACE[plant][s];if(!f)return '';
@@ -166,7 +168,7 @@ index 24c1fc1..423a665 100644
  };
  
  /* =====================================================
-@@ -698,7 +714,7 @@ function render(){
+@@ -698,7 +717,7 @@ function render(){
    }
    if(S.step===4){
      h+=`<h1>确认并保存</h1><div class="hint">Step 4 · 确认后，动画定位到校园地图</div>
@@ -175,7 +177,7 @@ index 24c1fc1..423a665 100644
        <div class="kv"><span>情绪</span><b>${m?`${m.e} ${m.zh} · ${m.en}`:e.name}</b></div>
        <div class="kv"><span>归类</span><b>${e.name} · ${PLANTNAME[e.plant]}</b></div>
        <div class="kv"><span>强度</span><b>${S.level}级 · ${SOLFEGE[S.level-1]}</b></div>
-@@ -729,7 +745,7 @@ function mapSVG(skipLast,hl){
+@@ -729,7 +748,7 @@ function mapSVG(skipLast,hl){
      s+=`<rect x="${p.x}" y="${p.y}" width="100" height="112" rx="10" fill="${z.id==='garden'?'#d3e8c8':'#e2e9f4'}" ${hl===z.id?'stroke="#3b6cf6" stroke-width="2.5"':''}/><text x="${p.x+8}" y="${p.y+13}">${z.name}</text>`;
      for(let k=0;k<12;k++){const c=slotXY(zi,k);s+=`<rect x="${c.x-11}" y="${c.y-13}" width="22" height="26" rx="5" fill="#ffffff88"/>`}
      const kk=.12;
@@ -184,12 +186,12 @@ index 24c1fc1..423a665 100644
    });
    return s+'</svg>';
  }
-@@ -753,17 +769,17 @@ function animateMap(){
+@@ -753,17 +772,17 @@ function animateMap(){
   * 于是前后会挤在一起，再由"圆与圆不重叠"的碰撞把它们推开，松手后弹回。离窗口中心越远越小（鱼眼）。*/
  function initField(){
    const ef=document.getElementById('ef');if(!ef)return;
 -  const W=ef.clientWidth||340,R=W/2,D=W*.2,KB=.13,DAMP=.72;
-+  const W=ef.clientWidth||340,R=W/2,D=W*.19,SP=.94,KB=.13,DAMP=.72;   // D＝一个 emoji 的大小，SP＝格距（越小越紧）
++  const W=ef.clientWidth||340,R=W/2,D=W*.28,SP=.94,KB=.13,DAMP=.72;   // D＝一个 emoji 的大小，SP＝格距（越小越紧）
    const items=MOODS.map((m,i)=>{
      const el=document.createElement('div');el.className='em';el.textContent=m.e;
 -    el.style.cssText=`width:${D}px;height:${D}px;font-size:${D*.62}px;line-height:${D}px;--c:${emoOf(m.cat).color}`;
@@ -202,11 +204,11 @@ index 24c1fc1..423a665 100644
    if(cur){cur.sel=true;cur.el.classList.add('sel')}
    // 平移范围：最外圈的 emoji 能拖到窗口里，但不会让圆圈里大半是空白
 -  const limX=Math.max(...items.map(t=>Math.abs(t.hx)))-1.6*D,limY=Math.max(...items.map(t=>Math.abs(t.hy)))-1.6*D;
-+  const limX=Math.max(...items.map(t=>Math.abs(t.hx)))-2.2*D,limY=Math.max(...items.map(t=>Math.abs(t.hy)))-2.2*D;
++  const limX=Math.max(...items.map(t=>Math.abs(t.hx)))-.5*D,limY=Math.max(...items.map(t=>Math.abs(t.hy)))-.5*D;
    const lim=(v,l)=>Math.max(-l,Math.min(l,v));
    const pan={x:cur?lim(-cur.hx,limX):0,y:cur?lim(-cur.hy,limY):0},pv={x:0,y:0};
    const clampPan=()=>{pan.x=lim(pan.x,limX);pan.y=lim(pan.y,limY)};
-@@ -807,7 +823,7 @@ function initField(){
+@@ -807,7 +826,7 @@ function initField(){
        let k=t.k;if(drag)k*=1+1.4*Math.exp(-((Math.hypot(drag.fx-t.x,drag.fy-t.y)/D)**2)/3);
        t.vx=(t.vx+(t.hx+pan.x-t.x)*k)*DAMP;t.vy=(t.vy+(t.hy+pan.y-t.y)*k)*DAMP;t.x+=t.vx;t.y+=t.vy;
      }
@@ -215,7 +217,7 @@ index 24c1fc1..423a665 100644
      for(let pass=0;pass<2;pass++)for(let i=0;i<items.length;i++)for(let j=i+1;j<items.length;j++){
        const a=items[i],b=items[j];let dx=b.x-a.x,dy=b.y-a.y;const dd=Math.hypot(dx,dy);
        if(dd>=MIN)continue;
-@@ -837,7 +853,7 @@ function refreshInfo(){
+@@ -837,7 +856,7 @@ function refreshInfo(){
    $('dots').innerHTML=[1,2,3,4,5,6,7].map(i=>`<i class="${i<=m.level?'on':''}"></i>`).join('');
    $('ecat').textContent=`归入：${e.name} · ${PLANTNAME[e.plant]}`;
    $('pstage').style.background=`radial-gradient(circle at 50% 52%,${e.color}aa 0%,#e8edf5 82%)`;

@@ -164,6 +164,8 @@ class Handler(SimpleHTTPRequestHandler):
         return '..' in path or os.path.basename(path.rstrip('/')) in self.BLOCKED
 
     def do_GET(self):
+        if self.path.split('?')[0] == '/api/ping':       # 页面用它判断"有没有后端"；没有就进演示模式
+            return self._json(200, {'ok': True})
         if self._blocked():
             return self.send_error(404)
         super().do_GET()

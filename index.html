@@ -118,6 +118,7 @@ button.lang:disabled{opacity:.5}
 .ef{position:relative;width:100%;aspect-ratio:1;border-radius:50%;background:#000;overflow:hidden;touch-action:none;box-shadow:0 0 0 5px #1d2433,0 6px 18px #0004;cursor:grab;user-select:none;-webkit-user-select:none}
 .ef:active{cursor:grabbing}
 .em{position:absolute;left:50%;top:50%;display:flex;align-items:center;justify-content:center;opacity:.45;transition:opacity .25s,filter .25s;will-change:transform;pointer-events:none}
+.em img{width:88%;height:88%;object-fit:contain;pointer-events:none;-webkit-user-drag:none;user-select:none}
 .em.sel{opacity:1;filter:drop-shadow(0 0 5px var(--c)) drop-shadow(0 0 12px var(--c))}
 .eax{position:absolute;pointer-events:none;z-index:0}
 .eax.h{left:0;right:0;top:0;height:0;border-top:1.5px dashed #ffffff38}
@@ -142,6 +143,8 @@ button.lang:disabled{opacity:.5}
 .dots i{flex:1;height:6px;border-radius:3px;background:var(--line)}
 .dots i.on{background:var(--pri)}
 .elv{font-size:14px;font-weight:600}
+.vt{height:1.2em;width:auto;vertical-align:-.28em}
+.eword .vt{height:1.3em;vertical-align:middle}
 </style>
 </head>
 <body>
@@ -241,16 +244,16 @@ const spx=(s,k,L=LANG)=>L==='en'?EN_DATA.sp[s.id][{name:0,sub:1,tech:2,emo:3}[k]
  * 1b. 情绪地图（Mood Meter）：43 个 emoji = 5 类情绪里的细分情绪，排成一个蜂窝圆盘
  *     左右＝不愉快→愉快，上下＝高能量→低能量；四个扇区各归一类：左上 愤怒(辣椒) / 右上 乐观(玉米) /
  *     左下 痛苦(茄子) / 右下 放松(卷心菜)；正中心一小簇是平静(蘑菇)。
- *     强度＝在本扇区里离中心的远近：越靠外越强（1–7 级，每类都覆盖 1–7，对应生长阶段和音阶）。
- *     想换 emoji、改名字：改 MOOD_INFO；想挪位置：改 MOOD_ROWS。
+ *     强度 1–7 级（对应生长阶段和音阶）直接写在 MOOD_INFO 里，和蔬菜图文件名里的「程度N」一致；同一扇区越靠外一般越强。
+ *     想换表情图 / 改名字 / 改强度：改 MOOD_INFO 和 assets/veges/；想挪位置：改 MOOD_ROWS。
  * ===================================================== */
 const PLANTNAME = {chili:'辣椒',corn:'玉米',mushroom:'蘑菇',eggplant:'茄子',cabbage:'卷心菜'};
-const MOOD_INFO = {   // emoji: [类别, 中文, English]
-  '🤬':['angry','暴怒','Enraged'],'😖':['angry','紧绷','Stressed'],'😱':['angry','震惊','Shocked'],'😤':['angry','气冲冲','Fuming'],'😠':['angry','愤怒','Angry'],'😬':['angry','躁动','Restless'],'🤮':['angry','反感','Repulsed'],'😟':['angry','担心','Worried'],'😕':['angry','不安','Uneasy'],
-  '😲':['optimistic','惊讶','Surprised'],'🥳':['optimistic','欢庆','Festive'],'🤩':['optimistic','狂喜','Ecstatic'],'😁':['optimistic','活力满满','Energized'],'😄':['optimistic','乐观','Optimistic'],'😆':['optimistic','兴奋','Excited'],'🙂':['optimistic','愉快','Pleasant'],'🤗':['optimistic','满怀希望','Hopeful'],'🥰':['optimistic','幸福','Blissful'],
-  '🤢':['miserable','厌恶','Disgusted'],'🙁':['miserable','低落','Down'],'🫥':['miserable','冷淡','Apathetic'],'😢':['miserable','痛苦','Miserable'],'😔':['miserable','孤独','Lonely'],'🥱':['miserable','疲倦','Tired'],'😭':['miserable','绝望','Despair'],'😥':['miserable','凄凉','Desolate'],'😩':['miserable','精疲力竭','Drained'],
-  '☺️':['relaxed','自在','At ease'],'😊':['relaxed','满足','Content'],'😇':['relaxed','充实','Fulfilled'],'😌':['relaxed','放松','Relaxed'],'🫠':['relaxed','安歇','Restful'],'😚':['relaxed','平衡','Balanced'],'😴':['relaxed','困倦','Sleepy'],'😪':['relaxed','宁静','Tranquil'],'😶‍🌫️':['relaxed','安详','Serene'],
-  '😐':['calm','平静','Calm'],'😑':['calm','淡然','Neutral'],'😶':['calm','安静','Quiet'],'😮‍💨':['calm','松一口气','Exhale'],'🤔':['calm','沉思','Pensive'],'🧐':['calm','专注','Focused'],'🤨':['calm','留意','Alert'],
+const MOOD_INFO = {   // emoji(只当唯一 id 用): [类别, 中文, English, 强度1–7]；类别和强度与 assets/veges/ 里的文件名一致
+  '🤬':['angry','暴怒','Enraged',6],'😖':['angry','紧绷','Stressed',3],'😱':['angry','震惊','Shocked',6],'😤':['angry','气冲冲','Fuming',7],'😠':['angry','愤怒','Angry',4],'😬':['angry','躁动','Restless',2],'🤮':['angry','反感','Repulsed',5],'😕':['angry','不安','Uneasy',1],'🤢':['angry','厌恶','Disgusted',5],
+  '😲':['optimistic','惊讶','Surprised',3],'🥳':['optimistic','欢庆','Festive',6],'🤩':['optimistic','狂喜','Ecstatic',7],'😁':['optimistic','活力满满','Energized',3],'😄':['optimistic','乐观','Optimistic',4],'😆':['optimistic','兴奋','Excited',5],'🙂':['optimistic','愉快','Pleasant',1],'🤗':['optimistic','满怀希望','Hopeful',2],'🥰':['optimistic','幸福','Blissful',6],
+  '😟':['miserable','担心','Worried',3],'🙁':['miserable','低落','Down',1],'🫥':['miserable','冷淡','Apathetic',2],'😢':['miserable','痛苦','Miserable',3],'😔':['miserable','孤独','Lonely',4],'🥱':['miserable','疲倦','Tired',3],'😭':['miserable','绝望','Despair',7],'😥':['miserable','凄凉','Desolate',6],'😩':['miserable','精疲力竭','Drained',5],
+  '☺️':['relaxed','自在','At ease',1],'😊':['relaxed','满足','Content',2],'😇':['relaxed','充实','Fulfilled',3],'😌':['relaxed','放松','Relaxed',3],'🫠':['relaxed','安歇','Restful',4],'😚':['relaxed','平衡','Balanced',6],'😴':['relaxed','困倦','Sleepy',7],'😪':['relaxed','宁静','Tranquil',5],'😶‍🌫️':['relaxed','安详','Serene',6],
+  '😐':['calm','平静','Calm',1],'😑':['calm','淡然','Neutral',6],'😶':['calm','安静','Quiet',5],'😮‍💨':['calm','松一口气','Exhale',7],'🤔':['calm','沉思','Pensive',4],'🧐':['calm','专注','Focused',2],'🤨':['calm','留意','Alert',3],
 };
 // 地图本体：蜂窝圆盘，一行一行从上到下，每行自己居中。想挪位置，在这里把 emoji 换个地方就行（43 格，别多别少）。
 // 大致分区：左上=愤怒 右上=乐观 左下=痛苦 右下=放松，正中心一小簇=平静。
@@ -265,24 +268,22 @@ const MOOD_ROWS = [
   ['😥', '😩', '😪', '😶‍🌫️'],
   ['😴']
 ];
+const VEGDIR = 'assets/veges/';   // 每个表情一张蔬菜图：assets/veges/<植物>/<植物>-<中文名>.png（植物 = EMOS 里的 plant）
+const vegSrc = (cat,zh) => { const pl = emoOf(cat).plant; return encodeURI(`${VEGDIR}${pl}/${pl}-${zh}.png`) };
 const MOODS = [];
 MOOD_ROWS.forEach((row,ri)=>row.forEach((e,i)=>{
-  const [cat,zh,en]=MOOD_INFO[e];
-  MOODS.push({cat,e,zh,en,x:i-(row.length-1)/2,y:(ri-(MOOD_ROWS.length-1)/2)*Math.sqrt(3)/2});   // 单位＝一格
+  const [cat,zh,en,level]=MOOD_INFO[e];
+  MOODS.push({cat,e,zh,en,level,img:vegSrc(cat,zh),x:i-(row.length-1)/2,y:(ri-(MOOD_ROWS.length-1)/2)*Math.sqrt(3)/2});   // 单位＝一格
 }));
-// 强度：每一类（扇区）里，离圆心越远越强，按远近排队后均匀分到 1–7 级。
-// 这样每类的 7 个生长阶段都能选到（平静 7 个 emoji 正好一个一级；其它类 9 个 emoji，有的相邻两个同级）
-['angry','optimistic','miserable','relaxed','calm'].forEach(cat=>{
-  const g=MOODS.filter(m=>m.cat===cat).sort((p,q)=>Math.hypot(p.x,p.y)-Math.hypot(q.x,q.y));
-  g.forEach((m,i)=>{m.level=1+Math.round(i*6/(g.length-1))});
-});
+const vegTag = m => `<img class="vt" src="${m.img}" alt="${m.zh}" draggable="false">`;   // 文字行里内嵌的小蔬菜图
+setTimeout(()=>MOODS.forEach(m=>{new Image().src=m.img}),0);   // 先把 43 张图拉进缓存，进 Step 2 不闪
 const moodOf = e => MOODS.find(m=>m.e===e);
 // 摄像头给出 5 类之后，再按原始表情的强弱，在这一类里猜一个最贴近的 emoji
 function guessEmoji(cat,a){
   const g=k=>a[k]||0;
   if(cat==='angry'){
     const f=g('fearful'),d=g('disgusted'),an=g('angry');
-    if(f>=an&&f>=d) return f>.55?'😱':'😟';
+    if(f>=an&&f>=d) return f>.55?'😱':'😖';
     if(d>=an) return d>.55?'🤮':'😬';
     if(g('sad')>.2) return '😖';
     return an>.8?'🤬':an>.55?'😤':'😠';
@@ -302,163 +303,12 @@ function guessEmoji(cat,a){
 }
 
 /* =====================================================
- * 2. 植物 SVG：5 种植物 × 7 阶段，只画种子 / 苗 / 果实实体，不画土壤
- *    viewBox 200×220，实体大致居中
+ * 2. 植物 = 蔬菜表情图：每个表情（43 个）对应 assets/veges/ 里的一张图，直接当这一株植物用
+ *    画布 200×220，图按比例居中放大；花园小地图、Step 2/3/4 的舞台都走这里。
  * ===================================================== */
-let UID=0, DEFS='';
-const grad=(a,b,t='v')=>{
-  const id='g'+(UID++);
-  DEFS+= t==='r'
-    ? `<radialGradient id="${id}" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></radialGradient>`
-    : `<linearGradient id="${id}" x1="0" y1="0" x2="${t==='h'?1:0}" y2="${t==='h'?0:1}"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>`;
-  return `url(#${id})`;
-};
-const G=(dy,b)=>`<g transform="translate(0 ${dy})">${b}</g>`;
-const stemP=(d,c,w)=>`<path d="${d}" stroke="${c}" stroke-width="${w}" fill="none" stroke-linecap="round"/>`;
-const leaf=(x,y,r,l,c='#4caf50',wd=.35)=>`<g transform="translate(${x} ${y}) rotate(${r})"><path d="M0 0 C${l*.25} ${-l*wd},${l*.75} ${-l*wd},${l} 0 C${l*.75} ${l*wd},${l*.25} ${l*wd},0 0Z" fill="${c}" stroke="#00000022" stroke-width="1"/><path d="M2 0 L${l*.85} 0" stroke="#ffffff66" stroke-width="1.2"/></g>`;
-const roots=(x,y,n=5,len=22,c='#d8c8a0')=>{
-  let s=`<g stroke="${c}" stroke-width="1.9" fill="none" stroke-linecap="round">`;
-  for(let i=0;i<n;i++){const d=i-(n-1)/2;s+=`<path d="M${x+d*1.5} ${y} q${d*4} ${len*.5},${d*9} ${len*(.75+.12*((i*7)%3))}"/>`}
-  return s+'</g>';
-};
-const seed=(x,y,r,L,W,f)=>`<g transform="translate(${x} ${y}) rotate(${r})"><path d="M0 ${-L} C${W} ${-L*.3},${W} ${L*.5},0 ${L*.6} C${-W} ${L*.5},${-W} ${-L*.3},0 ${-L}Z" fill="${f}" stroke="#00000030" stroke-width="1"/><path d="M${-W*.35} ${-L*.45} C${-W*.45} ${-L*.1},${-W*.4} ${L*.2},${-W*.2} ${L*.35}" stroke="#fff" stroke-opacity=".55" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>`;
-const seedDisc=(x,y,r)=>`<g transform="translate(${x} ${y}) rotate(${r})"><ellipse rx="14" ry="12" fill="#efdca2" stroke="#00000030"/><path d="M-5 -10 C-9 -4,-9 4,-5 9" stroke="#fff" stroke-opacity=".55" stroke-width="2.4" fill="none" stroke-linecap="round"/><path d="M13 -3 L18 0 L13 3Z" fill="#d9c27c"/></g>`;
-const kernel=(x,y,r,s)=>`<g transform="translate(${x} ${y}) rotate(${r}) scale(${s})"><path d="M-10 -13 C-5 -19,5 -19,10 -13 C13 -4,10 8,3 15 L-3 15 C-10 8,-13 -4,-10 -13Z" fill="${grad('#ffe07a','#f0a920','h')}" stroke="#b9770e80" stroke-width="1"/><path d="M-5 -11 C-7 -4,-6 3,-3 8" stroke="#fff" stroke-opacity=".6" stroke-width="2.2" fill="none" stroke-linecap="round"/></g>`;
-
-/* ---- 辣椒 ---- */
-const chiliFruit=(L,c1,c2,top)=>{
-  const W=Math.max(10,L*.14),N=30,cx=t=>100+L*.16*t*t-L*.04,cy=t=>top+L*t;
-  const w=t=>W*Math.pow(1-t,.72)*(.72+.28*Math.min(1,t/.12));
-  const left=[],right=[];
-  for(let i=0;i<=N;i++){const t=i/N;left.push([cx(t)-w(t),cy(t)]);right.push([cx(t)+w(t),cy(t)])}
-  const f=p=>p[0].toFixed(1)+' '+p[1].toFixed(1);
-  const path='M'+left.map(f).join(' L')+' L'+right.reverse().map(f).join(' L')+'Z';
-  let hl='';for(let i=3;i<=19;i++){const t=i/N;hl+=(hl?' L':'M')+(cx(t)-w(t)*.5).toFixed(1)+' '+cy(t).toFixed(1)}
-  const c0=cx(0);
-  return `<path d="${path}" fill="${grad(c1,c2,'v')}" stroke="#00000030" stroke-width="1" stroke-linejoin="round"/>`+
-    `<path d="${hl}" stroke="#fff" stroke-opacity=".4" stroke-width="3" fill="none" stroke-linecap="round"/>`+
-    stemP(`M${c0} ${top} q-2 -10 -10 -16`,'#4a8a2e',5)+
-    `<ellipse cx="${c0}" cy="${top}" rx="${W*1.2}" ry="${W*.55}" fill="#3f8f3a" stroke="#00000030"/>`;
-};
-/* ---- 玉米 ---- */
-const huskLeaf=(bot,L,a,w,c1,c2)=>`<g transform="translate(100 ${bot}) rotate(${a})"><path d="M0 0 C${-w} ${-L*.22},${-w*1.05} ${-L*.72},0 ${-L} C${w*1.05} ${-L*.72},${w} ${-L*.22},0 0Z" fill="${grad(c1,c2,'h')}" stroke="#00000028" stroke-width="1"/><path d="M0 -4 L0 ${-L*.9}" stroke="#ffffff55" stroke-width="1.4"/></g>`;
-const silk=(top,n,len,col)=>{let s='';for(let i=0;i<n;i++){const dx=(i-(n-1)/2)*4;s+=`<path d="M100 ${top+6} q${dx*.5} ${-len*.5},${dx*1.6} ${-len}" stroke="${col}" stroke-width="1.7" fill="none" stroke-linecap="round"/>`}return s};
-const cobDraw=(cy,ry,rx,c1,c2,k1,kst)=>{
-  let s=`<ellipse cx="100" cy="${cy}" rx="${rx}" ry="${ry}" fill="${grad(c1,c2,'h')}" stroke="${kst}" stroke-width="1"/>`;
-  const ks=7.2;let row=0;
-  for(let y=cy-ry+7;y<=cy+ry-6;y+=ks*.92,row++){
-    for(let c=-4;c<=4;c++){
-      const x=100+(c+(row%2?.5:0))*ks,nx=(x-100)/(rx-2),ny=(y-cy)/(ry-2);
-      if(nx*nx+ny*ny>1)continue;
-      const sx=Math.max(.3,Math.sqrt(1-nx*nx));
-      s+=`<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(ks*.47*sx).toFixed(2)}" ry="${(ks*.45).toFixed(2)}" fill="${k1}" stroke="${kst}" stroke-width=".5"/>`;
-    }
-  }
-  return s+`<ellipse cx="${100-rx*.4}" cy="${cy-ry*.1}" rx="${rx*.18}" ry="${ry*.6}" fill="#fff" opacity=".22"/>`;
-};
-/* ---- 蘑菇（白色） ---- */
-const shroom=(x,base,rx,ry,sh,sw,open)=>{
-  const y=base-sh;
-  const stipe=`<path d="M${x-sw} ${y-2} C${x-sw*.8} ${y+sh*.5},${x-sw*1.15} ${base-4},${x-sw*1.1} ${base} Q${x} ${base+sw*.5} ${x+sw*1.1} ${base} C${x+sw*1.15} ${base-4},${x+sw*.8} ${y+sh*.5},${x+sw} ${y-2}Z" fill="${grad('#fdfaf2','#ddd4c0','h')}" stroke="#c9bfa8" stroke-width="1.2"/>`;
-  let gills='';
-  if(open){gills=`<ellipse cx="${x}" cy="${y+1}" rx="${rx*.96}" ry="${ry*.17}" fill="#d9ccb0"/>`;for(let i=-6;i<=6;i++)gills+=`<path d="M${x+i*rx*.14} ${y+1} l0 ${ry*.12}" stroke="#b9a77f" stroke-width=".9"/>`}
-  const cap=`<path d="M${x-rx} ${y} C${x-rx} ${y-ry*1.35},${x+rx} ${y-ry*1.35},${x+rx} ${y} Q${x} ${y+ry*.3} ${x-rx} ${y}Z" fill="${grad('#ffffff','#e2dac9','r')}" stroke="#c9bfa8" stroke-width="1.3"/>`;
-  const blush=`<path d="M${x+rx*.35} ${y-ry*.2} C${x+rx*.7} ${y-ry*.5},${x+rx*.9} ${y-ry*.2},${x+rx*.95} ${y}" stroke="#c9bfa8" stroke-opacity=".5" stroke-width="1.2" fill="none"/>`;
-  return stipe+gills+cap+blush;
-};
-/* ---- 茄子 ---- */
-const eggFruit=sc=>{
-  const ty=110-39*sc;
-  return `<g transform="translate(100 ${ty}) scale(${sc})">`+
-    stemP('M0 -6 C0 -16,5 -22,12 -24','#5f8f3a',7)+
-    `<path d="M-9 2 C-12 25,-30 45,-28 70 C-26 92,-10 102,2 102 C16 102,30 90,28 68 C26 44,12 24,9 2Z" fill="${grad('#7b4bb2','#2e1553','h')}" stroke="#00000040" stroke-width="1"/>`+
-    `<path d="M-17 32 C-20 50,-17 66,-10 80" stroke="#fff" stroke-opacity=".34" stroke-width="6" fill="none" stroke-linecap="round"/>`+
-    `<path d="M-18 -1 L-24 12 L-13 8 L-8 18 L0 9 L8 18 L13 8 L24 12 L18 -1 Q0 -10 -18 -1Z" fill="#4f9a4a" stroke="#2e6b2c" stroke-width=".8"/></g>`;
-};
-/* ---- 卷心菜 ---- */
-const bleaf=(a,L,W,c1,c2,vein=true)=>`<g transform="translate(100 176) rotate(${a})"><path d="M0 0 C${-W*.9} ${-L*.12},${-W*1.15} ${-L*.72},${-W*.4} ${-L*.94} Q0 ${-L*1.06} ${W*.4} ${-L*.94} C${W*1.15} ${-L*.72},${W*.9} ${-L*.12},0 0Z" fill="${grad(c1,c2,'v')}" stroke="#00000026" stroke-width="1"/>${vein?`<path d="M0 -6 L0 ${-L*.85} M0 ${-L*.3} L${-W*.55} ${-L*.5} M0 ${-L*.3} L${W*.55} ${-L*.5} M0 ${-L*.55} L${-W*.45} ${-L*.72} M0 ${-L*.55} L${W*.45} ${-L*.72}" stroke="#f1f8dc" stroke-opacity=".75" stroke-width="1.4" fill="none" stroke-linecap="round"/>`:''}</g>`;
-const headVeins=(cy,ry)=>`<g stroke="#ffffffaa" stroke-width="1.6" fill="none" stroke-linecap="round"><path d="M100 ${cy+ry*.9} C100 ${cy} 100 ${cy-ry*.5} 100 ${cy-ry*.9}"/><path d="M100 ${cy+ry*.7} C84 ${cy+ry*.4} 76 ${cy-ry*.1} 76 ${cy-ry*.5}"/><path d="M100 ${cy+ry*.7} C116 ${cy+ry*.4} 124 ${cy-ry*.1} 124 ${cy-ry*.5}"/><path d="M100 ${cy+ry*.3} C90 ${cy+ry*.1} 86 ${cy-ry*.3} 86 ${cy-ry*.6}"/><path d="M100 ${cy+ry*.3} C110 ${cy+ry*.1} 114 ${cy-ry*.3} 114 ${cy-ry*.6}"/></g>`;
-
-const PLANTS = {
-  chili(s){
-    const SD='#f6e6ad',GREEN=['#9ccc65','#4e9a34'],ORANGE=['#f0a93a','#d8452a'],RED=['#ee4a39','#a51d16'];
-    if(s==1) return seed(78,108,-35,24,14,SD)+seed(120,98,38,24,14,SD)+seed(100,138,6,24,14,SD);
-    if(s==2) return G(-12,roots(100,170,5,24)+seed(100,158,0,22,12,SD)+stemP('M100 146 C96 126,105 110,100 90','#9ccc65',6)+leaf(100,92,-155,36,'#7cb342',.4)+leaf(100,92,-25,36,'#7cb342',.4));
-    if(s==3) return G(-22,roots(100,186,6,24)+stemP('M100 188 L100 90','#6fae4a',5)+
-      leaf(100,166,-160,42,'#4f9a3a',.38)+leaf(100,156,-20,42,'#4f9a3a',.38)+leaf(100,132,-155,48,'#5aa843',.38)+leaf(100,122,-25,48,'#5aa843',.38)+
-      leaf(100,100,-150,38,'#66b34c',.4)+leaf(100,94,-30,38,'#66b34c',.4)+leaf(100,90,-90,26,'#7cc15a',.4));
-    const c={4:[62,GREEN],5:[98,GREEN],6:[120,ORANGE],7:[136,RED]}[s];
-    return chiliFruit(c[0],c[1][0],c[1][1],112-c[0]/2);
-  },
-  corn(s){
-    const GR=['#a6d46a','#6aa83a'];
-    if(s==1) return kernel(82,112,-25,1.4)+kernel(118,102,30,1.4)+kernel(100,144,6,1.4);
-    if(s==2) return G(-10,roots(100,172,6,26)+kernel(100,160,0,1.1)+stemP('M100 148 C98 124,102 104,100 82','#c6e08a',7)+leaf(100,88,-98,44,'#8bc34a',.14)+leaf(100,92,-70,38,'#7cb342',.14));
-    if(s==3) return G(-18,roots(100,184,7,26)+stemP('M100 186 L100 150','#8cc34a',7)+leaf(100,166,-118,96,'#6fb23c',.1)+leaf(100,166,-62,100,'#79bb44',.1)+leaf(100,170,-90,120,'#5aa52e',.09));
-    if(s==4) return huskLeaf(176,84,-9,24,...GR)+huskLeaf(176,84,9,24,...GR)+huskLeaf(176,82,0,22,'#b8dd7e','#7cb342')+silk(92,7,22,'#c9a25a');
-    if(s==5) return huskLeaf(178,112,-9,30,...GR)+huskLeaf(178,112,9,30,...GR)+huskLeaf(178,108,0,27,'#b8dd7e','#7cb342')+silk(66,9,30,'#c9a25a');
-    if(s==6) return cobDraw(112,56,24,'#f3d878','#e6bf50','#f7df86','#c9a23a')+silk(54,6,16,'#a77d3c')+huskLeaf(178,92,-36,26,...GR)+huskLeaf(178,92,36,26,...GR);
-    return huskLeaf(178,56,-70,22,'#9ccd5a','#5e9a30')+huskLeaf(178,56,70,22,'#9ccd5a','#5e9a30')+cobDraw(108,60,25,'#ffd23f','#f0a920','#ffcc2e','#d68a00')+huskLeaf(178,78,-52,24,...GR)+huskLeaf(178,78,52,24,...GR);
-  },
-  mushroom(s){
-    const B={3:131,4:142,5:152,6:159,7:165};
-    if(s==1){let o='';[[70,120,4],[92,96,3],[118,110,5],[132,138,3.5],[84,148,4.5],[108,150,3],[60,150,3],[140,100,3],[100,126,6],[76,96,2.5],[124,162,3.5],[96,172,3],[150,128,2.5],[112,84,2.5]].forEach(([x,y,r])=>o+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#fff" stroke="#c9bfa8" stroke-width="1"/>`);return o}
-    if(s==2){
-      const P=['M100 160 C96 140,84 130,70 128','M100 160 C104 138,118 130,134 126','M100 160 C100 140,100 124,98 104','M84 133 C76 124,66 120,58 106','M70 128 C62 134,52 134,44 144','M118 132 C126 122,136 118,144 104','M134 126 C142 132,150 134,158 146','M98 104 C92 96,84 92,80 82','M98 104 C104 94,112 90,116 80','M100 160 C90 166,80 168,66 164','M100 160 C112 166,124 168,138 164'];
-      let u='',t='';P.forEach(d=>{u+=`<path d="${d}" stroke="#cfc4ab" stroke-width="6" fill="none" stroke-linecap="round"/>`;t+=`<path d="${d}" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>`});
-      return G(-4,u+t);
-    }
-    if(s==3) return shroom(66,B[3]+6,12,10,26,4.2)+shroom(134,B[3]+6,11,9,22,4)+shroom(84,B[3]+6,9,7,17,3.4)+shroom(118,B[3]+6,9,7,15,3.4)+shroom(100,B[3]+6,16,12,38,5);
-    if(s==4) return shroom(66,B[4],12,10,18,5)+shroom(134,B[4],14,11,22,6)+shroom(100,B[4],26,22,42,11);
-    if(s==5) return shroom(48,B[5],14,11,20,7)+shroom(152,B[5],16,13,26,7)+shroom(100,B[5],36,30,54,14);
-    if(s==6) return shroom(54,B[6],22,17,30,8,true)+shroom(150,B[6],18,14,24,7,true)+shroom(100,B[6],46,34,64,16,true);
-    return shroom(34,B[7],26,19,36,9,true)+shroom(168,B[7],22,16,28,8,true)+shroom(100,B[7],62,40,70,18,true);
-  },
-  eggplant(s){
-    const ST='#8e72b3';
-    if(s==1) return seedDisc(78,104,-20)+seedDisc(122,98,25)+seedDisc(100,136,5)+seedDisc(70,142,40);
-    if(s==2) return G(-12,roots(100,172,5,24)+seedDisc(100,160,0)+stemP('M100 148 C96 126,104 112,100 94','#a58ac8',6)+leaf(100,96,-150,36,'#7fbf6e',.42)+leaf(100,96,-30,36,'#7fbf6e',.42));
-    if(s==3) return G(-22,roots(100,186,6,24)+stemP('M100 188 L100 90',ST,5)+
-      leaf(100,166,-158,44,'#5f9e5a',.45)+leaf(100,156,-22,44,'#5f9e5a',.45)+leaf(100,132,-155,50,'#6aae62',.45)+leaf(100,122,-25,50,'#6aae62',.45)+
-      leaf(100,100,-148,40,'#76ba6c',.45)+leaf(100,94,-32,40,'#76ba6c',.45)+leaf(100,90,-90,26,'#86c67a',.45));
-    if(s==4){
-      let p='';for(let i=0;i<5;i++)p+=`<g transform="rotate(${i*72} 100 112)"><ellipse cx="100" cy="76" rx="17" ry="30" fill="${grad('#cdb8f2','#9a78d8','v')}" stroke="#7d5bc080" stroke-width="1"/></g>`;
-      return p+`<circle cx="100" cy="112" r="15" fill="#ffd54a" stroke="#e0a800"/><circle cx="100" cy="112" r="7" fill="#f09a1a"/>`;
-    }
-    if(s==5) return eggFruit(.62)+`<ellipse cx="82" cy="${110-39*.62+10}" rx="4.5" ry="10" transform="rotate(-35 82 ${110-39*.62+10})" fill="#c9b3f0" stroke="#9a78d8" stroke-width=".8"/><ellipse cx="118" cy="${110-39*.62+10}" rx="4.5" ry="10" transform="rotate(35 118 ${110-39*.62+10})" fill="#c9b3f0" stroke="#9a78d8" stroke-width=".8"/>`;
-    if(s==6) return eggFruit(.88);
-    return eggFruit(1.15);
-  },
-  cabbage(s){
-    const D=['#6ea53b','#4f8a2e'],M=['#86b84a','#5f9a35'],L=['#b5d97c','#8fc050'];
-    const head=(cy,rx,ry)=>`<ellipse cx="100" cy="${cy}" rx="${rx}" ry="${ry}" fill="${grad('#e6f3c6','#a2cd68','r')}" stroke="#00000024" stroke-width="1"/>`;
-    if(s==1){let o='';[[80,108],[122,100],[100,136],[70,142]].forEach(([x,y])=>o+=`<circle cx="${x}" cy="${y}" r="10" fill="${grad('#a8764a','#4a2d17','r')}" stroke="#00000040"/>`);return o}
-    if(s==2) return G(-10,roots(100,174,5,22)+`<circle cx="100" cy="164" r="10" fill="${grad('#a8764a','#4a2d17','r')}" stroke="#00000040"/>`+stemP('M100 156 C98 134,102 118,100 100','#c9d8a0',5)+
-      `<ellipse cx="80" cy="96" rx="22" ry="14" transform="rotate(-18 80 96)" fill="#a8d56c" stroke="#00000026"/><ellipse cx="120" cy="96" rx="22" ry="14" transform="rotate(18 120 96)" fill="#a8d56c" stroke="#00000026"/>`);
-    if(s==3) return G(-8,roots(100,178,6,22)+bleaf(-72,58,24,...D)+bleaf(72,58,24,...D)+bleaf(-44,64,26,...M)+bleaf(44,64,26,...M)+bleaf(-16,52,20,...L)+bleaf(16,52,20,...L));
-    if(s==4) return G(-6,roots(100,178,5,18)+bleaf(-80,68,30,...D)+bleaf(80,68,30,...D)+bleaf(-55,74,32,...D)+bleaf(55,74,32,...D)+bleaf(-30,66,28,...M)+bleaf(30,66,28,...M)+bleaf(-8,52,20,...L)+bleaf(8,52,20,...L));
-    if(s==5) return bleaf(-84,70,32,...D)+bleaf(84,70,32,...D)+bleaf(-58,78,34,...D)+bleaf(58,78,34,...D)+head(126,38,42)+headVeins(126,42)+bleaf(-44,62,24,'#a5cf6a','#78ad3f')+bleaf(44,62,24,'#a5cf6a','#78ad3f');
-    if(s==6) return bleaf(-88,64,34,...D)+bleaf(88,64,34,...D)+bleaf(-62,80,36,...D)+bleaf(62,80,36,...D)+head(118,48,50)+headVeins(118,50)+bleaf(-46,70,26,...L)+bleaf(46,70,26,...L);
-    return bleaf(-92,60,36,'#5e9a35','#3f7a26')+bleaf(92,60,36,'#5e9a35','#3f7a26')+bleaf(-66,84,40,'#5e9a35','#3f7a26')+bleaf(66,84,40,'#5e9a35','#3f7a26')+head(112,58,60)+headVeins(112,60)+bleaf(-50,78,30,...L)+bleaf(50,78,30,...L);
-  },
-};
-/* ---- 脸：把 emoji 贴到蔬菜上当表情 ----
- * FACE[蔬菜][阶段] = [x, y, 大小]，坐标在 viewBox 200×220 里。没写的阶段不贴脸。
- * 以后改了蔬菜的形状，只需要回来改这张表。 */
-const FACE = {
-  chili:   {1:[100,136,20],2:[100,148,18],3:[100,104,28],4:[98,96,16],5:[97,88,22],6:[96,82,27],7:[96,78,31]},
-  corn:    {1:[100,138,24],2:[100,146,18],3:[100,150,24],4:[100,135,32],5:[100,125,44],6:[100,104,36],7:[100,106,38]},
-  mushroom:{1:[100,118,30],2:[100,125,30],3:[100,128,14],4:[100,122,20],5:[100,126,26],6:[100,128,30],7:[100,132,34]},
-  eggplant:{1:[100,136,20],2:[100,148,22],3:[100,104,28],4:[100,112,24],5:[100,120,22],6:[100,129,32],7:[100,136,42]},
-  cabbage: {1:[100,136,18],2:[100,154,18],3:[100,150,22],4:[100,148,26],5:[100,114,40],6:[100,112,46],7:[100,106,54]},
-};
-const faceSVG=(plant,s,e)=>{
-  const f=e&&FACE[plant]&&FACE[plant][s];if(!f)return '';
-  return `<text x="${f[0]}" y="${f[1]+f[2]*.31}" font-size="${f[2]*.9}" text-anchor="middle" style="font-family:'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji',sans-serif">${e}</text>`;
-};
-// 没有具体 emoji 时（比如别人的模拟数据），用这一类、这一级的第一个 emoji 当脸
+// 没有具体表情时（比如别人的模拟数据），用这一类、这一级的第一个表情
 const faceOf=(cat,lv,e)=>e||(MOODS.find(m=>m.cat===cat&&m.level===lv)||{}).e;
-const drawPlant=(emoId,s,face)=>{DEFS='';const p=emoOf(emoId).plant,b=PLANTS[p](s);return `<defs>${DEFS}</defs>${b}${faceSVG(p,s,face)}`};   // 先画植物再取 DEFS（渐变是画的时候登记的）
+const drawPlant=(emoId,s,face)=>{const m=moodOf(faceOf(emoId,s,face));return m?`<image href="${m.img}" x="0" y="0" width="200" height="220" preserveAspectRatio="xMidYMid meet"/>`:''};
 const plantSVG=(emoId,s,face)=>`<svg viewBox="0 0 200 220">${drawPlant(emoId,s,face)}</svg>`;
 const fxIcons=sp=>sp?`<div class="fxi">${FXICONS[sp].map((c,i)=>`<span style="left:${[18,48,76][i]}%;animation-delay:${i*.7}s">${c}</span>`).join('')}</div>`:'';
 const stageHTML=(lv)=>{
@@ -550,7 +400,7 @@ async function runCamera(){
     stream.getTracks().forEach(t=>t.stop());
     if(n<3) throw new Error('NOFACE');
     for(const k in acc) acc[k]/=n;
-    const r=aggregate(acc),mm=moodOf(r.emoji); S.emotion=r.emotion; S.confidence=r.confidence; S.guess=S.emoji=mm.e; S.level=mm.level; camBusy=false; go(2);
+    const r=aggregate(acc),mm=moodOf(r.emoji); S.emotion=mm.cat; S.confidence=r.confidence; S.guess=S.emoji=mm.e; S.level=mm.level; camBusy=false; go(2);
   }catch(err){
     if(stream) stream.getTracks().forEach(t=>t.stop());
     if(gone())return;
@@ -764,7 +614,7 @@ function render(){
     const g=S.guess&&moodOf(S.guess);
     h+=`<h1>${T('此刻是哪种感觉？','Which feeling is it?')}</h1><div class="hint">${T('Step 2 · 拖动圆圈，找最贴近的表情，点一下选中。越靠外圈，强度越大。','Step 2 · Drag the circle, find the closest expression and tap to pick it. The farther out, the stronger.')}</div>
     <div class="efwrap"><div class="ef" id="ef"></div></div>
-    <div class="small" style="margin:0 0 12px">${g?`${T('摄像头猜测：','Camera guess: ')}${g.e} ${EN()?g.en:g.zh}${S.confidence?` · ${T('置信度','confidence')} ${Math.round(S.confidence*100)}%`:''}`:T('手动选择','Picked manually')}</div>
+    <div class="small" style="margin:0 0 12px">${g?`${T('摄像头猜测：','Camera guess: ')}${vegTag(g)} ${EN()?g.en:g.zh}${S.confidence?` · ${T('置信度','confidence')} ${Math.round(S.confidence*100)}%`:''}`:T('手动选择','Picked manually')}</div>
     <div class="card"><div class="einfo"><div class="stage" id="pstage" style="height:130px;width:130px;flex:none"><div class="pw" id="pw" style="width:84%"></div></div>
       <div class="etx"><div class="eword"><span id="ee"></span><b id="ezh"></b></div><small id="een" class="small" style="display:block;text-align:left;margin:2px 0 0"></small>
       <div class="dots" id="dots"></div><div class="elv" id="elv"></div><small id="ecat" class="small" style="display:block;text-align:left;margin:2px 0 0"></small></div></div>
@@ -782,7 +632,7 @@ function render(){
   if(S.step===4){
     h+=`<h1>${T('确认并保存','Confirm & save')}</h1><div class="hint">${T('Step 4 · 确认后，动画定位到校园地图','Step 4 · After confirming, the plant is placed on the campus map.')}</div>
     <div class="card"><div class="stage" style="height:150px;margin-bottom:8px;background:radial-gradient(circle at 50% 52%,${e.color}aa 0%,#e8edf5 82%)"><div class="pw" style="width:50%">${plantSVG(S.emotion,S.level,S.emoji)}</div></div>
-      <div class="kv"><span>${T('情绪','Emotion')}</span><b>${m?(EN()?`${m.e} ${m.en}`:`${m.e} ${m.zh} · ${m.en}`):nmEmo(e)}</b></div>
+      <div class="kv"><span>${T('情绪','Emotion')}</span><b>${m?(EN()?`${vegTag(m)} ${m.en}`:`${vegTag(m)} ${m.zh} · ${m.en}`):nmEmo(e)}</b></div>
       <div class="kv"><span>${T('归类','Category')}</span><b>${nmEmo(e)} · ${plN(e.plant)}</b></div>
       <div class="kv"><span>${T('强度','Intensity')}</span><b>${T(`${S.level}级`,`Level ${S.level}`)} · ${SOLFEGE[S.level-1]}</b></div>
       <div class="kv"><span>${T('生长阶段','Growth stage')}</span><b>${stg(e,S.level-1)}</b></div>
@@ -844,8 +694,8 @@ function initField(){
   const side={};
   for(const k in SIDES)side[k]={glow:mk('eg '+k),lab:mk('el '+k,`<span>${SIDES[k]}</span>`),v:0};
   const items=MOODS.map((m,i)=>{
-    const el=document.createElement('div');el.className='em';el.textContent=m.e;
-    el.style.cssText=`width:${D}px;height:${D}px;font-size:${D*.72}px;line-height:${D}px;--c:${emoOf(m.cat).color}`;
+    const el=document.createElement('div');el.className='em';el.innerHTML=`<img src="${m.img}" alt="${m.zh}" draggable="false">`;
+    el.style.cssText=`width:${D}px;height:${D}px;--c:${emoOf(m.cat).color}`;
     ef.appendChild(el);
     return {m,el,hx:m.x*D*SP,hy:m.y*D*SP,x:(Math.random()-.5)*3,y:(Math.random()-.5)*3,vx:0,vy:0,k:KB*(.8+.4*((i*37%11)/10)),s:1,sel:false};
   });
@@ -925,7 +775,7 @@ function refreshInfo(){
   if($('b-next'))$('b-next').disabled=!m;
   if(!m){$('ee').textContent='🌱';$('ezh').textContent=T('还没有选','Nothing picked yet');$('een').textContent=T('点圆圈里的表情','Tap an expression in the circle');$('elv').textContent='';$('dots').innerHTML='';$('ecat').textContent='';$('pw').innerHTML='';return}
   const e=emoOf(m.cat);
-  $('ee').textContent=m.e;$('ezh').textContent=EN()?m.en:m.zh;$('een').textContent=EN()?m.zh:m.en;
+  $('ee').innerHTML=vegTag(m);$('ezh').textContent=EN()?m.en:m.zh;$('een').textContent=EN()?m.zh:m.en;
   $('elv').textContent=`${T(`${m.level}级`,`Level ${m.level}`)} · ${SOLFEGE[m.level-1]} · ${stg(e,m.level-1)}`;
   $('dots').innerHTML=[1,2,3,4,5,6,7].map(i=>`<i class="${i<=m.level?'on':''}"></i>`).join('');
   $('ecat').textContent=`${T('归入：','Category: ')}${nmEmo(e)} · ${plN(e.plant)}`;

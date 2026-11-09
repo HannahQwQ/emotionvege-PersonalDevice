@@ -276,7 +276,6 @@ MOOD_ROWS.forEach((row,ri)=>row.forEach((e,i)=>{
   MOODS.push({cat,e,zh,en,level,img:vegSrc(cat,zh),x:i-(row.length-1)/2,y:(ri-(MOOD_ROWS.length-1)/2)*Math.sqrt(3)/2});   // 单位＝一格
 }));
 const vegTag = m => `<img class="vt" src="${m.img}" alt="${m.zh}" draggable="false">`;   // 文字行里内嵌的小蔬菜图
-setTimeout(()=>MOODS.forEach(m=>{new Image().src=m.img}),0);   // 先把 43 张图拉进缓存，进 Step 2 不闪
 const moodOf = e => MOODS.find(m=>m.e===e);
 // 摄像头给出 5 类之后，再按原始表情的强弱，在这一类里猜一个最贴近的 emoji
 function guessEmoji(cat,a){

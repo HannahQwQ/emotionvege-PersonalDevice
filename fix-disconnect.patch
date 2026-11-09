@@ -1,0 +1,41 @@
+diff --git a/index.html b/index.html
+index f9ac814..39043e6 100644
+--- a/index.html
++++ b/index.html
+@@ -276,7 +276,6 @@ MOOD_ROWS.forEach((row,ri)=>row.forEach((e,i)=>{
+   MOODS.push({cat,e,zh,en,level,img:vegSrc(cat,zh),x:i-(row.length-1)/2,y:(ri-(MOOD_ROWS.length-1)/2)*Math.sqrt(3)/2});   // 单位＝一格
+ }));
+ const vegTag = m => `<img class="vt" src="${m.img}" alt="${m.zh}" draggable="false">`;   // 文字行里内嵌的小蔬菜图
+-setTimeout(()=>MOODS.forEach(m=>{new Image().src=m.img}),0);   // 先把 43 张图拉进缓存，进 Step 2 不闪
+ const moodOf = e => MOODS.find(m=>m.e===e);
+ // 摄像头给出 5 类之后，再按原始表情的强弱，在这一类里猜一个最贴近的 emoji
+ function guessEmoji(cat,a){
+diff --git a/server.py b/server.py
+index 563dd4c..ccf839e 100644
+--- a/server.py
++++ b/server.py
+@@ -135,6 +135,15 @@ def ensure_cert(ips):
+     return False
+ 
+ 
++class QuietServer(ThreadingHTTPServer):
++    """手机在传图/传页面中途切走、锁屏、刷新，会让连接被掐断（常见于 TLS：ssl.SSLError / 连接重置）。
++    这是正常现象，不影响使用，不要把整段 traceback 打到屏幕上。其它真正的异常照常显示。"""
++    def handle_error(self, request, client_address):
++        if isinstance(sys.exc_info()[1], (ssl.SSLError, ConnectionError, TimeoutError)):
++            return
++        super().handle_error(request, client_address)
++
++
+ class Handler(SimpleHTTPRequestHandler):
+     def __init__(self, *a, **k):
+         super().__init__(*a, directory=ROOT, **k)
+@@ -220,7 +229,7 @@ def main():
+     if use_tls and not ensure_cert(ips or ['127.0.0.1']):
+         sys.exit(1)
+     port = a.port or (8443 if use_tls else 8000)
+-    srv = ThreadingHTTPServer(('0.0.0.0', port), Handler)
++    srv = QuietServer(('0.0.0.0', port), Handler)
+     scheme = 'http'
+     if use_tls:
+         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)

@@ -1,0 +1,56 @@
+diff --git a/index.html b/index.html
+index 149ce41..479a9ed 100644
+--- a/index.html
++++ b/index.html
+@@ -47,6 +47,13 @@ button.pbtn{width:46px;height:46px;border-radius:50%;padding:0;margin:0;flex:non
+ .vbox{position:relative;height:290px;border-radius:16px;background:#1d2433;overflow:hidden}
+ .vbox video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:none}
+ .vph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:54px}
++.privacy{display:flex;gap:11px;align-items:flex-start;margin:12px 0 2px;padding:12px 14px;border-radius:14px;background:#e8f5ee;border:1px solid #c3e5d2;color:#17583f}
++.privacy .lk{flex:none;font-size:22px;line-height:1.2}
++.privacy b{display:block;font-size:16px;line-height:1.35;color:#0f4a33}
++.privacy small{display:block;margin-top:3px;font-size:13px;line-height:1.55;color:#2c6c52}
++.pv-demo{display:none}
++body[data-mode=demo] .pv-live{display:none}
++body[data-mode=demo] .pv-demo{display:inline}
+ .guide{position:absolute;left:50%;top:46%;width:150px;height:200px;transform:translate(-50%,-50%);border:2px dashed #ffffff88;border-radius:50%;pointer-events:none;display:none}
+ .vtip{position:absolute;left:0;right:0;bottom:0;padding:9px;text-align:center;font-size:13px;color:#fff;background:#000a}
+ .bar{height:4px;background:#ffffff33;position:absolute;left:0;top:0;right:0}
+@@ -121,18 +128,18 @@ button.lang:disabled{opacity:.5}
+ .em img{width:88%;height:88%;object-fit:contain;pointer-events:none;-webkit-user-drag:none;user-select:none}
+ .em.sel{opacity:1;filter:drop-shadow(0 0 5px var(--c)) drop-shadow(0 0 12px var(--c))}
+ .eax{position:absolute;pointer-events:none;z-index:0}
+-.eax.h{left:0;right:0;top:0;height:0;border-top:1.5px dashed #ffffff38}
+-.eax.v{top:0;bottom:0;left:0;width:0;border-left:1.5px dashed #ffffff38}
++.eax.h{left:0;right:0;top:0;height:0;border-top:2px dashed #ffffff94}
++.eax.v{top:0;bottom:0;left:0;width:0;border-left:2px dashed #ffffff94}
+ .eg{position:absolute;pointer-events:none;opacity:0;z-index:400}
+ .eg.left{left:0;top:0;bottom:0;width:36%;background:linear-gradient(90deg,#94b1c9a6,transparent)}
+ .eg.right{right:0;top:0;bottom:0;width:36%;background:linear-gradient(270deg,#a6af7fa6,transparent)}
+ .eg.top{left:0;right:0;top:0;height:36%;background:linear-gradient(180deg,#f5c16a99,transparent)}
+ .eg.bottom{left:0;right:0;bottom:0;height:36%;background:linear-gradient(0deg,#94b1c9a6,transparent)}
+-.el{position:absolute;pointer-events:none;z-index:500;display:flex;font-size:11px;font-weight:600;color:#ffffff73;white-space:nowrap}
+-.el span{padding:4px 10px;border-radius:999px;transition:background .2s,color .2s,box-shadow .2s}
+-.el.on span{background:#ffffffeb;color:#1d2433;font-weight:700;box-shadow:0 0 14px #ffffff80}
+-.el.top{left:0;right:0;top:4.5%;justify-content:center}
+-.el.bottom{left:0;right:0;bottom:4.5%;justify-content:center}
++.el{position:absolute;pointer-events:none;z-index:500;display:flex;font-size:13px;font-weight:700;color:#ffffffe6;white-space:nowrap}
++.el span{padding:5px 12px;border-radius:999px;background:#1d2433b8;border:1px solid #ffffff3d;transition:background .2s,color .2s,box-shadow .2s,border-color .2s}
++.el.on span{background:#ffffffeb;color:#1d2433;font-weight:700;border-color:#fff;box-shadow:0 0 14px #ffffff80}
++.el.top{left:0;right:0;top:5%;justify-content:center}
++.el.bottom{left:0;right:0;bottom:5%;justify-content:center}
+ .el.left{left:3%;top:50%;transform:translateY(-50%)}
+ .el.right{right:3%;top:50%;transform:translateY(-50%)}
+ .einfo{display:flex;gap:14px;align-items:center}
+@@ -610,9 +617,10 @@ const spName=(id,L=LANG)=>{const s=SPECIALS.find(x=>x.id===id);if(!s)return L===
+ function render(){
+   const e=S.emotion&&emoOf(S.emotion),m=S.emoji&&moodOf(S.emoji);let h=topbar();
+   if(S.step===1){
+-    h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情（本机运算，视频不上传）。打开页面会自动开启摄像头，识别约 6 秒。不想用摄像头，可以直接点下面的「跳过」自己选。','Step 1 · The camera reads your facial expression (on-device; video is never uploaded). The camera starts automatically and takes about 6 seconds. Prefer not to use it? Tap “Skip” below and pick an expression yourself.')}</div>
++    h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情。打开页面会自动开启摄像头，识别约 6 秒。不想用摄像头，可以直接点下面的「跳过」自己选。','Step 1 · The camera reads your facial expression. The camera starts automatically and takes about 6 seconds. Prefer not to use it? Tap “Skip” below and pick an expression yourself.')}</div>
+     <div class="card"><button class="zpill" id="b-zone" aria-label="${T('调整地点','Change location')}">📍 <span id="zname">${znm(zoneOf(S.zone))}</span> · ${T('调整','Change')}</button>
+     <div class="vbox"><video id="cam" playsinline muted autoplay></video><div class="vph" id="vph">📷</div><div class="guide" id="guide"></div><div class="bar"><i id="bar"></i></div><div class="vtip" id="vtip">${T('正在开启摄像头…','Starting the camera…')}</div></div>
++    <div class="privacy"><span class="lk">🔒</span><div><b>${T('不会收集你的人脸数据','We don’t collect your face data')}</b><small>${T('摄像头画面只在你的设备上识别，识别完立即丢弃，不保存、不上传。','The camera image is analysed on your device only and discarded right after — never saved, never uploaded.')}${EN()?' ':''}<span class="pv-live">${T('只会记录你选的表情、地点等文字，发送到现场电脑。','Only the text you choose (expression, place, etc.) is sent to the on-site computer.')}</span><span class="pv-demo">${T('你选的内容只保存在这台设备的浏览器里。','What you choose stays in this browser on your device.')}</span></small></div></div>
+     <button id="b-detect" style="display:none">${T('重新识别','Try again')}</button>
+     <button class="ghost" id="b-manual">${T('跳过摄像头，直接选表情','Skip the camera, pick an expression')}</button>
+     ${DEBUG?`<button class="ghost" id="b-sim">${T('模拟识别（调试）','Simulate (debug)')}</button>`:''}</div>`;

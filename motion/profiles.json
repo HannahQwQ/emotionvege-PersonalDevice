@@ -1,0 +1,3765 @@
+{
+  "chili-01": {
+    "eyes": [
+      [
+        0.51,
+        0.407
+      ],
+      [
+        0.715,
+        0.413
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.10214550754523641,
+      0.985632183908046
+    ],
+    "label": "不安 · 程度1",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.51,
+          0.45199999999999996
+        ],
+        "radius": [
+          0.059706000000000016,
+          0.04272067241379311
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.715,
+          0.45799999999999996
+        ],
+        "radius": [
+          0.059706000000000016,
+          0.04272067241379311
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.4,
+        0.34199999999999997
+      ],
+      [
+        0.855,
+        0.367
+      ],
+      [
+        0.84,
+        0.658
+      ],
+      [
+        0.385,
+        0.633
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-02": {
+    "eyes": [
+      [
+        0.51,
+        0.407
+      ],
+      [
+        0.715,
+        0.413
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.10766568692519199,
+      0.9864864864864865
+    ],
+    "label": "躁动 · 程度2",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.51,
+          0.45199999999999996
+        ],
+        "radius": [
+          0.059706,
+          0.04276240540540541
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.715,
+          0.45799999999999996
+        ],
+        "radius": [
+          0.059706,
+          0.04276240540540541
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.4,
+        0.34199999999999997
+      ],
+      [
+        0.855,
+        0.367
+      ],
+      [
+        0.84,
+        0.658
+      ],
+      [
+        0.385,
+        0.633
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-03": {
+    "eyes": [
+      [
+        0.505,
+        0.415
+      ],
+      [
+        0.71,
+        0.415
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.10693323193323194,
+      0.986449864498645
+    ],
+    "label": "紧绷 · 程度3",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.505,
+          0.45999999999999996
+        ],
+        "radius": [
+          0.059706,
+          0.04271648780487805
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.71,
+          0.45999999999999996
+        ],
+        "radius": [
+          0.059706,
+          0.04271648780487805
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.395,
+        0.35
+      ],
+      [
+        0.85,
+        0.375
+      ],
+      [
+        0.835,
+        0.66
+      ],
+      [
+        0.38,
+        0.635
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-04": {
+    "eyes": [
+      [
+        0.5,
+        0.445
+      ],
+      [
+        0.72,
+        0.445
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.101635733488809,
+      0.985632183908046
+    ],
+    "label": "愤怒 · 程度4",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.5,
+          0.49
+        ],
+        "radius": [
+          0.059706,
+          0.04306381034482759
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.72,
+          0.49
+        ],
+        "radius": [
+          0.059706,
+          0.04306381034482759
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.39,
+        0.38
+      ],
+      [
+        0.86,
+        0.405
+      ],
+      [
+        0.845,
+        0.6900000000000001
+      ],
+      [
+        0.375,
+        0.665
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-05": {
+    "eyes": [
+      [
+        0.49,
+        0.445
+      ],
+      [
+        0.71,
+        0.445
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.10586466165413534,
+      0.9864864864864865
+    ],
+    "label": "反感 · 程度5",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.49,
+          0.49
+        ],
+        "radius": [
+          0.059706,
+          0.04292377297297298
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.71,
+          0.49
+        ],
+        "radius": [
+          0.059706,
+          0.04292377297297298
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.38,
+        0.38
+      ],
+      [
+        0.85,
+        0.405
+      ],
+      [
+        0.835,
+        0.6900000000000001
+      ],
+      [
+        0.365,
+        0.665
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-06": {
+    "eyes": [
+      [
+        0.49,
+        0.445
+      ],
+      [
+        0.71,
+        0.445
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.1285657137281686,
+      0.9869109947643979
+    ],
+    "label": "厌恶 · 程度5",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.49,
+          0.49
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.043294664921465977
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.71,
+          0.49
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.043294664921465977
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.38,
+        0.38
+      ],
+      [
+        0.85,
+        0.405
+      ],
+      [
+        0.835,
+        0.6900000000000001
+      ],
+      [
+        0.365,
+        0.665
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-07": {
+    "eyes": [
+      [
+        0.51,
+        0.42
+      ],
+      [
+        0.7,
+        0.42
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.1114683978989505,
+      0.9861495844875346
+    ],
+    "label": "暴怒 · 程度6",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.51,
+          0.46499999999999997
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.0426707700831025
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.7,
+          0.46499999999999997
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.0426707700831025
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.4,
+        0.355
+      ],
+      [
+        0.84,
+        0.38
+      ],
+      [
+        0.825,
+        0.665
+      ],
+      [
+        0.385,
+        0.64
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-08": {
+    "eyes": [
+      [
+        0.47,
+        0.42
+      ],
+      [
+        0.72,
+        0.42
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.072
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.1043293504331541,
+      0.9861878453038674
+    ],
+    "label": "震惊 · 程度6",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "protectWhiteEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.47,
+          0.492
+        ],
+        "radius": [
+          0.059706000000000016,
+          0.043212629834254154
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.72,
+          0.492
+        ],
+        "radius": [
+          0.059706000000000016,
+          0.043212629834254154
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.36,
+        0.355
+      ],
+      [
+        0.86,
+        0.38
+      ],
+      [
+        0.845,
+        0.665
+      ],
+      [
+        0.345,
+        0.64
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-09": {
+    "eyes": [
+      [
+        0.49,
+        0.47
+      ],
+      [
+        0.72,
+        0.47
+      ]
+    ],
+    "head": [
+      0.69,
+      0.285
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.13607792478926903,
+      0.9862258953168044
+    ],
+    "label": "气冲冲 · 程度7",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.47,
+          0.478
+        ],
+        "radius": [
+          0.0527377358490566,
+          0.03849999999999999
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.737,
+          0.478
+        ],
+        "radius": [
+          0.0527377358490566,
+          0.03849999999999999
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.38,
+        0.40499999999999997
+      ],
+      [
+        0.86,
+        0.43
+      ],
+      [
+        0.845,
+        0.715
+      ],
+      [
+        0.365,
+        0.69
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "chili-10": {
+    "eyes": [
+      [
+        0.44,
+        0.51
+      ],
+      [
+        0.67,
+        0.51
+      ]
+    ],
+    "head": [
+      0.59,
+      0.37
+    ],
+    "hatWidth": 0.84,
+    "hatAngle": 0.04,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.17144610429906373,
+      0.9862637362637363
+    ],
+    "label": "脑袋爆炸 · 程度7",
+    "calibration": "manual-landmark-pass-3",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.44,
+          0.555
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.0454356098901099
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.67,
+          0.555
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.0454356098901099
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.33,
+        0.445
+      ],
+      [
+        0.81,
+        0.47000000000000003
+      ],
+      [
+        0.795,
+        0.755
+      ],
+      [
+        0.315,
+        0.73
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02,
+    "zzzInset": 28
+  },
+  "corn-01": {
+    "eyes": [
+      [
+        0.29,
+        0.36
+      ],
+      [
+        0.47,
+        0.36
+      ]
+    ],
+    "head": [
+      0.38,
+      0.228
+    ],
+    "hatWidth": 0.6,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.37077045135528647,
+      0.9856733524355301
+    ],
+    "label": "愉快 · 程度1",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.29,
+          0.40499999999999997
+        ],
+        "radius": [
+          0.052965000000000005,
+          0.026254856733524356
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.47,
+          0.40499999999999997
+        ],
+        "radius": [
+          0.052965000000000005,
+          0.026254856733524356
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.18,
+        0.295
+      ],
+      [
+        0.61,
+        0.32
+      ],
+      [
+        0.595,
+        0.605
+      ],
+      [
+        0.16499999999999998,
+        0.58
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-02": {
+    "eyes": [
+      [
+        0.29,
+        0.36
+      ],
+      [
+        0.47,
+        0.36
+      ]
+    ],
+    "head": [
+      0.38,
+      0.228
+    ],
+    "hatWidth": 0.6,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.37823087129588684,
+      0.9828571428571429
+    ],
+    "label": "满怀希望 · 程度2",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.25,
+          0.386
+        ],
+        "radius": [
+          0.0574,
+          0.0287
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.486,
+          0.386
+        ],
+        "radius": [
+          0.0574,
+          0.0287
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.18,
+        0.295
+      ],
+      [
+        0.61,
+        0.32
+      ],
+      [
+        0.595,
+        0.605
+      ],
+      [
+        0.16499999999999998,
+        0.58
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-03": {
+    "eyes": [
+      [
+        0.37,
+        0.33
+      ],
+      [
+        0.59,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.208
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4712940275650842,
+      0.985207100591716
+    ],
+    "label": "活力满满 · 程度3",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.365,
+          0.352
+        ],
+        "radius": [
+          0.052051999999999994,
+          0.030799999999999998
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.57,
+          0.352
+        ],
+        "radius": [
+          0.052051999999999994,
+          0.030799999999999998
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.26,
+        0.265
+      ],
+      [
+        0.73,
+        0.29000000000000004
+      ],
+      [
+        0.715,
+        0.5750000000000001
+      ],
+      [
+        0.245,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-04": {
+    "eyes": [
+      [
+        0.37,
+        0.33
+      ],
+      [
+        0.59,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.208
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4720965309200603,
+      0.9850299401197605
+    ],
+    "label": "乐观 · 程度4",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.365,
+          0.349
+        ],
+        "radius": [
+          0.05169447236180904,
+          0.030799999999999994
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.565,
+          0.349
+        ],
+        "radius": [
+          0.05169447236180904,
+          0.030799999999999994
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.26,
+        0.265
+      ],
+      [
+        0.73,
+        0.29000000000000004
+      ],
+      [
+        0.715,
+        0.5750000000000001
+      ],
+      [
+        0.245,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-05": {
+    "eyes": [
+      [
+        0.37,
+        0.33
+      ],
+      [
+        0.59,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.208
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.47238567073170734,
+      0.9850299401197605
+    ],
+    "label": "兴奋 · 程度5",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.37,
+          0.375
+        ],
+        "radius": [
+          0.05296500000000001,
+          0.03171556886227545
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.59,
+          0.375
+        ],
+        "radius": [
+          0.05296500000000001,
+          0.03171556886227545
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.26,
+        0.265
+      ],
+      [
+        0.73,
+        0.29000000000000004
+      ],
+      [
+        0.715,
+        0.5750000000000001
+      ],
+      [
+        0.245,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-06": {
+    "eyes": [
+      [
+        0.37,
+        0.33
+      ],
+      [
+        0.59,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.208
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4705597579425113,
+      0.9850299401197605
+    ],
+    "label": "惊讶 · 程度3",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.37,
+          0.375
+        ],
+        "radius": [
+          0.05296500000000001,
+          0.03171556886227545
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.59,
+          0.375
+        ],
+        "radius": [
+          0.05296500000000001,
+          0.03171556886227545
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.26,
+        0.265
+      ],
+      [
+        0.73,
+        0.29000000000000004
+      ],
+      [
+        0.715,
+        0.5750000000000001
+      ],
+      [
+        0.245,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-07": {
+    "eyes": [
+      [
+        0.36,
+        0.33
+      ],
+      [
+        0.58,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.228
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.46069776225096776,
+      0.9849397590361446
+    ],
+    "label": "欢乐 · 程度6",
+    "calibration": "manual-landmark-pass-2",
+    "foreground": "blue",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.35,
+          0.35
+        ],
+        "radius": [
+          0.050125490196078426,
+          0.030799999999999994
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.55,
+          0.35
+        ],
+        "radius": [
+          0.050125490196078426,
+          0.030799999999999994
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.25,
+        0.265
+      ],
+      [
+        0.72,
+        0.29000000000000004
+      ],
+      [
+        0.705,
+        0.5750000000000001
+      ],
+      [
+        0.235,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-08": {
+    "eyes": [
+      [
+        0.36,
+        0.33
+      ],
+      [
+        0.58,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.228
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.46092778574844573,
+      0.984984984984985
+    ],
+    "label": "幸福 · 程度6",
+    "calibration": "manual-landmark-pass-2",
+    "foreground": "pink",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.35,
+          0.347
+        ],
+        "radius": [
+          0.04799117647058824,
+          0.029400000000000003
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.55,
+          0.347
+        ],
+        "radius": [
+          0.04799117647058824,
+          0.029400000000000003
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "shadowProtectPink": true,
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.25,
+        0.265
+      ],
+      [
+        0.72,
+        0.29000000000000004
+      ],
+      [
+        0.705,
+        0.5750000000000001
+      ],
+      [
+        0.235,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "corn-09": {
+    "eyes": [
+      [
+        0.34,
+        0.33
+      ],
+      [
+        0.64,
+        0.33
+      ]
+    ],
+    "head": [
+      0.47,
+      0.228
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.07
+    ],
+    "shadowRadius": [
+      0.058850000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4637396974189743,
+      0.9820359281437125
+    ],
+    "label": "狂喜 · 程度7",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.28078817733990147,
+          0.3772455089820359
+        ],
+        "radius": [
+          0.03694581280788178,
+          0.02245508982035928
+        ],
+        "angle": 0,
+        "opacity": 0.65
+      },
+      {
+        "center": [
+          0.6403940886699507,
+          0.3772455089820359
+        ],
+        "radius": [
+          0.03694581280788178,
+          0.02245508982035928
+        ],
+        "angle": 0,
+        "opacity": 0.65
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.23000000000000004,
+        0.265
+      ],
+      [
+        0.78,
+        0.29000000000000004
+      ],
+      [
+        0.765,
+        0.5750000000000001
+      ],
+      [
+        0.21500000000000002,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "mushroom-01": {
+    "eyes": [
+      [
+        0.345,
+        0.43
+      ],
+      [
+        0.66,
+        0.43
+      ]
+    ],
+    "head": [
+      0.5,
+      0.15
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.075
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5057200613101718,
+      0.9898785425101214
+    ],
+    "label": "平静 · 程度1 · 幼菇期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.345,
+          0.505
+        ],
+        "radius": [
+          0.062595,
+          0.052331447368421054
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.66,
+          0.505
+        ],
+        "radius": [
+          0.062595,
+          0.052331447368421054
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.235,
+        0.365
+      ],
+      [
+        0.8,
+        0.39
+      ],
+      [
+        0.785,
+        0.675
+      ],
+      [
+        0.21999999999999997,
+        0.65
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.6,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "mushroom-02": {
+    "eyes": [
+      [
+        0.33,
+        0.36
+      ],
+      [
+        0.6,
+        0.36
+      ]
+    ],
+    "head": [
+      0.5,
+      0.16
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.075
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": false,
+    "base": [
+      0.5014397525602098,
+      0.9898785425101214
+    ],
+    "label": "专注 · 程度2 · 幼菇期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.33,
+          0.435
+        ],
+        "radius": [
+          0.062595,
+          0.053851973684210526
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.6,
+          0.435
+        ],
+        "radius": [
+          0.062595,
+          0.053851973684210526
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.22000000000000003,
+        0.295
+      ],
+      [
+        0.74,
+        0.32
+      ],
+      [
+        0.725,
+        0.605
+      ],
+      [
+        0.20500000000000002,
+        0.58
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.2,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "mushroom-03": {
+    "eyes": [
+      [
+        0.33,
+        0.37
+      ],
+      [
+        0.63,
+        0.35
+      ]
+    ],
+    "head": [
+      0.5,
+      0.14
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.065
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.508227417240084,
+      0.9930747922437673
+    ],
+    "label": "留意 · 程度3 · 生长期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.33,
+          0.435
+        ],
+        "radius": [
+          0.062595,
+          0.04776986842105262
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.63,
+          0.415
+        ],
+        "radius": [
+          0.062595,
+          0.04776986842105262
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.22000000000000003,
+        0.285
+      ],
+      [
+        0.77,
+        0.31
+      ],
+      [
+        0.755,
+        0.615
+      ],
+      [
+        0.20500000000000002,
+        0.59
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.6,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "mushroom-04": {
+    "eyes": [
+      [
+        0.37,
+        0.3
+      ],
+      [
+        0.63,
+        0.33
+      ]
+    ],
+    "head": [
+      0.5,
+      0.12
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.065
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5121068221245701,
+      0.9930747922437673
+    ],
+    "label": "沉思 · 程度4 · 生长期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.37,
+          0.365
+        ],
+        "radius": [
+          0.062595,
+          0.04881022853185596
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.63,
+          0.395
+        ],
+        "radius": [
+          0.062595,
+          0.04881022853185596
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.26,
+        0.235
+      ],
+      [
+        0.77,
+        0.26
+      ],
+      [
+        0.755,
+        0.5750000000000001
+      ],
+      [
+        0.245,
+        0.55
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.6,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "mushroom-05": {
+    "eyes": [
+      [
+        0.39,
+        0.36
+      ],
+      [
+        0.61,
+        0.36
+      ]
+    ],
+    "head": [
+      0.5,
+      0.13
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.085
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4990264665416564,
+      0.99185667752443
+    ],
+    "label": "安静 · 程度5 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.39,
+          0.445
+        ],
+        "radius": [
+          0.04336770618556701,
+          0.05481
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.61,
+          0.445
+        ],
+        "radius": [
+          0.04336770618556701,
+          0.05481
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.28,
+        0.295
+      ],
+      [
+        0.75,
+        0.32
+      ],
+      [
+        0.735,
+        0.605
+      ],
+      [
+        0.265,
+        0.58
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.18,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "mushroom-06": {
+    "eyes": [
+      [
+        0.39,
+        0.35
+      ],
+      [
+        0.62,
+        0.35
+      ]
+    ],
+    "head": [
+      0.5,
+      0.13
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.055
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5022351156710896,
+      0.9915682967959528
+    ],
+    "label": "淡然 · 程度6 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.39,
+          0.40499999999999997
+        ],
+        "radius": [
+          0.04188444587628866,
+          0.05481
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.62,
+          0.40499999999999997
+        ],
+        "radius": [
+          0.04188444587628866,
+          0.05481
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.28,
+        0.285
+      ],
+      [
+        0.76,
+        0.31
+      ],
+      [
+        0.745,
+        0.595
+      ],
+      [
+        0.265,
+        0.57
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.18,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "mushroom-07": {
+    "eyes": [
+      [
+        0.36,
+        0.35
+      ],
+      [
+        0.63,
+        0.35
+      ]
+    ],
+    "head": [
+      0.5,
+      0.12
+    ],
+    "hatWidth": 0.7,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06955,
+      0.03915
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4960608268388674,
+      0.9914236706689536
+    ],
+    "label": "松一口气 · 程度7 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.36,
+          0.39499999999999996
+        ],
+        "radius": [
+          0.04117813144329896,
+          0.05480999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.63,
+          0.39499999999999996
+        ],
+        "radius": [
+          0.04117813144329896,
+          0.05480999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.25,
+        0.285
+      ],
+      [
+        0.77,
+        0.31
+      ],
+      [
+        0.755,
+        0.595
+      ],
+      [
+        0.235,
+        0.57
+      ]
+    ],
+    "screenStrength": 0.34,
+    "tiredAngleScale": 0.18,
+    "tiredNarrow": -0.012,
+    "tiredStretch": -0.045
+  },
+  "eggplant-01": {
+    "eyes": [
+      [
+        0.54,
+        0.38
+      ],
+      [
+        0.68,
+        0.38
+      ]
+    ],
+    "head": [
+      0.61,
+      0.235
+    ],
+    "hatWidth": 0.6,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.04
+    ],
+    "shadowRadius": [
+      0.04815,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5876920857081018,
+      0.9766536964980544
+    ],
+    "label": "低落 · 程度1",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.54,
+          0.42
+        ],
+        "radius": [
+          0.043335,
+          0.041986050583657585
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.68,
+          0.42
+        ],
+        "radius": [
+          0.043335,
+          0.041986050583657585
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.445,
+        0.295
+      ],
+      [
+        0.775,
+        0.32
+      ],
+      [
+        0.76,
+        0.53
+      ],
+      [
+        0.43,
+        0.505
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.85,
+    "tiredNarrow": 0.03,
+    "tiredStretch": 0.015
+  },
+  "eggplant-02": {
+    "eyes": [
+      [
+        0.53,
+        0.38
+      ],
+      [
+        0.67,
+        0.38
+      ]
+    ],
+    "head": [
+      0.61,
+      0.235
+    ],
+    "hatWidth": 0.6,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.04
+    ],
+    "shadowRadius": [
+      0.04815,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": false,
+    "protectBlue": true,
+    "base": [
+      0.5993255876068376,
+      0.98046875
+    ],
+    "label": "冷淡 · 程度2",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.53,
+          0.42
+        ],
+        "radius": [
+          0.043335,
+          0.043335
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.67,
+          0.42
+        ],
+        "radius": [
+          0.043335,
+          0.043335
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.445,
+        0.295
+      ],
+      [
+        0.775,
+        0.32
+      ],
+      [
+        0.76,
+        0.53
+      ],
+      [
+        0.43,
+        0.505
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.85,
+    "tiredNarrow": 0.03,
+    "tiredStretch": 0.015
+  },
+  "eggplant-03": {
+    "eyes": [
+      [
+        0.36,
+        0.64
+      ],
+      [
+        0.66,
+        0.64
+      ]
+    ],
+    "head": [
+      0.43,
+      0.44
+    ],
+    "hatWidth": 0.86,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.04
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5044340153932795,
+      0.982078853046595
+    ],
+    "label": "担心 · 程度3",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.36,
+          0.68
+        ],
+        "radius": [
+          0.059706000000000016,
+          0.03745000000000001
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.66,
+          0.68
+        ],
+        "radius": [
+          0.059706000000000016,
+          0.03745000000000001
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.25,
+        0.575
+      ],
+      [
+        0.8,
+        0.6
+      ],
+      [
+        0.785,
+        0.885
+      ],
+      [
+        0.235,
+        0.86
+      ]
+    ],
+    "screenStrength": 0.46,
+    "waveImmersionMax": 35,
+    "tiredAngleScale": 0.65,
+    "tiredNarrow": -0.014,
+    "tiredStretch": -0.045
+  },
+  "eggplant-04": {
+    "eyes": [
+      [
+        0.36,
+        0.62
+      ],
+      [
+        0.67,
+        0.62
+      ]
+    ],
+    "head": [
+      0.43,
+      0.44
+    ],
+    "hatWidth": 0.86,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.04
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5008955314884115,
+      0.9822695035460993
+    ],
+    "label": "痛苦 · 程度3",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.36,
+          0.66
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.037898489361702134
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.67,
+          0.66
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.037898489361702134
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.25,
+        0.5549999999999999
+      ],
+      [
+        0.81,
+        0.58
+      ],
+      [
+        0.795,
+        0.865
+      ],
+      [
+        0.235,
+        0.84
+      ]
+    ],
+    "screenStrength": 0.46,
+    "waveImmersionMax": 35,
+    "tiredAngleScale": 0.65,
+    "tiredNarrow": -0.014,
+    "tiredStretch": -0.045
+  },
+  "eggplant-05": {
+    "eyes": [
+      [
+        0.3,
+        0.535
+      ],
+      [
+        0.7,
+        0.535
+      ]
+    ],
+    "head": [
+      0.43,
+      0.44
+    ],
+    "hatWidth": 0.86,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.49176280132774663,
+      0.9787985865724381
+    ],
+    "label": "疲倦 · 程度3",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.31,
+          0.568
+        ],
+        "radius": [
+          0.04091195652173912,
+          0.0266
+        ],
+        "angle": 0,
+        "opacity": 0.66
+      },
+      {
+        "center": [
+          0.696,
+          0.56
+        ],
+        "radius": [
+          0.04091195652173912,
+          0.0266
+        ],
+        "angle": 0,
+        "opacity": 0.66
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.19,
+        0.47000000000000003
+      ],
+      [
+        0.84,
+        0.49500000000000005
+      ],
+      [
+        0.825,
+        0.78
+      ],
+      [
+        0.175,
+        0.755
+      ]
+    ],
+    "screenStrength": 0.46,
+    "waveImmersionMax": 35,
+    "tiredAngleScale": 0.65,
+    "tiredNarrow": -0.014,
+    "tiredStretch": -0.045
+  },
+  "eggplant-06": {
+    "eyes": [
+      [
+        0.3,
+        0.685
+      ],
+      [
+        0.65,
+        0.685
+      ]
+    ],
+    "head": [
+      0.43,
+      0.44
+    ],
+    "hatWidth": 0.86,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.04
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4978148004649361,
+      0.9787985865724381
+    ],
+    "label": "孤独 · 程度4",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.3,
+          0.7250000000000001
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.03755359717314488
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.65,
+          0.7250000000000001
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.03755359717314488
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.19,
+        0.6200000000000001
+      ],
+      [
+        0.79,
+        0.6450000000000001
+      ],
+      [
+        0.775,
+        0.93
+      ],
+      [
+        0.175,
+        0.905
+      ]
+    ],
+    "screenStrength": 0.46,
+    "waveImmersionMax": 35,
+    "tiredAngleScale": 0.65,
+    "tiredNarrow": -0.014,
+    "tiredStretch": -0.045
+  },
+  "eggplant-07": {
+    "eyes": [
+      [
+        0.56,
+        0.515
+      ],
+      [
+        0.755,
+        0.548
+      ]
+    ],
+    "head": [
+      0.69,
+      0.38
+    ],
+    "hatWidth": 0.52,
+    "hatAngle": 0,
+    "shadowOffset": [
+      -0.018,
+      0.06
+    ],
+    "shadowRadius": [
+      0.11,
+      0.055
+    ],
+    "shadowOpacity": 0.8,
+    "shadowAngle": 0.12,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.34457744438468996,
+      0.9935567010309279
+    ],
+    "label": "精疲力竭 · 程度5",
+    "calibration": "manual-landmark-pass-3",
+    "protectEyes": true,
+    "protectWhiteEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.47643979057591623,
+          0.5837628865979382
+        ],
+        "radius": [
+          0.04537521815008726,
+          0.03350515463917526
+        ],
+        "angle": 0,
+        "opacity": 0.65
+      },
+      {
+        "center": [
+          0.8202443280977313,
+          0.625
+        ],
+        "radius": [
+          0.04537521815008726,
+          0.03350515463917526
+        ],
+        "angle": 0,
+        "opacity": 0.65
+      }
+    ],
+    "shadowProtectWhites": true,
+    "screenQuad": [
+      [
+        0.45000000000000007,
+        0.45
+      ],
+      [
+        0.895,
+        0.47500000000000003
+      ],
+      [
+        0.88,
+        0.793
+      ],
+      [
+        0.43500000000000005,
+        0.768
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "eggplant-08": {
+    "eyes": [
+      [
+        0.5,
+        0.54
+      ],
+      [
+        0.71,
+        0.54
+      ]
+    ],
+    "head": [
+      0.65,
+      0.37
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.06634000000000001,
+      0.0348
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.3550579322638146,
+      0.9864864864864865
+    ],
+    "label": "凄凉 · 程度6",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.5,
+          0.5850000000000001
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.04389197837837839
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.71,
+          0.5850000000000001
+        ],
+        "radius": [
+          0.05970600000000001,
+          0.04389197837837839
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.39,
+        0.47500000000000003
+      ],
+      [
+        0.85,
+        0.5
+      ],
+      [
+        0.835,
+        0.785
+      ],
+      [
+        0.375,
+        0.76
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "eggplant-09": {
+    "eyes": [
+      [
+        0.5,
+        0.46
+      ],
+      [
+        0.77,
+        0.46
+      ]
+    ],
+    "head": [
+      0.66,
+      0.32
+    ],
+    "hatWidth": 0.53,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.012
+    ],
+    "shadowRadius": [
+      0.085,
+      0.042
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.44527813234178737,
+      0.9935567010309279
+    ],
+    "label": "绝望 · 程度7",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.5,
+          0.47200000000000003
+        ],
+        "radius": [
+          0.07650000000000001,
+          0.054713273195876294
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.77,
+          0.47200000000000003
+        ],
+        "radius": [
+          0.07650000000000001,
+          0.054713273195876294
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.39,
+        0.395
+      ],
+      [
+        0.91,
+        0.42000000000000004
+      ],
+      [
+        0.895,
+        0.7050000000000001
+      ],
+      [
+        0.375,
+        0.68
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 1,
+    "tiredNarrow": 0.04,
+    "tiredStretch": 0.02
+  },
+  "cabbage-01": {
+    "eyes": [
+      [
+        0.42,
+        0.39
+      ],
+      [
+        0.58,
+        0.39
+      ]
+    ],
+    "head": [
+      0.5,
+      0.21
+    ],
+    "hatWidth": 0.43,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.49259054590256013,
+      0.9933333333333333
+    ],
+    "label": "自在 · 程度1 · 幼苗期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.42,
+          0.435
+        ],
+        "radius": [
+          0.04316365979381443,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.58,
+          0.435
+        ],
+        "radius": [
+          0.04316365979381443,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.31,
+        0.325
+      ],
+      [
+        0.72,
+        0.35000000000000003
+      ],
+      [
+        0.705,
+        0.635
+      ],
+      [
+        0.295,
+        0.61
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.8,
+    "tiredNarrow": 0.035,
+    "tiredStretch": 0.015
+  },
+  "cabbage-02": {
+    "eyes": [
+      [
+        0.41,
+        0.34
+      ],
+      [
+        0.57,
+        0.34
+      ]
+    ],
+    "head": [
+      0.5,
+      0.21
+    ],
+    "hatWidth": 0.43,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4924825266468635,
+      0.9933065595716198
+    ],
+    "label": "满足 · 程度2 · 幼苗期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.41,
+          0.385
+        ],
+        "radius": [
+          0.04299100515463917,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.57,
+          0.385
+        ],
+        "radius": [
+          0.04299100515463917,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.3,
+        0.275
+      ],
+      [
+        0.71,
+        0.30000000000000004
+      ],
+      [
+        0.695,
+        0.5850000000000001
+      ],
+      [
+        0.285,
+        0.56
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.8,
+    "tiredNarrow": 0.035,
+    "tiredStretch": 0.015
+  },
+  "cabbage-03": {
+    "eyes": [
+      [
+        0.42,
+        0.48
+      ],
+      [
+        0.58,
+        0.48
+      ]
+    ],
+    "head": [
+      0.5,
+      0.23
+    ],
+    "hatWidth": 0.54,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4854685786642294,
+      0.9928263988522238
+    ],
+    "blueForeground": true,
+    "label": "充实 · 程度3 · 结球期",
+    "calibration": "manual-landmark-pass-2",
+    "foreground": "blue",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.414,
+          0.494
+        ],
+        "radius": [
+          0.022634536082474226,
+          0.0252
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      },
+      {
+        "center": [
+          0.57,
+          0.494
+        ],
+        "radius": [
+          0.022634536082474226,
+          0.0252
+        ],
+        "angle": 0,
+        "opacity": 0.62
+      }
+    ],
+    "screenQuad": [
+      [
+        0.31,
+        0.415
+      ],
+      [
+        0.72,
+        0.44
+      ],
+      [
+        0.705,
+        0.725
+      ],
+      [
+        0.295,
+        0.7
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.4,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  },
+  "cabbage-04": {
+    "eyes": [
+      [
+        0.42,
+        0.45
+      ],
+      [
+        0.58,
+        0.45
+      ]
+    ],
+    "head": [
+      0.5,
+      0.28
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4879373870627435,
+      0.9927641099855282
+    ],
+    "label": "放松 · 程度3 · 结球期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.42,
+          0.495
+        ],
+        "radius": [
+          0.03976811855670103,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.58,
+          0.495
+        ],
+        "radius": [
+          0.03976811855670103,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.31,
+        0.385
+      ],
+      [
+        0.72,
+        0.41000000000000003
+      ],
+      [
+        0.705,
+        0.6950000000000001
+      ],
+      [
+        0.295,
+        0.67
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.4,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  },
+  "cabbage-05": {
+    "eyes": [
+      [
+        0.45,
+        0.42
+      ],
+      [
+        0.55,
+        0.5
+      ]
+    ],
+    "head": [
+      0.52,
+      0.27
+    ],
+    "hatWidth": 0.54,
+    "hatAngle": 0.2,
+    "shadowOffset": [
+      -0.02,
+      0.038
+    ],
+    "shadowRadius": [
+      0.04815,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0.45,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.5787964067186752,
+      0.9922118380062306
+    ],
+    "label": "安歇 · 程度4 · 结球期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.43,
+          0.45799999999999996
+        ],
+        "radius": [
+          0.036948092783505145,
+          0.04465999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.53,
+          0.538
+        ],
+        "radius": [
+          0.036948092783505145,
+          0.04465999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.34,
+        0.355
+      ],
+      [
+        0.6900000000000001,
+        0.38
+      ],
+      [
+        0.675,
+        0.745
+      ],
+      [
+        0.325,
+        0.72
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.08,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  },
+  "cabbage-06": {
+    "eyes": [
+      [
+        0.4,
+        0.47
+      ],
+      [
+        0.6,
+        0.47
+      ]
+    ],
+    "head": [
+      0.5,
+      0.25
+    ],
+    "hatWidth": 0.66,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.49933504308402493,
+      0.9927641099855282
+    ],
+    "label": "宁静 · 程度5 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.4,
+          0.515
+        ],
+        "radius": [
+          0.03976811855670103,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.6,
+          0.515
+        ],
+        "radius": [
+          0.03976811855670103,
+          0.04466
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.29000000000000004,
+        0.40499999999999997
+      ],
+      [
+        0.74,
+        0.43
+      ],
+      [
+        0.725,
+        0.715
+      ],
+      [
+        0.275,
+        0.69
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.4,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  },
+  "cabbage-07": {
+    "eyes": [
+      [
+        0.41,
+        0.48
+      ],
+      [
+        0.59,
+        0.48
+      ]
+    ],
+    "head": [
+      0.5,
+      0.25
+    ],
+    "hatWidth": 0.66,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.498459613652287,
+      0.9926900584795322
+    ],
+    "label": "平衡 · 程度6 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.4213917525773196,
+          0.52046783625731
+        ],
+        "radius": [
+          0.03938519685039369,
+          0.044682620988165944
+        ],
+        "angle": 0,
+        "opacity": 0.49
+      },
+      {
+        "center": [
+          0.5786082474226805,
+          0.52046783625731
+        ],
+        "radius": [
+          0.03938519685039369,
+          0.044682620988165944
+        ],
+        "angle": 0,
+        "opacity": 0.49
+      }
+    ],
+    "screenQuad": [
+      [
+        0.3,
+        0.415
+      ],
+      [
+        0.73,
+        0.44
+      ],
+      [
+        0.715,
+        0.725
+      ],
+      [
+        0.285,
+        0.7
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.4,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  },
+  "cabbage-08": {
+    "eyes": [
+      [
+        0.42,
+        0.45
+      ],
+      [
+        0.57,
+        0.45
+      ]
+    ],
+    "head": [
+      0.5,
+      0.25
+    ],
+    "hatWidth": 0.66,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4975729334483515,
+      0.9821428571428571
+    ],
+    "label": "安详 · 程度6 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.42,
+          0.495
+        ],
+        "radius": [
+          0.03938519685039369,
+          0.04465999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.57,
+          0.495
+        ],
+        "radius": [
+          0.03938519685039369,
+          0.04465999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.31,
+        0.385
+      ],
+      [
+        0.71,
+        0.41000000000000003
+      ],
+      [
+        0.695,
+        0.6950000000000001
+      ],
+      [
+        0.295,
+        0.67
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.4,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  },
+  "cabbage-09": {
+    "eyes": [
+      [
+        0.4,
+        0.48
+      ],
+      [
+        0.6,
+        0.48
+      ]
+    ],
+    "head": [
+      0.5,
+      0.27
+    ],
+    "hatWidth": 0.64,
+    "hatAngle": 0,
+    "shadowOffset": [
+      0,
+      0.045
+    ],
+    "shadowRadius": [
+      0.053500000000000006,
+      0.0319
+    ],
+    "shadowOpacity": 0.49,
+    "shadowAngle": 0,
+    "shadowClip": true,
+    "protectBlue": true,
+    "base": [
+      0.4983457295410633,
+      0.9851190476190477
+    ],
+    "blueForeground": true,
+    "label": "困倦 · 程度7 · 成熟期",
+    "calibration": "manual-landmark-pass-2",
+    "foreground": "blue",
+    "protectEyes": true,
+    "eyeShadows": [
+      {
+        "center": [
+          0.4,
+          0.525
+        ],
+        "radius": [
+          0.03959303430079155,
+          0.04465999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      },
+      {
+        "center": [
+          0.6,
+          0.525
+        ],
+        "radius": [
+          0.03959303430079155,
+          0.04465999999999999
+        ],
+        "opacity": 0.49,
+        "angle": 0
+      }
+    ],
+    "screenQuad": [
+      [
+        0.29000000000000004,
+        0.415
+      ],
+      [
+        0.74,
+        0.44
+      ],
+      [
+        0.725,
+        0.725
+      ],
+      [
+        0.275,
+        0.7
+      ]
+    ],
+    "screenStrength": 0.46,
+    "tiredAngleScale": 0.4,
+    "tiredNarrow": -0.018,
+    "tiredStretch": -0.05
+  }
+}

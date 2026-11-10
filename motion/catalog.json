@@ -1,0 +1,838 @@
+[
+  {
+    "id": "chili-01",
+    "plant": "chili",
+    "label": "不安 · 程度1",
+    "originalFile": "01-不安-程度1.png",
+    "file": "chili-01.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/01-不安-程度1.png?v=5",
+    "width": 249,
+    "height": 348,
+    "originalWidth": 265,
+    "originalHeight": 362,
+    "crop": [
+      11,
+      11,
+      241,
+      340
+    ],
+    "image": "plants/chili-01.png"
+  },
+  {
+    "id": "chili-02",
+    "plant": "chili",
+    "label": "躁动 · 程度2",
+    "originalFile": "02-躁动-程度2.png",
+    "file": "chili-02.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/02-躁动-程度2.png?v=5",
+    "width": 265,
+    "height": 370,
+    "originalWidth": 267,
+    "originalHeight": 362,
+    "crop": [
+      5,
+      0,
+      257,
+      362
+    ],
+    "image": "plants/chili-02.png"
+  },
+  {
+    "id": "chili-03",
+    "plant": "chili",
+    "label": "紧绷 · 程度3",
+    "originalFile": "03-紧绷-程度3.png",
+    "file": "chili-03.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/03-紧绷-程度3.png?v=5",
+    "width": 264,
+    "height": 369,
+    "originalWidth": 266,
+    "originalHeight": 361,
+    "crop": [
+      5,
+      0,
+      256,
+      361
+    ],
+    "image": "plants/chili-03.png"
+  },
+  {
+    "id": "chili-04",
+    "plant": "chili",
+    "label": "愤怒 · 程度4",
+    "originalFile": "04-愤怒-程度4.png",
+    "file": "chili-04.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/04-愤怒-程度4.png?v=5",
+    "width": 251,
+    "height": 348,
+    "originalWidth": 267,
+    "originalHeight": 362,
+    "crop": [
+      11,
+      11,
+      243,
+      340
+    ],
+    "image": "plants/chili-04.png"
+  },
+  {
+    "id": "chili-05",
+    "plant": "chili",
+    "label": "反感 · 程度5",
+    "originalFile": "05-反感-程度5.png",
+    "file": "chili-05.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/05-反感-程度5.png?v=5",
+    "width": 266,
+    "height": 370,
+    "originalWidth": 265,
+    "originalHeight": 362,
+    "crop": [
+      3,
+      0,
+      258,
+      362
+    ],
+    "image": "plants/chili-05.png"
+  },
+  {
+    "id": "chili-06",
+    "plant": "chili",
+    "label": "厌恶 · 程度5",
+    "originalFile": "06-厌恶-程度5.png",
+    "file": "chili-06.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/06-厌恶-程度5.png?v=5",
+    "width": 277,
+    "height": 382,
+    "originalWidth": 274,
+    "originalHeight": 374,
+    "crop": [
+      2,
+      0,
+      269,
+      374
+    ],
+    "image": "plants/chili-06.png"
+  },
+  {
+    "id": "chili-07",
+    "plant": "chili",
+    "label": "暴怒 · 程度6",
+    "originalFile": "07-暴怒-程度6.png",
+    "file": "chili-07.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/07-暴怒-程度6.png?v=5",
+    "width": 258,
+    "height": 361,
+    "originalWidth": 273,
+    "originalHeight": 375,
+    "crop": [
+      10,
+      11,
+      250,
+      353
+    ],
+    "image": "plants/chili-07.png"
+  },
+  {
+    "id": "chili-08",
+    "plant": "chili",
+    "label": "震惊 · 程度6",
+    "originalFile": "08-震惊-程度6.png",
+    "file": "chili-08.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/08-震惊-程度6.png?v=5",
+    "width": 262,
+    "height": 362,
+    "originalWidth": 277,
+    "originalHeight": 376,
+    "crop": [
+      10,
+      11,
+      254,
+      354
+    ],
+    "image": "plants/chili-08.png"
+  },
+  {
+    "id": "chili-09",
+    "plant": "chili",
+    "label": "气冲冲 · 程度7",
+    "originalFile": "09-气冲冲-程度7.png",
+    "file": "chili-09.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/09-气冲冲-程度7.png?v=5",
+    "width": 265,
+    "height": 363,
+    "originalWidth": 279,
+    "originalHeight": 375,
+    "crop": [
+      11,
+      10,
+      257,
+      355
+    ],
+    "image": "plants/chili-09.png"
+  },
+  {
+    "id": "chili-10",
+    "plant": "chili",
+    "label": "脑袋爆炸 · 程度7",
+    "originalFile": "10-脑袋爆炸-程度7.png",
+    "file": "chili-10.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/10-脑袋爆炸-程度7.png?v=5",
+    "width": 277,
+    "height": 364,
+    "originalWidth": 291,
+    "originalHeight": 378,
+    "crop": [
+      11,
+      10,
+      269,
+      356
+    ],
+    "image": "plants/chili-10.png"
+  },
+  {
+    "id": "corn-01",
+    "plant": "corn",
+    "label": "愉快 · 程度1",
+    "originalFile": "corn-01-愉快-程度1.png",
+    "file": "corn-01.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-01-愉快-程度1.png?v=5",
+    "width": 173,
+    "height": 349,
+    "originalWidth": 225,
+    "originalHeight": 362,
+    "crop": [
+      43,
+      11,
+      165,
+      341
+    ],
+    "image": "plants/corn-01.png"
+  },
+  {
+    "id": "corn-02",
+    "plant": "corn",
+    "label": "满怀希望 · 程度2",
+    "originalFile": "corn-02-满怀希望-程度2.png",
+    "file": "corn-02.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-02-满怀希望-程度2.png?v=8",
+    "width": 175,
+    "height": 350,
+    "originalWidth": 225,
+    "originalHeight": 362,
+    "crop": [
+      31,
+      11,
+      167,
+      342
+    ],
+    "image": "plants/corn-02.png"
+  },
+  {
+    "id": "corn-03",
+    "plant": "corn",
+    "label": "活力满满 · 程度3",
+    "originalFile": "corn-03-活力满满-程度3.png",
+    "file": "corn-03.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-03-活力满满-程度3.png?v=13",
+    "width": 200,
+    "height": 338,
+    "originalWidth": 225,
+    "originalHeight": 362,
+    "crop": [
+      13,
+      10,
+      192,
+      330
+    ],
+    "image": "plants/corn-03.png"
+  },
+  {
+    "id": "corn-04",
+    "plant": "corn",
+    "label": "乐观 · 程度4",
+    "originalFile": "corn-04-乐观-程度4.png",
+    "file": "corn-04.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-04-乐观-程度4.png?v=9",
+    "width": 199,
+    "height": 334,
+    "originalWidth": 225,
+    "originalHeight": 345,
+    "crop": [
+      19,
+      7,
+      191,
+      326
+    ],
+    "image": "plants/corn-04.png"
+  },
+  {
+    "id": "corn-05",
+    "plant": "corn",
+    "label": "兴奋 · 程度5",
+    "originalFile": "corn-05-兴奋-程度5.png",
+    "file": "corn-05.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-05-兴奋-程度5.png?v=9",
+    "width": 200,
+    "height": 334,
+    "originalWidth": 225,
+    "originalHeight": 345,
+    "crop": [
+      13,
+      7,
+      192,
+      326
+    ],
+    "image": "plants/corn-05.png"
+  },
+  {
+    "id": "corn-06",
+    "plant": "corn",
+    "label": "惊讶 · 程度3",
+    "originalFile": "corn-06-惊讶-程度3.png",
+    "file": "corn-06.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-06-惊讶-程度3.png?v=6",
+    "width": 200,
+    "height": 334,
+    "originalWidth": 225,
+    "originalHeight": 345,
+    "crop": [
+      13,
+      7,
+      192,
+      326
+    ],
+    "image": "plants/corn-06.png"
+  },
+  {
+    "id": "corn-07",
+    "plant": "corn",
+    "label": "欢乐 · 程度6",
+    "originalFile": "corn-07-欢乐-程度6.png",
+    "file": "corn-07.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-07-欢乐-程度6.png?v=5",
+    "width": 204,
+    "height": 332,
+    "originalWidth": 225,
+    "originalHeight": 355,
+    "crop": [
+      20,
+      12,
+      196,
+      324
+    ],
+    "image": "plants/corn-07.png"
+  },
+  {
+    "id": "corn-08",
+    "plant": "corn",
+    "label": "幸福 · 程度6",
+    "originalFile": "corn-08-幸福-程度6.png",
+    "file": "corn-08.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-08-幸福-程度6.png?v=5",
+    "width": 204,
+    "height": 333,
+    "originalWidth": 225,
+    "originalHeight": 355,
+    "crop": [
+      14,
+      11,
+      196,
+      325
+    ],
+    "image": "plants/corn-08.png"
+  },
+  {
+    "id": "corn-09",
+    "plant": "corn",
+    "label": "狂喜 · 程度7",
+    "originalFile": "corn-09-狂喜-程度7.png",
+    "file": "corn-09.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/corn-09-狂喜-程度7.png?v=6",
+    "width": 203,
+    "height": 334,
+    "originalWidth": 225,
+    "originalHeight": 355,
+    "crop": [
+      14,
+      11,
+      195,
+      326
+    ],
+    "image": "plants/corn-09.png"
+  },
+  {
+    "id": "mushroom-01",
+    "plant": "mushroom",
+    "label": "平静 · 程度1 · 幼菇期",
+    "originalFile": "mushroom-01-平静-程度1.svg",
+    "file": "mushroom-01.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-01-平静-程度1.svg?v=2",
+    "width": 413,
+    "height": 494,
+    "originalWidth": 465,
+    "originalHeight": 546,
+    "crop": [
+      27,
+      30,
+      405,
+      486
+    ],
+    "image": "plants/mushroom-01.png"
+  },
+  {
+    "id": "mushroom-02",
+    "plant": "mushroom",
+    "label": "专注 · 程度2 · 幼菇期",
+    "originalFile": "mushroom-02-专注-程度2.svg",
+    "file": "mushroom-02.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-02-专注-程度2.svg?v=2",
+    "width": 425,
+    "height": 494,
+    "originalWidth": 489,
+    "originalHeight": 546,
+    "crop": [
+      39,
+      30,
+      417,
+      486
+    ],
+    "image": "plants/mushroom-02.png"
+  },
+  {
+    "id": "mushroom-03",
+    "plant": "mushroom",
+    "label": "留意 · 程度3 · 生长期",
+    "originalFile": "mushroom-03-留意-程度3.svg",
+    "file": "mushroom-03.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-03-留意-程度3.svg?v=2",
+    "width": 488,
+    "height": 640,
+    "originalWidth": 600,
+    "originalHeight": 768,
+    "crop": [
+      30,
+      30,
+      543,
+      714
+    ],
+    "image": "plants/mushroom-03.png"
+  },
+  {
+    "id": "mushroom-04",
+    "plant": "mushroom",
+    "label": "沉思 · 程度4 · 生长期",
+    "originalFile": "mushroom-04-沉思-程度4.svg",
+    "file": "mushroom-04.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-04-沉思-程度4.svg?v=2",
+    "width": 499,
+    "height": 640,
+    "originalWidth": 615,
+    "originalHeight": 768,
+    "crop": [
+      30,
+      30,
+      555,
+      714
+    ],
+    "image": "plants/mushroom-04.png"
+  },
+  {
+    "id": "mushroom-05",
+    "plant": "mushroom",
+    "label": "安静 · 程度5 · 成熟期",
+    "originalFile": "mushroom-05-安静-程度5.svg",
+    "file": "mushroom-05.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-05-安静-程度5.svg?v=2",
+    "width": 640,
+    "height": 506,
+    "originalWidth": 897,
+    "originalHeight": 717,
+    "crop": [
+      30,
+      30,
+      837,
+      660
+    ],
+    "image": "plants/mushroom-05.png"
+  },
+  {
+    "id": "mushroom-06",
+    "plant": "mushroom",
+    "label": "淡然 · 程度6 · 成熟期",
+    "originalFile": "mushroom-06-淡然-程度6.svg",
+    "file": "mushroom-06.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-06-淡然-程度6.svg?v=2",
+    "width": 640,
+    "height": 489,
+    "originalWidth": 927,
+    "originalHeight": 717,
+    "crop": [
+      30,
+      27,
+      870,
+      663
+    ],
+    "image": "plants/mushroom-06.png"
+  },
+  {
+    "id": "mushroom-07",
+    "plant": "mushroom",
+    "label": "松一口气 · 程度7 · 成熟期",
+    "originalFile": "mushroom-07-松一口气-程度7.svg",
+    "file": "mushroom-07.svg",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/mushroom-07-松一口气-程度7.svg?v=2",
+    "width": 640,
+    "height": 481,
+    "originalWidth": 939,
+    "originalHeight": 717,
+    "crop": [
+      27,
+      30,
+      882,
+      660
+    ],
+    "image": "plants/mushroom-07.png"
+  },
+  {
+    "id": "eggplant-01",
+    "plant": "eggplant",
+    "label": "低落 · 程度1",
+    "originalFile": "eggplant-01-低落-程度1.png",
+    "file": "eggplant-01.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-01-低落-程度1.png",
+    "width": 249,
+    "height": 257,
+    "originalWidth": 421,
+    "originalHeight": 354,
+    "crop": [
+      110,
+      54,
+      241,
+      249
+    ],
+    "image": "plants/eggplant-01.png"
+  },
+  {
+    "id": "eggplant-02",
+    "plant": "eggplant",
+    "label": "冷淡 · 程度2",
+    "originalFile": "eggplant-02-冷淡-程度2.png",
+    "file": "eggplant-02.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-02-冷淡-程度2.png",
+    "width": 256,
+    "height": 256,
+    "originalWidth": 413,
+    "originalHeight": 354,
+    "crop": [
+      66,
+      55,
+      248,
+      248
+    ],
+    "image": "plants/eggplant-02.png"
+  },
+  {
+    "id": "eggplant-03",
+    "plant": "eggplant",
+    "label": "担心 · 程度3",
+    "originalFile": "eggplant-03-担心-程度3.png",
+    "file": "eggplant-03.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-03-担心-程度3.png?v=2",
+    "width": 175,
+    "height": 279,
+    "originalWidth": 398,
+    "originalHeight": 354,
+    "crop": [
+      108,
+      34,
+      167,
+      271
+    ],
+    "image": "plants/eggplant-03.png"
+  },
+  {
+    "id": "eggplant-04",
+    "plant": "eggplant",
+    "label": "痛苦 · 程度3",
+    "originalFile": "eggplant-04-痛苦-程度3.png",
+    "file": "eggplant-04.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-04-痛苦-程度3.png?v=2",
+    "width": 179,
+    "height": 282,
+    "originalWidth": 387,
+    "originalHeight": 389,
+    "crop": [
+      117,
+      58,
+      171,
+      274
+    ],
+    "image": "plants/eggplant-04.png"
+  },
+  {
+    "id": "eggplant-05",
+    "plant": "eggplant",
+    "label": "疲倦 · 程度3",
+    "originalFile": "eggplant-05-疲倦-程度3.png",
+    "file": "eggplant-05.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-05-疲倦-程度3.png?v=2",
+    "width": 184,
+    "height": 283,
+    "originalWidth": 413,
+    "originalHeight": 388,
+    "crop": [
+      112,
+      58,
+      176,
+      275
+    ],
+    "image": "plants/eggplant-05.png"
+  },
+  {
+    "id": "eggplant-06",
+    "plant": "eggplant",
+    "label": "孤独 · 程度4",
+    "originalFile": "eggplant-06-孤独-程度4.png",
+    "file": "eggplant-06.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-06-孤独-程度4.png?v=2",
+    "width": 178,
+    "height": 283,
+    "originalWidth": 395,
+    "originalHeight": 389,
+    "crop": [
+      100,
+      58,
+      170,
+      275
+    ],
+    "image": "plants/eggplant-06.png"
+  },
+  {
+    "id": "eggplant-07",
+    "plant": "eggplant",
+    "label": "精疲力竭 · 程度5",
+    "originalFile": "eggplant-07-精疲力竭-程度5.png",
+    "file": "eggplant-07.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-07-精疲力竭-程度5.png?v=2",
+    "width": 473,
+    "height": 640,
+    "originalWidth": 1244,
+    "originalHeight": 1265,
+    "crop": [
+      279,
+      131,
+      798,
+      1084
+    ],
+    "image": "plants/eggplant-07.png"
+  },
+  {
+    "id": "eggplant-08",
+    "plant": "eggplant",
+    "label": "凄凉 · 程度6",
+    "originalFile": "eggplant-08-凄凉-程度6.png",
+    "file": "eggplant-08.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-08-凄凉-程度6.png?v=2",
+    "width": 272,
+    "height": 370,
+    "originalWidth": 413,
+    "originalHeight": 431,
+    "crop": [
+      78,
+      45,
+      264,
+      362
+    ],
+    "image": "plants/eggplant-08.png"
+  },
+  {
+    "id": "eggplant-09",
+    "plant": "eggplant",
+    "label": "绝望 · 程度7",
+    "originalFile": "eggplant-09-绝望-程度7.png",
+    "file": "eggplant-09.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/eggplant-09-绝望-程度7.png?v=approved-tear-shading-3",
+    "width": 458,
+    "height": 640,
+    "originalWidth": 1160,
+    "originalHeight": 1355,
+    "crop": [
+      97,
+      0,
+      963,
+      1352
+    ],
+    "image": "plants/eggplant-09.png"
+  },
+  {
+    "id": "cabbage-01",
+    "plant": "cabbage",
+    "label": "自在 · 程度1 · 幼苗期",
+    "originalFile": "cabbage-01-自在-程度1.png",
+    "file": "cabbage-01.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-01-自在-程度1.png?v=2",
+    "width": 640,
+    "height": 619,
+    "originalWidth": 1274,
+    "originalHeight": 1234,
+    "crop": [
+      42,
+      42,
+      1186,
+      1146
+    ],
+    "image": "plants/cabbage-01.png"
+  },
+  {
+    "id": "cabbage-02",
+    "plant": "cabbage",
+    "label": "满足 · 程度2 · 幼苗期",
+    "originalFile": "cabbage-02-满足-程度2.png",
+    "file": "cabbage-02.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-02-满足-程度2.png?v=2",
+    "width": 640,
+    "height": 616,
+    "originalWidth": 1275,
+    "originalHeight": 1234,
+    "crop": [
+      38,
+      43,
+      1194,
+      1149
+    ],
+    "image": "plants/cabbage-02.png"
+  },
+  {
+    "id": "cabbage-03",
+    "plant": "cabbage",
+    "label": "充实 · 程度3 · 结球期",
+    "originalFile": "cabbage-03-充实-程度3.png",
+    "file": "cabbage-03.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-03-充实-程度3.png?v=raised-soft-glow-3",
+    "width": 640,
+    "height": 575,
+    "originalWidth": 1337,
+    "originalHeight": 1176,
+    "crop": [
+      62,
+      40,
+      1168,
+      1048
+    ],
+    "image": "plants/cabbage-03.png"
+  },
+  {
+    "id": "cabbage-04",
+    "plant": "cabbage",
+    "label": "放松 · 程度3 · 结球期",
+    "originalFile": "cabbage-04-放松-程度3.png",
+    "file": "cabbage-04.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-04-放松-程度3.png?v=smaller-face-2",
+    "width": 640,
+    "height": 570,
+    "originalWidth": 1338,
+    "originalHeight": 1175,
+    "crop": [
+      128,
+      89,
+      1040,
+      925
+    ],
+    "image": "plants/cabbage-04.png"
+  },
+  {
+    "id": "cabbage-05",
+    "plant": "cabbage",
+    "label": "安歇 · 程度4 · 结球期",
+    "originalFile": "cabbage-05-安歇-程度4.png",
+    "file": "cabbage-05.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-05-安歇-程度4.png?v=approved-melting-1",
+    "width": 640,
+    "height": 529,
+    "originalWidth": 1448,
+    "originalHeight": 1086,
+    "crop": [
+      149,
+      30,
+      1146,
+      946
+    ],
+    "image": "plants/cabbage-05.png"
+  },
+  {
+    "id": "cabbage-06",
+    "plant": "cabbage",
+    "label": "宁静 · 程度5 · 成熟期",
+    "originalFile": "cabbage-06-宁静-程度5.png",
+    "file": "cabbage-06.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-06-宁静-程度5.png?v=harmonized-face-blush-4",
+    "width": 640,
+    "height": 570,
+    "originalWidth": 1336,
+    "originalHeight": 1177,
+    "crop": [
+      41,
+      36,
+      1237,
+      1100
+    ],
+    "image": "plants/cabbage-06.png"
+  },
+  {
+    "id": "cabbage-07",
+    "plant": "cabbage",
+    "label": "平衡 · 程度6 · 成熟期",
+    "originalFile": "cabbage-07-平衡-程度6.png",
+    "file": "cabbage-07.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-07-平衡-程度6.png?v=user-selected-rose-6",
+    "width": 640,
+    "height": 564,
+    "originalWidth": 1332,
+    "originalHeight": 1181,
+    "crop": [
+      37,
+      36,
+      1257,
+      1106
+    ],
+    "image": "plants/cabbage-07.png"
+  },
+  {
+    "id": "cabbage-08",
+    "plant": "cabbage",
+    "label": "安详 · 程度6 · 成熟期",
+    "originalFile": "cabbage-08-安详-程度6.png",
+    "file": "cabbage-08.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-08-安详-程度6.png?v=right-cloud-2",
+    "width": 381,
+    "height": 336,
+    "originalWidth": 399,
+    "originalHeight": 354,
+    "crop": [
+      13,
+      13,
+      373,
+      328
+    ],
+    "image": "plants/cabbage-08.png"
+  },
+  {
+    "id": "cabbage-09",
+    "plant": "cabbage",
+    "label": "困倦 · 程度7 · 成熟期",
+    "originalFile": "cabbage-09-困倦-程度7.png",
+    "file": "cabbage-09.png",
+    "source": "https://moodmeter-apple-hd-nov7.nice-wasp-5723.chatgpt.site/review-png/approved-chili-individuals/cabbage-09-困倦-程度7.png",
+    "width": 379,
+    "height": 336,
+    "originalWidth": 397,
+    "originalHeight": 354,
+    "crop": [
+      13,
+      13,
+      371,
+      328
+    ],
+    "image": "plants/cabbage-09.png"
+  }
+]

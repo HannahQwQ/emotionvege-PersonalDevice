@@ -111,3 +111,10 @@
 - 挪 emoji 的位置：`MOOD_ROWS`（蜂窝圆盘，一行一行，每行自己居中；43 格）
 - 情绪圆圈的方向提示：四边常驻淡淡的「高能量 / 低能量 / 不愉快 / 愉快」，一条虚线十字标出地图中心；往哪个方向拖，视野前往的那一侧会发光、标签亮起。
 - 英文文案：界面文字写成 `T('中文','English')`；情绪/植物/地点/乐器/特殊状态的英文在 `EN_DATA`。
+
+## 八、植物动效（motion/ 文件夹）
+选好特殊状态（发疯 / 接好运 / 浪 / 疲惫 / 搬砖）后，第 3、4 步的植物会播放设计同学做的动效。
+- 动效在浏览器里用画布实时渲染（`motion/engine.js`），不需要预渲染的动画图片；**必须通过 http(s) 打开**（server.py 或 GitHub Pages 都可以，直接双击 index.html 的 file:// 不行，这时会自动显示静态植物）。
+- 引擎在进入第 2 步时才开始加载；加载失败时只显示静态植物，不影响其它功能。
+- 植物原图在 `motion/plants/`（最长边已缩到 640px），每株的眼睛、帽檐位置记录在 `motion/profiles.json`，名称与编号对照在 `motion/catalog.json`。
+- 新增一株植物：在 `catalog.json` 加一条记录、把 PNG 放进 `motion/plants/`、在 `profiles.json` 补坐标，再到 `index.html` 的 `MOTION_ID` 里加「中文名 → ID」。详见 `motion/INTEGRATION.md`。

@@ -1,7 +1,7 @@
 /* =====================================================
  * 圆屏模式：整个流程画进一块圆形屏幕（设备屏幕是圆的）
  *
- *   ?screen=round   圆屏（默认）        ?screen=phone   原来的手机竖屏版
+ *   ?screen=round   圆屏（默认）   ?screen=device   圆屏 + 设备外壳（录屏）   ?screen=phone   原来的手机竖屏版
  *   右上角「手机版 / 圆屏」按钮可随时切换，选择会记住。
  *
  * 这里只负责「每一页怎么摆」：第 2 步的情绪圆圈本来就是圆的，直接铺满整块屏幕；
@@ -15,16 +15,23 @@
 const KEY='eg-screen';
 const persist=v=>{try{localStorage.setItem(KEY,v)}catch(e){}};
 // 只在加载时决定一次：链接参数 > 上次的选择 > 默认圆屏。切换按钮改的是 cur，不会被链接参数顶回去
-let cur=(()=>{
+// device = 圆屏 + 设备外壳（录屏用）：屏幕嵌在 round/device.png 的蛋形机身里
+let mode=(()=>{
   const q=new URLSearchParams(location.search).get('screen');
-  if(q==='phone'||q==='round'){persist(q);return q==='round'}
-  try{const v=localStorage.getItem(KEY);if(v)return v==='round'}catch(e){}
-  return true;
+  if(q==='phone'||q==='round'||q==='device'){persist(q);return q}
+  try{const v=localStorage.getItem(KEY);if(v==='phone'||v==='round'||v==='device')return v}catch(e){}
+  return 'round';
 })();
+let cur=mode!=='phone',dev=mode==='device';
 const on=()=>cur;
-const sync=()=>document.body.classList.toggle('rs-mode',cur);
+const sync=()=>{document.body.classList.toggle('rs-mode',cur);document.body.classList.toggle('rs-case-mode',cur&&dev)};
+function setMode(m){
+  cur=m!=='phone';dev=m==='device';persist(m);
+  try{const u=new URL(location.href);u.searchParams.delete('screen');history.replaceState(null,'',u)}catch(e){}
+  render();
+}
 function setOn(v){
-  cur=v;persist(v?'round':'phone');
+  cur=v;dev=false;persist(v?'round':'phone');
   try{const u=new URL(location.href);u.searchParams.delete('screen');history.replaceState(null,'',u)}catch(e){}
   render();
 }
@@ -33,8 +40,10 @@ function setOn(v){
  * o.left / o.right 可以替换工具条两侧的内容（提示页用来放「返回」）。 */
 function shell(inner,o={}){
   const left=o.left!=null?o.left:`<div class="rs-dots">${[1,2,3,4].map(i=>`<i class="${S.step<5&&i<=Math.min(S.step,4)?'on':''}"></i>`).join('')}</div>`;
-  const right=o.right!=null?o.right:`<button id="b-notice">🌱 ${T('互动提示','Notices')}</button><button id="b-shape">${T('手机版','Phone')}</button><button class="lang" id="b-lang">${EN()?'中文':'EN'}</button>`;
-  return `<div class="rs-tools">${left}${right}</div><div class="rs-dev"><div class="rs" id="rs">${inner}</div></div>${o.foot||''}`;
+  const right=o.right!=null?o.right:`<button id="b-notice">🌱 ${T('互动提示','Notices')}</button><button id="b-case">${dev?T('去掉外壳','No case'):T('设备外壳','Device')}</button><button id="b-shape">${T('手机版','Phone')}</button><button class="lang" id="b-lang">${EN()?'中文':'EN'}</button>`;
+  const scr=`<div class="rs" id="rs">${inner}</div>`;
+  const body=dev?`<div class="rs-case"><img src="round/device.png" alt="" draggable="false"><div class="rs-glass">${scr}</div></div>`:`<div class="rs-dev">${scr}</div>`;
+  return `<div class="rs-tools">${left}${right}</div>${body}${o.foot||''}`;
 }
 
 /* ---------- 第 1 页：摄像头 —— 视频铺满圆屏，进度是沿屏幕边缘走的一圈 ---------- */
@@ -124,6 +133,8 @@ function draw(){
 function bind(){
   const b=document.getElementById('b-shape');
   if(b)b.onclick=()=>setOn(!cur);
+  const c=document.getElementById('b-case');
+  if(c)c.onclick=()=>setMode(dev?'round':'device');
 }
 
 window.Round={on,sync,setOn,shell,draw,bind};

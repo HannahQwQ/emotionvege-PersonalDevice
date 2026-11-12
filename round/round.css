@@ -1,0 +1,100 @@
+/* =====================================================
+ * 圆屏模式：把整个流程放进一块圆形屏幕里（设备屏幕是圆的）
+ * 所有样式都挂在 body.rs-mode / .rs 下面，手机版（?screen=phone）完全不受影响。
+ * 圆里的字号、间距全部用 em，.rs 的 font-size = 屏幕直径 / 26，所以屏幕放大缩小时版式不变。
+ * 版式规则：圆的上下两端很窄，标题 / 按钮放在 58% 宽以内；正中间才能放宽内容。
+ * ===================================================== */
+body.rs-mode{background:#e6ece7;--S:min(calc(100vw - 28px),calc(100vh - 132px),620px)}
+@supports (height:100dvh){body.rs-mode{--S:min(calc(100vw - 28px),calc(100dvh - 132px),620px)}}
+body.rs-mode #app{max-width:none;padding:10px 12px 18px;display:flex;flex-direction:column;align-items:center}
+
+/* 圆外：调试用的小工具条（进度、切换、语言）。真机上不需要 */
+.rs-tools{width:var(--S);display:flex;gap:6px;align-items:center;margin-bottom:10px}
+.rs-dots{flex:1;display:flex;gap:5px;min-width:0}
+.rs-dots i{flex:1;height:5px;border-radius:3px;background:#cfd8d2}
+.rs-dots i.on{background:var(--pri)}
+.rs-tools button{width:auto;margin:0;padding:6px 11px;border-radius:999px;background:#fff;color:var(--ink);font-size:12px;font-weight:700;box-shadow:0 1px 4px #0001;flex:none;white-space:nowrap}
+.rs-tools button.nx-back{padding:6px 13px}
+.rs-tools .sp1{flex:1}
+.rs-dev{padding:.6em 0 1em}
+
+/* 圆形屏幕本体 */
+.rs{position:relative;width:var(--S);height:var(--S);border-radius:50%;overflow:hidden;isolation:isolate;background:#0f1411;color:#fff;font-size:calc(var(--S)/26);line-height:1.35;
+  box-shadow:0 0 0 .3em #e3e9e5,0 0 0 .45em #9aa69f,0 1.1em 2em #0003;-webkit-font-smoothing:antialiased}
+.rp{position:absolute;inset:0;overflow:hidden}
+.rp-top{position:absolute;top:6.5%;left:50%;transform:translateX(-50%);width:58%;display:flex;flex-direction:column;align-items:center;gap:.4em;text-align:center;z-index:5}
+.rp-t{font-weight:800;font-size:1.05em;text-shadow:0 1px 4px #0008}
+.rp-shade{position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(#000b 0,#0000 26%,#0000 52%,#000c 100%)}
+.rp-bot{position:absolute;bottom:7.5%;left:50%;transform:translateX(-50%);width:54%;display:flex;flex-direction:column;gap:.5em;align-items:center;z-index:6}
+.rp-acts{position:absolute;left:50%;bottom:8.5%;transform:translateX(-50%);display:flex;gap:.8em;align-items:center;z-index:600;white-space:nowrap}
+
+/* 圆里的按钮：胶囊 / 圆形图标钮 */
+.rs button{width:auto;margin:0;padding:.55em 1.15em;font-size:.78em;border-radius:999px;background:var(--pri);color:#fff;font-weight:700;box-shadow:0 .2em .6em #0005;line-height:1.25}
+.rs button.ghost{background:#ffffff2e;color:#fff;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.rs button.rc,.rs button.pbtn{width:2.9em;height:2.9em;padding:0;margin:0;font-size:1em;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.rs button.rc.ok{background:#2f8f6b}
+.rs .pbtn svg{width:1.2em;height:1.2em;fill:#fff}
+.rs button.zpill{background:#ffffffe8;color:#1d2433;font-size:.7em;padding:.4em .95em;box-shadow:0 .15em .5em #0004}
+.rs button:disabled{opacity:.35}
+
+/* ① 摄像头：视频铺满整块圆屏，识别进度是沿屏幕边缘走的一圈 */
+.rs-cam{position:absolute;inset:0;background:#1d2433}
+.rs-cam video{width:100%;height:100%;object-fit:cover;transform:scaleX(-1);display:none}
+.rs .vph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4em}
+.rs .guide{left:50%;top:46%;width:44%;height:58%}
+.rs-ring{position:absolute;inset:0;border-radius:50%;--p:0;z-index:4;pointer-events:none;
+  background:conic-gradient(#7cf calc(var(--p)*1%),#ffffff24 0);
+  -webkit-mask:radial-gradient(closest-side,transparent calc(100% - .45em),#000 calc(100% - .45em + 1px));
+  mask:radial-gradient(closest-side,transparent calc(100% - .45em),#000 calc(100% - .45em + 1px))}
+.rs-ring i{display:none}
+.rp-lock{font-size:.62em;opacity:.92;text-shadow:0 1px 3px #000a;white-space:nowrap}
+.rs .vtip{left:13%;right:13%;bottom:27%;width:auto;padding:.5em .9em;border-radius:999px;font-size:.64em;background:#000b;z-index:5}
+
+/* ② 情绪圆圈：本来就是圆的，直接铺满整块屏幕 */
+.rs .ef{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;border-radius:0;box-shadow:none}
+.rp-sel{position:absolute;left:50%;top:15%;transform:translateX(-50%);z-index:600;padding:.3em .9em;border-radius:999px;background:#10161acc;border:1px solid #ffffff40;font-size:.76em;display:flex;gap:.4em;align-items:center;white-space:nowrap;pointer-events:none}
+.rp-sel .vt{height:1.35em}
+.rp-hide{display:none}
+
+/* 第 2 步：底部有「↓ 低能量」标签，按钮往上抬一点让开 */
+.rp2 .rp-acts{bottom:15%}
+.rs .el.bottom{bottom:3.5%}
+
+/* ③ 特殊状态：5 个图标钮沿上半圈排开，植物在正中，说明和按钮在下半圈 */
+.rs-plant{position:absolute;left:50%;top:51%;width:52%;height:52%;transform:translate(-50%,-50%);z-index:3}
+.rs-plant.sm{top:37%;width:42%;height:42%}
+.rs .stage{height:100%;width:100%;border-radius:0;background:none!important}
+.rs-sp{position:absolute;width:4.5em;height:4.5em;margin:-2.25em 0 0 -2.25em;border-radius:50%;background:#ffffff1f;border:1px solid #ffffff40;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:6;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);user-select:none;-webkit-user-select:none;transition:transform .15s,background .2s}
+.rs-sp b{font-size:1.45em;line-height:1}
+.rs-sp small{font-size:.58em;opacity:.92;margin-top:.2em;white-space:nowrap}
+.rs-sp.sel{background:var(--pri);border-color:#fff;box-shadow:0 0 1em #3b6cf6aa;transform:scale(1.08)}
+.rs-cap{position:absolute;left:50%;top:76%;transform:translateX(-50%);width:62%;text-align:center;font-size:.64em;line-height:1.45;color:#ffffffd6;z-index:5}
+
+/* ④ 确认 */
+.rs-facts{position:absolute;left:50%;top:62%;transform:translateX(-50%);width:68%;text-align:center;z-index:5}
+.rs-name{font-weight:800;font-size:.95em;display:flex;gap:.35em;justify-content:center;align-items:center}
+.rs-name .vt{height:1.5em}
+.rs-chips{display:flex;flex-wrap:wrap;gap:.35em;justify-content:center;margin-top:.55em}
+.rs-chips span{font-size:.58em;padding:.35em .85em;border-radius:999px;background:#ffffff1f;border:1px solid #ffffff2e;white-space:nowrap}
+
+/* ⑤ 校园地图：6 块种植区重新排进圆里，地图底色铺满整块屏幕 */
+.rs .rs-map{position:absolute;inset:0}
+.rs .rs-map svg{width:100%;height:100%;display:block}
+.rp5 .rp-acts{bottom:7%}
+.rs-msgs{position:absolute;left:50%;bottom:17%;transform:translateX(-50%);width:62%;text-align:center;z-index:5}
+.rs-msgs .small{margin:0;display:inline-block;padding:.35em .9em;border-radius:999px;background:#10161acc;color:#fff;font-size:.62em}
+.rs-msgs #syncmsg{display:none}
+.rs .pin{font-size:1.7em}
+
+/* 圆里的「调整地点」转盘：不再是贴底的 sheet，而是屏幕正中的小转盘 */
+.rs .sheet-bg{position:absolute;inset:0;align-items:center;border-radius:50%;z-index:900;background:#000b}
+.rs .sheet{width:60%;max-width:none;border-radius:1.2em;padding:.9em .9em 1em;animation:none;color:var(--ink)}
+.rs .sheet h2{font-size:1em;margin:0 0 .3em;text-align:center}
+.rs .sheet .small{display:none}
+.rs .wheel{height:150px;margin:0 0 .4em}
+.rs .wheel-band{top:53px}
+.rs .wheel-list i{height:53px}
+.rs .wheel-list .wi{font-size:16px}
+.rs .sheet button{display:block;margin:.3em auto 0}
+
+@media (prefers-reduced-motion:reduce){.rs .sheet{animation:none}}

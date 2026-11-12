@@ -92,13 +92,13 @@ water(m){
     <svg viewBox="0 0 40 40" style="left:196px;top:44px;width:34px;height:34px;z-index:6;overflow:visible"><g style="transform-origin:20px 20px;${A('nw-vein',D)}"><path d="M5 14Q14 14 14 5M35 14Q26 14 26 5M5 26Q14 26 14 35M35 26Q26 26 26 35" fill="none" stroke="#e0402a" stroke-width="4.5" stroke-linecap="round"/></g></svg>
     ${puffs.map(([x,y],i)=>`<div style="left:${x-14}px;top:${y-14}px;width:28px;height:28px;border-radius:50%;background:#fff;filter:blur(3px);z-index:6;animation:nw-puff 1.7s ease-out ${2.65+i*.17}s both"></div>`).join('')}
     ${sfx(D,css,2.7,T('滋——','Sssh!'),170,84,'#4aa3e0',8)}
-    <svg viewBox="0 0 300 80" style="left:0;top:0;width:300px;height:80px;z-index:8;overflow:visible;${A('nw-pipe',D)}">
+    <svg viewBox="0 0 300 80" style="left:0;top:14px;width:300px;height:80px;z-index:8;overflow:visible;${A('nw-pipe',D)}">
       <rect x="-10" y="28" width="128" height="20" rx="6" fill="#8fa6bd"/><rect x="-10" y="31" width="128" height="5" rx="2.5" fill="#fff" opacity=".35"/>
       <rect x="108" y="28" width="20" height="40" rx="6" fill="#8fa6bd"/><rect x="104" y="62" width="28" height="9" rx="4" fill="#6f869d"/>
-      <rect x="30" y="22" width="8" height="8" fill="#6f869d"/><rect x="44" y="14" width="8" height="16" fill="#6f869d"/>
-      <g style="transform-origin:48px 12px;${A('nw-wheel',D)}"><circle cx="48" cy="12" r="12" fill="#e85a4f"/><circle cx="48" cy="12" r="12" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/><path d="M48 2V22M38 12H58" stroke="#fff" stroke-opacity=".8" stroke-width="3" stroke-linecap="round"/><circle cx="48" cy="12" r="3.2" fill="#b83a30"/></g>
+      <rect x="66" y="23" width="20" height="7" rx="2" fill="#6f869d"/><rect x="72" y="14" width="8" height="16" fill="#6f869d"/>
+      <g style="transform-origin:76px 12px;${A('nw-wheel',D)}"><circle cx="76" cy="12" r="12" fill="#e85a4f"/><circle cx="76" cy="12" r="12" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="2"/><path d="M76 2V22M66 12H86" stroke="#fff" stroke-opacity=".8" stroke-width="3" stroke-linecap="round"/><circle cx="76" cy="12" r="3.2" fill="#b83a30"/></g>
     </svg>
-    <div style="left:111px;top:70px;width:14px;height:58px;z-index:7;border-radius:7px 7px 3px 3px;transform-origin:50% 0;background:repeating-linear-gradient(180deg,#8fd0ff 0 9px,#5db4f0 9px 18px);${A('nw-stream',D)}"></div>
+    <div style="left:111px;top:84px;width:14px;height:44px;z-index:7;border-radius:7px 7px 3px 3px;transform-origin:50% 0;background:repeating-linear-gradient(180deg,#8fd0ff 0 9px,#5db4f0 9px 18px);${A('nw-stream',D)}"></div>
     <div style="left:118px;top:126px;width:0;height:0;z-index:7;${A('nw-splash',D)}">${[-34,-20,-9,9,20,34].map((dx,i)=>`<i style="position:absolute;left:-3px;top:-3px;width:7px;height:7px;border-radius:50%;background:#8fd0ff;--dx:${dx}px;animation:nw-spl .6s ease-out ${i*.1}s infinite"></i>`).join('')}</div>
   </div>
   <div style="position:absolute;left:0;right:0;bottom:0;height:210px;z-index:5;pointer-events:none;${A('nw-rise',D)}">
@@ -187,7 +187,7 @@ poke(m){
     ${burst(228,165,C[0])}${burst(72,165,C[1])}${burst(150,64,C[2])}
     ${sfx(D,css,C[0]+.05,T('戳!','Poke!'),232,108,'#e58a5a',8)}
     ${sfx(D,css,C[1]+.05,T('戳戳!','Poke!'),14,108,'#e58a5a',-8)}
-    ${sfx(D,css,C[2]+.05,T('戳戳戳!','Poke!!'),176,26,'#e58a5a',6,24)}
+    ${sfx(D,css,C[2]+.05,T('戳戳戳!','Poke!!'),166,46,'#e58a5a',6,24)}
     ${[[118,74,-18,0],[176,60,16,.35],[148,50,2,.7]].map(([x,y,hx,d])=>`<svg viewBox="0 0 24 22" style="left:${x}px;top:${y}px;width:20px;height:18px;z-index:10;--hx:${hx}px;animation:np-hr 1.9s ease-out ${5.6+d}s both"><path d="M12 21C-6 8 4 -3 12 5C20 -3 30 8 12 21Z" fill="#ff7f9a"/></svg>`).join('')}
   </div>`;
   return{D,css:css.join(''),html};
@@ -344,9 +344,9 @@ function drawRing(st){
   </div>`;
 }
 
-function stageHTML(k,m){
+function stageHTML(k,m,noBtn){
   const b=BUILD[k](m,{w1:T('安静','Quiet'),w2:T('平静','Calm')});
-  return `<div class="nx-stage" id="nx-stage" data-k="${k}"><style>${b.css}</style>${b.html}<button class="nx-replay" id="nx-replay">↻ ${T('重播','Replay')}</button></div>`;
+  return `<div class="nx-stage" id="nx-stage" data-k="${k}"><style>${b.css}</style>${b.html}${noBtn?'':`<button class="nx-replay" id="nx-replay">↻ ${T('重播','Replay')}</button>`}</div>`;
 }
 
 function drawView(st){
@@ -375,26 +375,81 @@ function hearts(btn){
     h.style.cssText=`--hx:${(rnd(i)-.5)*160|0}px;--hr:${(rnd(i+5)-.5)*50|0}deg;animation-delay:${i*.07}s;left:${20+rnd(i+2)*60}%`;btn.appendChild(h);setTimeout(()=>h.remove(),1800)}
 }
 
+/* ---------- 圆屏版（设备屏幕是圆的）：每一页都画在圆里，Round.shell 负责外壳 ---------- */
+const isRound=()=>!!(window.Round&&Round.on());
+const fitStage=root=>{const rs=root.querySelector('.rs'),st=root.querySelector('.nx-stage');if(rs&&st)st.style.transform='scale('+(rs.clientWidth/300)+')'};   // 舞台是固定 300×300 的画布，整体缩放到铺满圆屏
+let fitBound=false;
+function ringR(st){
+  const k=st.kind,d=new Date(st.t);
+  return `<div class="rp nxr-lock">
+    <div class="nxr-date">${d.toLocaleDateString(EN()?'en-US':'zh-CN',{month:'long',day:'numeric',weekday:'long'})}</div>
+    <div class="nxr-time">${hm(d)}</div>
+    <div class="nx-banner" id="nx-banner" role="button" tabindex="0">
+      <img class="ic" src="icon-192.png" alt="">
+      <div class="tx"><div class="hd"><span>${T('情绪菜园','Emotion Garden')}</span><span>${T('现在','now')}</span></div>
+        <b>${pick(k,'title')}</b><small>${pick(k,'ring')}</small></div>
+    </div>
+    <div class="nxr-hint">${T('点一下通知','Tap the notification')}</div>
+    <div class="nxr-veg"><img src="${myMood(k).img}" alt=""></div>
+  </div>`;
+}
+function viewR(st){
+  const k=st.kind;
+  return `<div class="rp"><div class="nxr-sw">${stageHTML(k,myMood(k),true)}</div>
+    <div class="rp-top"><div class="nxr-title">${pick(k,'title')}</div></div>
+    <button class="rc ghost nxr-l" id="nx-replay" aria-label="${T('重播','Replay')}">↻</button>
+    <button class="rc nxr-r" id="nx-more" style="background:${KINDS[k].ok}" aria-label="${T('收下安抚','Receive the comfort')}">›</button>
+  </div>`;   // 按钮放在圆内左右两侧，不挡住场景底部
+}
+function giftR(st){
+  const k=st.kind,K=KINDS[k];
+  return `<div class="rp nxr-gift" style="--ok:${K.ok};background:radial-gradient(circle at 50% 38%,${K.ok}66 0%,#10161a 76%)">
+    <div class="rp-top"><div class="rp-t" style="font-size:.74em;opacity:.9">${pick(k,'act')}</div></div>
+    <div class="nxr-body"><div class="gi">💌</div><small>${T('你收到了一份心情的安抚','You received a little comfort')}</small><b>${pick(k,'ct')}</b><p>${pick(k,'cb')}</p>
+      <div class="nx-gains">${K.gains.map(g=>`<span>${g[EN()?1:0]}</span>`).join('')}</div></div>
+    <div class="rp-acts"><button class="rc ghost" id="nx-back2" aria-label="${T('返回','Back')}">‹</button>
+      <button class="nx-take ${st.got?'got':''}" id="nx-take">${st.got?T('已收进心情盒 ✓','Kept ✓'):T('收下这份安抚','Take this comfort')}</button></div>
+  </div>`;
+}
+function drawRound(root,st,api){
+  const inner=st.phase==='ring'?ringR(st):st.phase==='view'?viewR(st):giftR(st);
+  root.innerHTML=Round.shell(inner,{
+    left:`<button class="nx-back" id="nx-back">‹ ${T('返回','Back')}</button><div class="sp1"></div>`,
+    right:`<button class="lang" id="b-lang">${EN()?'中文':'EN'}</button>`,
+    foot:`<div style="width:var(--S)">${chips(st)}</div>`});
+  Round.sync();
+  fitStage(root);
+  if(!fitBound){fitBound=true;window.addEventListener('resize',()=>{const r=document.getElementById('app');if(r)fitStage(r)})}
+}
+
 window.Notice={
   kinds:ORDER,
   draw(root,st,api){
     if(!KINDS[st.kind])st.kind='water';
     if(!st.phase)st.phase='ring';
     if(!st.t)st.t=Date.now();
-    root.innerHTML=st.phase==='ring'?drawRing(st):drawView(st);
+    const round=isRound();
+    if(round)drawRound(root,st,api);else root.innerHTML=st.phase==='ring'?drawRing(st):drawView(st);
     const $=id=>document.getElementById(id);
     $('b-lang').onclick=api.lang;
     $('nx-back').onclick=api.close;
     root.querySelectorAll('.nx-demo [data-k]').forEach(b=>b.onclick=()=>{st.kind=b.dataset.k;st.phase='ring';st.got=false;st.t=Date.now();api.render()});
     if(st.phase==='ring'){
-      const go=()=>{st.phase='view';api.render()};
+      const go=()=>{st.phase='view';api.render()};   // 锁屏 → 互动动画
       $('nx-banner').onclick=go;
       $('nx-banner').onkeydown=e=>{if(e.key==='Enter'||e.key===' ')go()};
       try{if(navigator.vibrate&&navigator.userActivation&&navigator.userActivation.hasBeenActive)navigator.vibrate([60,50,60])}catch(e){}
-    }else{
-      $('nx-back2').onclick=api.close;
-      const replay=()=>{const tmp=document.createElement('div');tmp.innerHTML=stageHTML(st.kind,myMood(st.kind));$('nx-stage').replaceWith(tmp.firstElementChild);$('nx-replay').onclick=replay};   // 整块舞台重建 = 动画从头播
+    }else if(st.phase==='view'&&round){
+      const replay=()=>{const tmp=document.createElement('div');tmp.innerHTML=stageHTML(st.kind,myMood(st.kind),true);$('nx-stage').replaceWith(tmp.firstElementChild);fitStage(root)};
       $('nx-replay').onclick=replay;
+      $('nx-more').onclick=()=>{st.phase='gift';api.render()};          // 互动动画 → 安抚卡片
+    }else{
+      // 手机版结果页 / 圆屏版安抚卡片：都有「收下」；手机版另有「重播」和底部「返回」
+      if($('nx-back2'))$('nx-back2').onclick=api.close;
+      if($('nx-replay')){
+        const replay=()=>{const tmp=document.createElement('div');tmp.innerHTML=stageHTML(st.kind,myMood(st.kind));$('nx-stage').replaceWith(tmp.firstElementChild);$('nx-replay').onclick=replay};   // 整块舞台重建 = 动画从头播
+        $('nx-replay').onclick=replay;
+      }
       $('nx-take').onclick=function(){if(st.got)return;st.got=true;hearts(this);setTimeout(()=>{this.classList.add('got');this.textContent=T('已收进心情盒 ✓','Kept in your mood box ✓')},500)};
     }
   }

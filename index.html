@@ -7,6 +7,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="notice/notice.css">
+<link rel="stylesheet" href="round/round.css">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#3b6cf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -150,6 +151,7 @@ body[data-mode=demo]::after{content:'DEMO';position:fixed;left:10px;bottom:8px;p
 </head>
 <body>
 <div id="app"></div>
+<script src="round/round.js"></script>
 <script>
 /* =====================================================
  * 1. 配置：情绪 ↔ 植物 ↔ 音阶 / 乐器 ↔ 地点 / 特殊状态
@@ -435,7 +437,7 @@ async function runCamera(){
     const opt=new faceapi.TinyFaceDetectorOptions({inputSize:224,scoreThreshold:.4});
     while(performance.now()-t0<DUR){
       if(gone()){stream.getTracks().forEach(t=>t.stop());return}
-      $('bar').style.width=Math.min(100,(performance.now()-t0)/DUR*100)+'%';
+      {const pct=Math.min(100,(performance.now()-t0)/DUR*100);$('bar').style.width=pct+'%';$('bar').parentNode.style.setProperty('--p',pct)}   // 圆屏版：--p 驱动边缘进度环
       const r=await faceapi.detectSingleFace(v,opt).withFaceExpressions();
       if(r){n++;let top='neutral';for(const k in r.expressions){acc[k]=(acc[k]||0)+r.expressions[k];if(r.expressions[k]>r.expressions[top])top=k}
         tip(T('识别中… 当前表情：'+EXPR_CN[top],'Detecting… current expression: '+EXPR_EN[top]));}
@@ -606,7 +608,7 @@ function openZoneWheel(){
   const H=44,n=ZONES.length;let cur=Math.max(0,zoneIdx(S.zone));
   const bg=document.createElement('div');bg.className='sheet-bg';
   bg.innerHTML=`<div class="sheet" role="dialog" aria-label="${T('调整地点','Change location')}"><h2 style="font-size:18px;margin:0 0 2px">${T('调整地点','Change location')}</h2><div class="small" style="text-align:left;margin:0">${T('滑动转盘，选你现在所在的位置','Scroll the wheel to where you are now')}</div><div class="wheel"><div class="wheel-band"></div><div class="wheel-list" id="wlist"><i></i>${ZONES.map(z=>`<div class="wi">${znm(z)}</div>`).join('')}<i></i></div></div><button id="b-zok">${T('确定','OK')}</button></div>`;
-  document.body.appendChild(bg);
+  (document.getElementById('rs')||document.body).appendChild(bg);   // 圆屏里挂在屏幕上，手机版挂在页面上
   const list=bg.querySelector('#wlist'),items=[...list.querySelectorAll('.wi')];
   const paint=()=>{const c=list.scrollTop;cur=Math.max(0,Math.min(n-1,Math.round(c/H)));items.forEach((el,i)=>{const d=Math.abs(i*H-c)/H;el.style.opacity=Math.max(.25,1-d*.4);el.style.transform='scale('+Math.max(.72,1-d*.12)+')'})};
   let raf=0;list.addEventListener('scroll',()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(paint)});
@@ -666,12 +668,14 @@ function autoPlay(){
  * 7. 视图
  * ===================================================== */
 const $app=document.getElementById('app');
-const topbar=()=>`<div class="topbar">${S.step<5?prog():'<div style="flex:1"></div>'}<button class="lang" id="b-lang">${EN()?'中文':'EN'}</button></div>`;
+const topbar=()=>`<div class="topbar">${S.step<5?prog():'<div style="flex:1"></div>'}${window.Round?`<button class="lang" id="b-shape">${T('圆屏','Round')}</button>`:''}<button class="lang" id="b-lang">${EN()?'中文':'EN'}</button></div>`;
 const prog=()=>`<div class="prog">${[1,2,3,4].map(i=>`<i class="${i<=Math.min(S.step,4)?'on':''}"></i>`).join('')}</div>`;
 const spName=(id,L=LANG)=>{const s=SPECIALS.find(x=>x.id===id);if(!s)return L==='en'?'None':'无';const sub=spx(s,'sub',L);return spx(s,'name',L)+(sub?(L==='en'?` (${sub})`:`（${sub}）`):'')};
 
 function render(){
   if(NOTICE&&window.Notice){Notice.draw($app,NOTICE,noticeAPI);window.scrollTo(0,0);return}   // 提示页自己画整页
+  if(window.Round&&Round.on()){Round.draw();bind();syncPlayer();return}   // 圆屏模式：整个流程画进圆形屏幕（round/round.js）
+  window.Round&&Round.sync();
   const e=S.emotion&&emoOf(S.emotion),m=S.emoji&&moodOf(S.emoji);let h=topbar();
   if(S.step===1){
     h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情。打开页面会自动开启摄像头，识别约 6 秒。不想用摄像头，可以直接点下面的「跳过」自己选。','Step 1 · The camera reads your facial expression. The camera starts automatically and takes about 6 seconds. Prefer not to use it? Tap “Skip” below and pick an expression yourself.')}</div>
@@ -728,7 +732,9 @@ const slotXY=(zi,k)=>{const p=zonePos(zi),c=k%4,r=Math.floor(k/4)%3;return{x:p.x
 const entriesOf=(zid,recs)=>MOCK.filter(m=>m.zone===zid).concat(recs.filter(r=>(r.zone||'garden')===zid));
 function mapSVG(skipLast,hl){
   const all=load(),recs=skipLast?all.slice(0,-1):all;
-  let s=`<svg viewBox="0 0 340 290" width="100%"><rect width="340" height="290" rx="12" fill="#eef3ea"/><path d="M0 137 H340 M110 0 V290 M220 0 V290" stroke="#fff" stroke-width="10"/>`;
+  const rd=window.Round&&Round.on();
+  let s=rd?`<svg viewBox="-50 -75 440 440" width="100%" height="100%"><rect x="-50" y="-75" width="440" height="440" fill="#eef3ea"/><path d="M-50 137 H390 M110 -75 V365 M220 -75 V365" stroke="#fff" stroke-width="10"/>`
+    :`<svg viewBox="0 0 340 290" width="100%"><rect width="340" height="290" rx="12" fill="#eef3ea"/><path d="M0 137 H340 M110 0 V290 M220 0 V290" stroke="#fff" stroke-width="10"/>`;
   ZONES.forEach((z,zi)=>{
     const p=zonePos(zi);
     s+=`<rect x="${p.x}" y="${p.y}" width="100" height="112" rx="10" fill="${z.id==='garden'?'#d3e8c8':'#e2e9f4'}" ${hl===z.id?'stroke="#3b6cf6" stroke-width="2.5"':''}/><text x="${p.x+8}" y="${p.y+13}">${znm(z)}</text>`;
@@ -741,10 +747,10 @@ function mapSVG(skipLast,hl){
 function animateMap(){
   const wrap=document.getElementById('mapwrap'),pin=document.getElementById('pin');
   const all=load(),last=all[all.length-1],zid=last.zone||'garden',zi=zoneIdx(zid);
-  const list=entriesOf(zid,all),k=(list.length-1)%12,p=slotXY(zi,k),w=wrap.clientWidth,r=w/340;
+  const list=entriesOf(zid,all),k=(list.length-1)%12,p=slotXY(zi,k),w=wrap.clientWidth,rd=window.Round&&Round.on(),r=rd?w/440:w/340,ox=rd?50*r:0,oy=rd?75*r:0;   // 圆屏：地图以 440×440 的视窗铺满圆，要加上偏移
   wrap.querySelector('svg').outerHTML=mapSVG(true);
   pin.style.left=(w*.5-12)+'px';pin.style.top='-10px';pin.style.opacity=0;
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{pin.style.opacity=1;pin.style.left=(p.x*r-12)+'px';pin.style.top=(p.y*r-30)+'px'}));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{pin.style.opacity=1;pin.style.left=(p.x*r+ox-12)+'px';pin.style.top=(p.y*r+oy-30)+'px'}));
   setTimeout(()=>{wrap.querySelector('svg').outerHTML=mapSVG(false,zid);pin.style.opacity=0;
     const m=document.getElementById('mapmsg');if(m)m.textContent=T(`已种在「${zoneOf(zid).name}」· 共 ${all.length} 株属于你`,`Planted at “${znm(zoneOf(zid))}” · ${all.length} plant(s) yours`)},1400);
 }
@@ -864,6 +870,8 @@ function toggleLang(){
 function bind(){
   const $=id=>document.getElementById(id);
   $('b-lang')&&($('b-lang').onclick=toggleLang);
+  $('b-notice')&&($('b-notice').onclick=()=>openNotice('water'));
+  window.Round&&Round.bind();
   $('b-back')&&($('b-back').onclick=()=>go(S.step-1));
   $('b-next')&&($('b-next').onclick=()=>go(S.step+1));
   $('pbtn')&&($('pbtn').onclick=()=>Audio_.toggle(pParams()));
@@ -872,7 +880,6 @@ function bind(){
     $('b-detect').onclick=runCamera;$('b-zone').onclick=openZoneWheel;
     runCamera();                                       // 默认自动开启摄像头并识别
     $('b-sim')&&($('b-sim').onclick=simulate);
-    $('b-notice')&&($('b-notice').onclick=()=>openNotice('water'));
     $('b-manual')&&($('b-manual').onclick=()=>{S.emotion=null;S.confidence=null;S.emoji=null;S.guess=null;S.level=1;go(2)});
   }
   if(S.step===2){initField();refreshInfo();Motion.warm(S.emoji&&Motion.idToId(moodOf(S.emoji)))}

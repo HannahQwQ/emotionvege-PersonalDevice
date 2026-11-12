@@ -83,3 +83,38 @@ button.nx-take.got{background:#e8f5ee;color:#17583f;pointer-events:none}
   .nx-stage *{animation-duration:.001s!important;animation-delay:0s!important;animation-iteration-count:1!important}
   .nx-banner,.nx-lock .lk-hint,.nx-lock .lk-veg img{animation:none!important;opacity:1}
 }
+
+/* =====================================================
+ * 圆屏版（.rs 里，设备屏幕是圆的）：锁屏 / 互动动画 / 安抚卡片
+ * 文字全部用 em（随屏幕直径缩放）。动画舞台是固定 300×300 的画布，由 notice.js 整体缩放铺满圆。
+ * ===================================================== */
+.nxr-lock{background:radial-gradient(120% 90% at 50% 0%,#3f7a64 0%,#24453a 55%,#17302a 100%)}
+.nxr-date{position:absolute;top:8%;left:0;right:0;text-align:center;font-size:.68em;opacity:.85}
+.nxr-time{position:absolute;top:11.5%;left:0;right:0;text-align:center;font-size:3.3em;font-weight:300;letter-spacing:-.04em;line-height:1.05}
+.rs .nx-banner{position:absolute;left:12%;top:36%;width:76%;margin:0;padding:.7em .8em;gap:.6em;border-radius:1.2em;font-size:inherit}
+.rs .nx-banner img.ic{width:2.4em;height:2.4em;border-radius:.6em}
+.rs .nx-banner .hd{font-size:.62em}
+.rs .nx-banner b{font-size:.84em}
+.rs .nx-banner small{font-size:.7em}
+.nxr-hint{position:absolute;top:63%;left:0;right:0;text-align:center;font-size:.66em;opacity:0;animation:nx-hint 2.4s ease-in-out 2s infinite}
+.nxr-veg{position:absolute;left:0;right:0;bottom:4%;display:flex;justify-content:center}
+.nxr-veg img{height:calc(var(--S)*.22);width:auto;animation:nx-bob 3.2s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 .4em .6em #0005)}
+.nxr-sw{position:absolute;inset:0;overflow:hidden}
+.rs .nx-stage{position:absolute;left:0;top:0;width:300px;height:300px;border-radius:0;transform-origin:0 0}
+.rs .nx-box{transform:scale(.9);transform-origin:50% 50%}
+.nxr-title{max-width:100%;padding:.35em .9em;border-radius:999px;background:#ffffffdc;color:#1d2433;font-weight:800;font-size:.84em;box-shadow:0 .2em .6em #0003}
+.nxr-body{position:absolute;left:50%;top:49%;transform:translate(-50%,-50%);width:70%;text-align:center}
+.nxr-body .gi{font-size:2.1em;line-height:1}
+.nxr-body small{display:block;font-size:.6em;opacity:.8;letter-spacing:.04em;margin:.3em 0 .1em}
+.nxr-body b{display:block;font-size:1.08em;margin:.15em 0 .4em}
+.nxr-body p{margin:0;font-size:.7em;line-height:1.65;color:#ffffffd8}
+.rs .nx-gains{justify-content:center;margin-top:.8em;gap:.4em}
+.rs .nx-gains span{font-size:.62em;padding:.35em .85em;background:#ffffff24;color:#fff}
+.rs button.nx-take{background:var(--ok,#2f8f6b)}
+.rs button.nx-take.got{background:#e8f5ee;color:#17583f}
+.rs-tools button.nx-back{background:#fff}
+.nx-demo{margin:0}
+.nxr-l,.nxr-r{position:absolute;top:72%;z-index:600}
+.rs button.nxr-l{left:14.5%}
+.rs button.nxr-r{right:14.5%;animation:nxr-pulse 2.2s ease-in-out 3s infinite}
+@keyframes nxr-pulse{0%,100%{box-shadow:0 .2em .6em #0005,0 0 0 0 #ffffffaa}50%{box-shadow:0 .2em .6em #0005,0 0 0 .55em #ffffff00}}

@@ -135,6 +135,15 @@ def ensure_cert(ips):
     return False
 
 
+class QuietServer(ThreadingHTTPServer):
+    """手机在传图/传页面中途切走、锁屏、刷新，会让连接被掐断（常见于 TLS：ssl.SSLError / 连接重置）。
+    这是正常现象，不影响使用，不要把整段 traceback 打到屏幕上。其它真正的异常照常显示。"""
+    def handle_error(self, request, client_address):
+        if isinstance(sys.exc_info()[1], (ssl.SSLError, ConnectionError, TimeoutError)):
+            return
+        super().handle_error(request, client_address)
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **k):
         super().__init__(*a, directory=ROOT, **k)
@@ -155,6 +164,8 @@ class Handler(SimpleHTTPRequestHandler):
         return '..' in path or os.path.basename(path.rstrip('/')) in self.BLOCKED
 
     def do_GET(self):
+        if self.path.split('?')[0] == '/api/ping':       # 页面用它判断"有没有后端"；没有就进演示模式
+            return self._json(200, {'ok': True})
         if self._blocked():
             return self.send_error(404)
         super().do_GET()
@@ -220,7 +231,7 @@ def main():
     if use_tls and not ensure_cert(ips or ['127.0.0.1']):
         sys.exit(1)
     port = a.port or (8443 if use_tls else 8000)
-    srv = ThreadingHTTPServer(('0.0.0.0', port), Handler)
+    srv = QuietServer(('0.0.0.0', port), Handler)
     scheme = 'http'
     if use_tls:
         ctx = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)

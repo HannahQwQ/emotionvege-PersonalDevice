@@ -1,0 +1,46 @@
+diff --git a/README.md b/README.md
+index 4eecc07..548be33 100644
+--- a/README.md
++++ b/README.md
+@@ -130,7 +130,7 @@
+ | `heat` | 加热火 | 开心玉米被烤热，啪！变成爆米花 |
+ | `hammer` | 锤子 | 放松卷心菜（木鱼）被敲响，收获安静与平静 |
+ 
+-- **入口**：第 1 页（摄像头页）最底部有一个几乎看不见的 🌱（需要往下滑），点它进入；也可以用链接直达：`?notice=water`（或 `sun` / `poke` / `heat` / `hammer`）。
++- **入口**：第 1 页（摄像头页）标题说明下面有一个虚线小按钮「🌱 查看「植物被互动了」提示 · 演示」，点它进入；也可以用链接直达：`?notice=water`（或 `sun` / `poke` / `heat` / `hammer`）。
+ - **流程**：锁屏样式的通知横幅落下 → 点通知 → 互动动画 + 安抚卡片 →「收下这份安抚」。页面顶部的 5 个小图标可以切换看 5 种；「↻ 重播」重放动画；「返回」回到第 1 页。
+ - **接真实消息**：以后公共装置发来互动事件时，调用 `showPlantNotice('water')`（参数就是上面的 kind）即可弹出对应的提示页。
+ - **用哪张蔬菜图**：如果这位用户自己种过同类蔬菜（比如种过茄子），就用 TA 最近种的那一张；没种过就用默认的一张（`notice/notice.js` 里 `KINDS[...].def`）。
+diff --git a/index.html b/index.html
+index 123b0c2..0ec6210 100644
+--- a/index.html
++++ b/index.html
+@@ -143,9 +143,9 @@ button.lang:disabled{opacity:.5}
+ body[data-mode=demo]::after{content:'DEMO';position:fixed;left:10px;bottom:8px;padding:2px 8px;border-radius:999px;background:#ffe9a8;color:#7a5b00;font-size:11px;font-weight:800;letter-spacing:.5px;pointer-events:none;z-index:5}
+ .vt{height:1.2em;width:auto;vertical-align:-.28em}
+ .eword .vt{height:1.3em;vertical-align:middle}
+-/* 第 1 页的隐藏入口：进「植物被互动了」提示页（几乎看不见，点一下才有反应） */
+-.nx-secret{width:44px;height:44px;margin:18px auto 0;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:.07;cursor:pointer;font-size:18px;user-select:none;-webkit-user-select:none;transition:opacity .2s}
+-.nx-secret:active{opacity:.6}
++/* 第 1 页的入口：进「植物被互动了」提示页（演示）。想再低调就把 opacity 调低 */
++.nx-secret{display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 12px;padding:9px 14px;border-radius:12px;border:1.5px dashed #9fb3e8;background:#f3f6ff;color:#3b6cf6;font-size:13px;font-weight:700;cursor:pointer;user-select:none;-webkit-user-select:none}
++.nx-secret:active{background:#e3eaff}
+ </style>
+ </head>
+ <body>
+@@ -675,13 +675,13 @@ function render(){
+   const e=S.emotion&&emoOf(S.emotion),m=S.emoji&&moodOf(S.emoji);let h=topbar();
+   if(S.step===1){
+     h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情。打开页面会自动开启摄像头，识别约 6 秒。不想用摄像头，可以直接点下面的「跳过」自己选。','Step 1 · The camera reads your facial expression. The camera starts automatically and takes about 6 seconds. Prefer not to use it? Tap “Skip” below and pick an expression yourself.')}</div>
++    <div class="nx-secret" id="b-notice" role="button" aria-label="${T('查看「植物被互动了」提示（演示）','Preview “your plant was played with” notices (demo)')}">🌱 ${T('查看「植物被互动了」提示 · 演示','Preview “plant was played with” notices · demo')}</div>
+     <div class="card"><button class="zpill" id="b-zone" aria-label="${T('调整地点','Change location')}">📍 <span id="zname">${znm(zoneOf(S.zone))}</span> · ${T('调整','Change')}</button>
+     <div class="vbox"><video id="cam" playsinline muted autoplay></video><div class="vph" id="vph">📷</div><div class="guide" id="guide"></div><div class="bar"><i id="bar"></i></div><div class="vtip" id="vtip">${T('正在开启摄像头…','Starting the camera…')}</div></div>
+     <div class="privacy"><span class="lk">🔒</span><div><b>${T('不会收集你的人脸数据','We don’t collect your face data')}</b><small>${T('摄像头画面只在你的设备上识别，识别完立即丢弃，不保存、不上传。','The camera image is analysed on your device only and discarded right after — never saved, never uploaded.')}${EN()?' ':''}<span class="pv-live">${T('只会记录你选的表情、地点等文字，发送到现场电脑。','Only the text you choose (expression, place, etc.) is sent to the on-site computer.')}</span><span class="pv-demo">${T('你选的内容只保存在这台设备的浏览器里。','What you choose stays in this browser on your device.')}</span></small></div></div>
+     <button id="b-detect" style="display:none">${T('重新识别','Try again')}</button>
+     <button class="ghost" id="b-manual">${T('跳过摄像头，直接选表情','Skip the camera, pick an expression')}</button>
+-    ${DEBUG?`<button class="ghost" id="b-sim">${T('模拟识别（调试）','Simulate (debug)')}</button>`:''}</div>
+-    <div class="nx-secret" id="b-notice" role="button" aria-label="${T('查看「植物被互动了」提示（演示）','Preview “your plant was played with” notices (demo)')}">🌱</div>`;
++    ${DEBUG?`<button class="ghost" id="b-sim">${T('模拟识别（调试）','Simulate (debug)')}</button>`:''}</div>`;
+   }
+   if(S.step===2){
+     const g=S.guess&&moodOf(S.guess);

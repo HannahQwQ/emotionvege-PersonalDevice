@@ -6,6 +6,7 @@
 <title>情绪菜园</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="notice/notice.css">
 <link rel="apple-touch-icon" href="icon-192.png">
 <meta name="theme-color" content="#3b6cf6">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -142,6 +143,9 @@ button.lang:disabled{opacity:.5}
 body[data-mode=demo]::after{content:'DEMO';position:fixed;left:10px;bottom:8px;padding:2px 8px;border-radius:999px;background:#ffe9a8;color:#7a5b00;font-size:11px;font-weight:800;letter-spacing:.5px;pointer-events:none;z-index:5}
 .vt{height:1.2em;width:auto;vertical-align:-.28em}
 .eword .vt{height:1.3em;vertical-align:middle}
+/* 第 1 页的隐藏入口：进「植物被互动了」提示页（几乎看不见，点一下才有反应） */
+.nx-secret{width:44px;height:44px;margin:18px auto 0;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:.07;cursor:pointer;font-size:18px;user-select:none;-webkit-user-select:none;transition:opacity .2s}
+.nx-secret:active{opacity:.6}
 </style>
 </head>
 <body>
@@ -619,6 +623,19 @@ const load=()=>{try{return JSON.parse(localStorage.getItem(KEY))||[]}catch(e){re
 const save=r=>{try{localStorage.setItem(KEY,JSON.stringify(r))}catch(e){}};
 const go=n=>{Audio_.kill();Motion.stop();camRun++;camBusy=false;S.step=n;render();if((n===2&&S.emoji)||n===3)autoPlay()};
 const reset=()=>{Object.assign(S,{step:1,emotion:null,confidence:null,level:1,special:null,emoji:null,guess:null});render()};
+/* ---- 「植物被互动了」提示页（notice/notice.js，用到时才加载）----
+ * 公共装置上有人和我们的蔬菜互动后，个人设备收到通知 + 一份心情安抚。
+ * 5 种 kind：water 水管 / sun 阳光 / poke 戳戳 / heat 加热 / hammer 锤子。
+ * 入口：第 1 页底部的隐藏按钮；或链接 ?notice=water；以后接真实消息就调 showPlantNotice(kind)。*/
+let NOTICE=null;
+const noticeAPI={render:()=>render(),close:()=>closeNotice(),lang:()=>toggleLang()};
+function openNotice(kind){
+  Audio_.kill();Motion.stop();camRun++;camBusy=false;     // 和 go() 一样：先停掉摄像头 / 声音 / 动效
+  const enter=()=>{NOTICE={kind:kind||'water',phase:'ring',got:false,t:Date.now()};render()};
+  window.Notice?enter():loadScript('notice/notice.js').then(enter).catch(()=>{NOTICE=null;render()});
+}
+function closeNotice(){NOTICE=null;render()}
+window.showPlantNotice=openNotice;
 const instOf=()=>INSTR[(zoneOf(S.zone)||ZONES[1]).inst];
 function pParams(){
   const inst=S.zone?zoneOf(S.zone).inst:'piano';
@@ -654,6 +671,7 @@ const prog=()=>`<div class="prog">${[1,2,3,4].map(i=>`<i class="${i<=Math.min(S.
 const spName=(id,L=LANG)=>{const s=SPECIALS.find(x=>x.id===id);if(!s)return L==='en'?'None':'无';const sub=spx(s,'sub',L);return spx(s,'name',L)+(sub?(L==='en'?` (${sub})`:`（${sub}）`):'')};
 
 function render(){
+  if(NOTICE&&window.Notice){Notice.draw($app,NOTICE,noticeAPI);window.scrollTo(0,0);return}   // 提示页自己画整页
   const e=S.emotion&&emoOf(S.emotion),m=S.emoji&&moodOf(S.emoji);let h=topbar();
   if(S.step===1){
     h+=`<h1>${T('此刻的你','How you feel right now')}</h1><div class="hint">${T('Step 1 · 摄像头识别面部表情。打开页面会自动开启摄像头，识别约 6 秒。不想用摄像头，可以直接点下面的「跳过」自己选。','Step 1 · The camera reads your facial expression. The camera starts automatically and takes about 6 seconds. Prefer not to use it? Tap “Skip” below and pick an expression yourself.')}</div>
@@ -662,7 +680,8 @@ function render(){
     <div class="privacy"><span class="lk">🔒</span><div><b>${T('不会收集你的人脸数据','We don’t collect your face data')}</b><small>${T('摄像头画面只在你的设备上识别，识别完立即丢弃，不保存、不上传。','The camera image is analysed on your device only and discarded right after — never saved, never uploaded.')}${EN()?' ':''}<span class="pv-live">${T('只会记录你选的表情、地点等文字，发送到现场电脑。','Only the text you choose (expression, place, etc.) is sent to the on-site computer.')}</span><span class="pv-demo">${T('你选的内容只保存在这台设备的浏览器里。','What you choose stays in this browser on your device.')}</span></small></div></div>
     <button id="b-detect" style="display:none">${T('重新识别','Try again')}</button>
     <button class="ghost" id="b-manual">${T('跳过摄像头，直接选表情','Skip the camera, pick an expression')}</button>
-    ${DEBUG?`<button class="ghost" id="b-sim">${T('模拟识别（调试）','Simulate (debug)')}</button>`:''}</div>`;
+    ${DEBUG?`<button class="ghost" id="b-sim">${T('模拟识别（调试）','Simulate (debug)')}</button>`:''}</div>
+    <div class="nx-secret" id="b-notice" role="button" aria-label="${T('查看「植物被互动了」提示（演示）','Preview “your plant was played with” notices (demo)')}">🌱</div>`;
   }
   if(S.step===2){
     const g=S.guess&&moodOf(S.guess);
@@ -853,6 +872,7 @@ function bind(){
     $('b-detect').onclick=runCamera;$('b-zone').onclick=openZoneWheel;
     runCamera();                                       // 默认自动开启摄像头并识别
     $('b-sim')&&($('b-sim').onclick=simulate);
+    $('b-notice')&&($('b-notice').onclick=()=>openNotice('water'));
     $('b-manual')&&($('b-manual').onclick=()=>{S.emotion=null;S.confidence=null;S.emoji=null;S.guess=null;S.level=1;go(2)});
   }
   if(S.step===2){initField();refreshInfo();Motion.warm(S.emoji&&Motion.idToId(moodOf(S.emoji)))}
@@ -934,7 +954,7 @@ function showSync(){
 window.addEventListener('online',flushQueue);
 setInterval(()=>{if(MODE==='unknown')probe().then(flushQueue);else if(MODE==='live'&&qLoad().length)flushQueue()},15000);
 apiBase();probe().then(flushQueue);
-render();
+{const nq=new URLSearchParams(location.search).get('notice');nq?openNotice(nq):render()}   // ?notice=water 直达提示页
 </script>
 </body>
 </html>

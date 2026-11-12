@@ -1,0 +1,85 @@
+/* =====================================================
+ * 「植物被互动了」提示页（notice/notice.js 渲染）
+ * 静态样式 + 循环动画放这里；一次性的时间轴动画由 notice.js 按秒数生成。
+ * 配色沿用主页面（--pri 等），锁屏底色取自公共装置站点的主题绿 #24453a。
+ * ===================================================== */
+
+/* 顶部：演示切换条（5 种互动） */
+.nx-demo{display:flex;gap:6px;margin:0 0 12px}
+.nx-demo button{flex:1;min-width:0;width:auto;margin:0;padding:6px 2px 5px;border-radius:12px;background:#eef1f8;color:var(--ink);font-size:11px;font-weight:700;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.2}
+.nx-demo button.on{background:var(--pri);color:#fff}
+.nx-demo img{height:30px;width:auto;max-width:90%;object-fit:contain;pointer-events:none}
+.nx-back{width:auto;margin:0;padding:6px 14px;border-radius:999px;background:#eef1f8;color:var(--ink);font-size:13px;font-weight:600}
+
+/* ---------- 阶段 1：锁屏 + 通知横幅 ---------- */
+.nx-lock{position:relative;border-radius:30px;min-height:540px;padding:30px 14px 22px;color:#fff;overflow:hidden;display:flex;flex-direction:column;align-items:center;
+  background:radial-gradient(120% 70% at 50% 0%,#3f7a64 0%,#24453a 55%,#17302a 100%);box-shadow:0 8px 24px #1d243340}
+.nx-lock .lk-date{font-size:14px;opacity:.85;letter-spacing:.5px}
+.nx-lock .lk-time{font-size:68px;font-weight:300;letter-spacing:-2px;line-height:1.05;margin-top:2px}
+.nx-banner{margin-top:34px;width:100%;display:flex;gap:11px;align-items:flex-start;text-align:left;cursor:pointer;
+  background:#ffffffee;color:var(--ink);border-radius:20px;padding:12px 14px;box-shadow:0 8px 22px #0000003a;
+  animation:nx-drop .8s cubic-bezier(.3,1.4,.5,1) .5s both,nx-buzz 1.2s ease-in-out 1.5s 2;user-select:none;-webkit-user-select:none}
+.nx-banner:active{transform:scale(.985)}
+.nx-banner img.ic{width:38px;height:38px;border-radius:10px;flex:none}
+.nx-banner .tx{flex:1;min-width:0}
+.nx-banner .hd{display:flex;justify-content:space-between;font-size:12px;color:var(--sub);margin-bottom:2px}
+.nx-banner b{display:block;font-size:15px;line-height:1.35}
+.nx-banner small{display:block;font-size:13px;color:#4a5468;line-height:1.45;margin-top:2px}
+@keyframes nx-drop{from{transform:translateY(-130px) scale(.96);opacity:0}to{transform:none;opacity:1}}
+@keyframes nx-buzz{0%,100%{transform:none}15%{transform:translateX(-5px) rotate(-.6deg)}30%{transform:translateX(5px) rotate(.6deg)}45%{transform:translateX(-3px)}60%{transform:translateX(3px)}75%{transform:none}}
+.nx-lock .lk-hint{margin-top:14px;font-size:13px;opacity:0;animation:nx-hint 2.4s ease-in-out 2s infinite}
+@keyframes nx-hint{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:.95;transform:translateY(-4px)}}
+.nx-lock .lk-veg{margin-top:auto;position:relative;display:flex;justify-content:center;align-items:flex-end;height:150px;width:100%}
+.nx-lock .lk-veg::before{content:'';position:absolute;bottom:2px;width:150px;height:28px;border-radius:50%;background:radial-gradient(#0006,transparent 70%)}
+.nx-lock .lk-veg img{height:128px;width:auto;position:relative;animation:nx-bob 3.2s ease-in-out infinite;transform-origin:50% 100%;filter:drop-shadow(0 6px 10px #0004)}
+@keyframes nx-bob{0%,100%{transform:translateY(0) scale(1,1)}50%{transform:translateY(-8px) scale(.98,1.02)}}
+
+/* ---------- 阶段 2：互动结果页 ---------- */
+.nx-view h1{margin-top:2px}
+.nx-who{font-size:13px;color:var(--sub);margin:0 0 12px;display:flex;gap:6px;align-items:center}
+.nx-who i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#3ec28f;box-shadow:0 0 0 4px #3ec28f33}
+.nx-stage{position:relative;height:300px;border-radius:16px;overflow:hidden;isolation:isolate;background:#e8edf5}
+.nx-bg{position:absolute;inset:0;z-index:0}
+.nx-box{position:absolute;left:50%;top:0;width:300px;height:300px;margin-left:-150px;z-index:2}
+.nx-box>*{position:absolute}
+.nx-pl{left:0;right:0;bottom:var(--pb,40px);display:flex;justify-content:center;z-index:3}
+.nx-pa{position:relative;display:block;transform-origin:50% 100%}
+.nx-pa img{display:block;height:var(--ph,200px);width:auto;pointer-events:none;-webkit-user-drag:none;user-select:none}
+.nx-pl>div{display:block}
+.nx-replay{position:absolute;right:10px;top:10px;z-index:20;width:auto;margin:0;padding:5px 11px;border-radius:999px;background:#ffffffcc;color:var(--ink);font-size:12px;font-weight:700;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.nx-sfx{position:absolute;z-index:12;font-weight:900;font-size:22px;letter-spacing:1px;color:#fff;-webkit-text-stroke:5px var(--sfx,#e0502a);paint-order:stroke fill;text-shadow:0 2px 0 #0002;pointer-events:none;white-space:nowrap}
+.nx-star{position:absolute;z-index:11;width:16px;height:16px;opacity:0}
+.nx-star svg{width:100%;height:100%;display:block}
+
+/* 安抚卡片 */
+.nx-card{background:var(--card);border-radius:18px;padding:16px;box-shadow:0 2px 10px rgba(30,50,90,.06);margin-bottom:14px}
+.nx-gift{display:flex;gap:12px;align-items:flex-start}
+.nx-gift .gi{flex:none;width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--tint,#eef2fb);font-size:24px}
+.nx-gift b{display:block;font-size:17px;line-height:1.35}
+.nx-gift p{margin:6px 0 0;font-size:14px;line-height:1.7;color:#3b4457}
+.nx-gains{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.nx-gains span{padding:6px 12px;border-radius:999px;background:var(--tint,#eef2fb);font-size:13px;font-weight:700;color:var(--ink)}
+.nx-gains span::before{content:'+ ';opacity:.6}
+button.nx-take{background:var(--ok,#2f8f6b);position:relative;overflow:visible}
+button.nx-take.got{background:#e8f5ee;color:#17583f;pointer-events:none}
+.nx-heart{position:absolute;left:50%;bottom:50%;font-size:20px;pointer-events:none;animation:nx-heart 1.4s ease-out both}
+@keyframes nx-heart{0%{transform:translate(-50%,0) scale(.4);opacity:0}15%{opacity:1}100%{transform:translate(calc(-50% + var(--hx)),-90px) scale(1.1) rotate(var(--hr));opacity:0}}
+
+/* ---------- 通用循环动画 ---------- */
+@keyframes nx-twinkle{0%{opacity:0;transform:scale(.2) rotate(0)}40%{opacity:1;transform:scale(1) rotate(40deg)}100%{opacity:0;transform:scale(.3) rotate(90deg)}}
+@keyframes nx-spin{to{transform:rotate(360deg)}}
+@keyframes nx-wavemove{from{background-position-x:0}to{background-position-x:-150px}}
+@keyframes nx-flick{from{transform:scale(1,1) skewX(-3deg)}to{transform:scale(.86,1.14) skewX(4deg)}}
+@keyframes nx-fall{from{transform:translateY(-20px)}to{transform:translateY(220px)}}
+@keyframes nx-breathe{0%,100%{transform:scale(1,1)}50%{transform:scale(1.012,.99)}}
+@keyframes nx-drift{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(-120px);opacity:0}}
+@keyframes nx-ringloop{0%{transform:scale(.45);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+.nx-flame{transform-origin:0 0;animation:nx-flick .42s ease-in-out infinite alternate}
+.nx-wave{position:absolute;left:0;right:0;height:26px;background-repeat:repeat-x;background-size:150px 26px;animation:nx-wavemove 2.2s linear infinite}
+.nx-sunspin{animation:nx-spin 14s linear infinite}
+
+/* 系统设了「减少动态效果」：所有时间轴直接跳到最终画面 */
+@media (prefers-reduced-motion:reduce){
+  .nx-stage *{animation-duration:.001s!important;animation-delay:0s!important;animation-iteration-count:1!important}
+  .nx-banner,.nx-lock .lk-hint,.nx-lock .lk-veg img{animation:none!important;opacity:1}
+}
